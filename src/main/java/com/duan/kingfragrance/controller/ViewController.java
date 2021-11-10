@@ -20,6 +20,37 @@ public class ViewController {
 	public String getThuongHieu(Model model) {		
 	List<Brand> brands = brandService.getAllBrand();
 	model.addAttribute("listBrand", brands);
-	return "thuonghieu";
+	return "brand";
 	}
+	@GetMapping("/trang-chu")
+	public String getTrangChu() {
+		return "index";
+	}
+	
+	@GetMapping("/tai-khoan")
+	public String getTaiKhoan() {
+		return "account";
+	}
+	@GetMapping("/blog")
+	public String getBlog() {
+		return "blog";
+	}
+	@GetMapping("/gio-hang")
+	public String getGioHang() {
+		return "cart";
+	}
+	@GetMapping("/check-out")
+	public String getCheckOut() {
+		return "checkout";
+	}
+
+	@GetMapping("/product")
+	public String getProduct() {
+		return "product";
+	}
+	@GetMapping("/product-detailts")
+	public String getProductDetail() {
+		return "productDetail";
+	}
+	
 }

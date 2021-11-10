@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>ByteNext</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="icon" href="images/icon/fav_icon.png" type="image/png">
+    <link rel="stylesheet" type="text/css" href="css/tool.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/main.min.css" />
+    
+</head>
+<body class="index">
+<div th:insert="header-page :: header-page"></div>
+<main id="main">
+    <div class="section-cart">
+        <div class="bs-container">
+            <div class="module-cart">
+
+                <div class="bs-row">
+                    <div class="bs-col tn-70-10">
+                        <div class="module-left">
+                            <div class="icon-close"><i class="fas fa-times"></i></div>
+                            <h1 class="title">Sản phẩm đã chọn</h1>
+                            <hr>
+                            <div class="d-inline-block">
+                                <img src="../../dist/images/pr-1.png" width="180px" alt="">
+                            </div>
+                            <div class="d-inline-block">
+                                <h3 class="name-product"><a href="">Xerjoff 1861 Renaissance - 100ml</a></h3> <br>
+                                <span class="money"> 6.100.000 ₫</span>
+                            </div>
+                            <div class="d-inline-block">
+                                <div class="quantity">
+                                    <label class="screen-reader-text" for="quantity_6186956b6085e">Xerjoff 1861
+                                        Renaissance - 100ml số lượng</label>
+
+                                    <input type="number" id="quantity_6186956b6085e" class="input-text qty text"
+                                        step="1" min="0" max="" name="cart[c82718d8d25e9215fd7ca803cf241a72][qty]"
+                                        value="1" title="SL" size="4" placeholder="" inputmode="numeric">
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="update-cart">
+                                <button>
+                                    Cập nhật giỏ hàng
+                                </button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="bs-col tn-30-10">
+                        <div class="module-right">
+                            <h2 class="title">
+                                Phiếu thanh toán
+                            </h2>
+                            <p class="content">
+                                <b>Tạm tính</b><span class="money-pr float-right">6.100.000 đ</span>
+                            </p>
+                            <hr>
+                            <p class="content">
+                                <b>Tổng</b><span class="money-pr float-right">6.100.000 đ</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="bs-col">
+                        <div class="section-checkout">
+                            <div class="bs-container">
+                                <div class="module-checkout">
+                    
+                                    <div class="bs-row">
+                                        <div class="bs-col tn-70-10">
+                                            <div class="module-left">
+                                                <h1 class="title">Checkout</h1>
+                                                <div>
+                                                    <span class="mr-5">Mua để làm quà</span> <input type="radio"  name="" id="" checked>No
+                                                    <input type="radio" name="" id="">Yes
+                                                </div>
+                                                <hr>
+                                              
+                                                <div >
+                                                   Ghi chú đơn hàng(tùy chọn)
+                                                   <textarea name="" placeholder="Ghi chú về đơn hàng, ví dụ: thời gian hay chỉ dẫn địa điểm giao hàng chi tiết hơn." id="" cols="30" rows="10"></textarea>
+                                                </div>
+                                                
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="bs-col tn-30-10">
+                                            <div class="module-right">
+                                                <h2 class="title">
+                                                   Thông tin thanh toán
+                                                </h2>
+                                                <form action="">
+                                                    <p>
+                                                        <input type="text" placeholder="tên">
+                                                    </p>
+                                                    <p>
+                                                        <input type="text" placeholder="email">
+                                                    </p>
+                                                    <p>
+                                                        <input type="text" placeholder="Số điện thoại">
+                                                    </p>
+                                                    <p>
+                                                        <input type="text" placeholder="Địa chỉ">
+                                                    </p>
+                                                <button style="background-color: black;"> <a style="color: white;" href="../../dist/checkout.html"> Tiến hành thanh toán</a> </button>
+
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</main>
+     <div th:insert="footer-page :: footer-page"></div>
+    
+	
+    <script src="js/tool.min.js"></script>
+    <script src="js/main.min.js"></script>
+        
+
+</body>
+</html>
