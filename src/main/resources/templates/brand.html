@@ -53,12 +53,10 @@
                             <h3 class="title">
 A
                             </h3>
-                            <ul>
-                                <li><a href="">Adfdf</a></li>
-                                <li><a href="">Adfdf</a></li>
-                                <li><a href="">Adfdf</a></li>
-                                <li><a href="">Adfdf</a></li>
-                                <li><a href="">Adfdf</a></li>
+                            <ul th:each="x : ${listBrand}">
+                            
+                                <li  th:if="${x.name.startWith('A')}"> <a href="" th:text="${x.name}"></a></li>
+                             
                                
                             </ul>
                         </div>
