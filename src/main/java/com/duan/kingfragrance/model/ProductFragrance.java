@@ -11,12 +11,11 @@ public class ProductFragrance {
 	@Id
 	private String id;
 	private String productId;
-	private List<String> tone;
-	private List<String> first;
-	private List<String> midle;
-	private List<String> last;
-	public ProductFragrance(String id, String productId, List<String> tone, List<String> first, List<String> midle,
-			List<String> last) {
+	private String tone;
+	private String first;
+	private String midle;
+	private String last;
+	public ProductFragrance(String id, String productId, String tone, String first, String midle, String last) {
 		super();
 		this.id = id;
 		this.productId = productId;
@@ -40,30 +39,32 @@ public class ProductFragrance {
 	public void setProductId(String productId) {
 		this.productId = productId;
 	}
-	public List<String> getTone() {
+	public String getTone() {
 		return tone;
 	}
-	public void setTone(List<String> tone) {
+	public void setTone(String tone) {
 		this.tone = tone;
 	}
-	public List<String> getFirst() {
+	public String getFirst() {
 		return first;
 	}
-	public void setFirst(List<String> first) {
+	public void setFirst(String first) {
 		this.first = first;
 	}
-	public List<String> getMidle() {
+	public String getMidle() {
 		return midle;
 	}
-	public void setMidle(List<String> midle) {
+	public void setMidle(String midle) {
 		this.midle = midle;
 	}
-	public List<String> getLast() {
+	public String getLast() {
 		return last;
 	}
-	public void setLast(List<String> last) {
+	public void setLast(String last) {
 		this.last = last;
 	}
+	
+	
 	
 	
 }
