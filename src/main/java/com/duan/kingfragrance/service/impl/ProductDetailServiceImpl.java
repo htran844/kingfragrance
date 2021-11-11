@@ -30,7 +30,7 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 
 	@Override
 	public Boolean createProDetail(ProductDetail proDetail) {
-		Optional<ProductDetail> proDetailOptional = productDetailRepo.findByProductId(proDetail.getProductId());
+		Optional<ProductDetail> proDetailOptional = productDetailRepo.findByCapacityAndProductId(proDetail.getProductId(),proDetail.getCapacity());
 		if (proDetailOptional.isPresent()) {
 			return false;
 		} else {

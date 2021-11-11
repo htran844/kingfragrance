@@ -21,7 +21,7 @@ public class ProductServiceImpl implements ProductService {
 	
 	@Override
 	public Product CreateProduct(Product product) {
-		Optional<Product> Optional = productRepo.findBySlug(null);
+		Optional<Product> Optional = productRepo.findBySlug(product.getSlug());
 		if (Optional.isPresent()) {
 			return null;
 		} else {

@@ -25,7 +25,7 @@ public class ProFraRestController {
 	public ResponseEntity<?> getProductFra(@RequestParam("productId") String productId){
 		ProductFragrance proFra = productFraService.getProFra(productId);
 		if (proFra == null) {
-			return new ResponseEntity<>("khong tim thay ProductFragrance voi productId" +productId, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>("khong tim thay ProductFragrance voi productId" +productId, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<ProductFragrance>(proFra, HttpStatus.OK);
 		}
@@ -34,7 +34,7 @@ public class ProFraRestController {
 	public ResponseEntity<?> createProductFra(@RequestBody ProductFragrance proFra){
 		Boolean result = productFraService.createProFra(proFra);
 		if (!result) {
-			return new ResponseEntity<>(" productId" +proFra.getProductId() + "da ton tai", HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(null, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<ProductFragrance>(proFra, HttpStatus.OK);
 		}
@@ -45,7 +45,7 @@ public class ProFraRestController {
 		if (result) {
 			return new ResponseEntity<>("xoa thanh cong ProductFragrance có productId " +productId, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>("khong tim thay ProductFragrance có productId " +productId, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>("khong tim thay ProductFragrance có productId " +productId, HttpStatus.OK);
 		}
 	}
 	@PutMapping("/admin/product-fra")
@@ -54,7 +54,7 @@ public class ProFraRestController {
 		if (result) {
 			return new ResponseEntity<>("update thanh cong ProductFragrance có productId " +proFra.getProductId(), HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>("khong tim thay ProductFragrance có productId " +proFra.getProductId(), HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>("khong tim thay ProductFragrance có productId " +proFra.getProductId(), HttpStatus.OK);
 		}
 	}
 }

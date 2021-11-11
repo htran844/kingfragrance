@@ -24,7 +24,7 @@ public class ProRecRestController {
 	public ResponseEntity<?> getProductRec(@RequestParam("productId") String productId){
 		ProductRecommended proRec = proRecService.getProRec(productId);
 		if (proRec == null) {
-			return new ResponseEntity<>("khong tim thay product recomened voi productId" +productId, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>("khong tim thay product recomened voi productId" +productId, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<ProductRecommended>(proRec, HttpStatus.OK);
 		}
@@ -33,7 +33,7 @@ public class ProRecRestController {
 	public ResponseEntity<?> createProductRec(@RequestBody ProductRecommended proRec){
 		Boolean result = proRecService.createProRec(proRec);
 		if (!result) {
-			return new ResponseEntity<>(" productId" +proRec.getProductId() + "da ton tai", HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(null, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<ProductRecommended>(proRec, HttpStatus.OK);
 		}
@@ -44,7 +44,7 @@ public class ProRecRestController {
 		if (result) {
 			return new ResponseEntity<>("xoa thanh cong product recommended có productId " +productId, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>("khong tim thay product recommended có productId " +productId, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>("khong tim thay product recommended có productId " +productId, HttpStatus.OK);
 		}
 	}
 	@PutMapping("/admin/product-rec")
@@ -53,7 +53,7 @@ public class ProRecRestController {
 		if (result) {
 			return new ResponseEntity<>("update thanh cong product recommended có productId " +proRec.getProductId(), HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>("khong tim thay product recommended có productId " +proRec.getProductId(), HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>("khong tim thay product recommended có productId " +proRec.getProductId(), HttpStatus.OK);
 		}
 	}
 }

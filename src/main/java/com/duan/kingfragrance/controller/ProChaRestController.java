@@ -26,7 +26,7 @@ public class ProChaRestController {
 	public ResponseEntity<?> getProductCha(@RequestParam("productId") String productId){
 		ProductCharacteristic proCha = productChaService.getProCha(productId);
 		if (proCha == null) {
-			return new ResponseEntity<>("khong tim thay ProductCharacteristic voi productId" +productId, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>("khong tim thay ProductCharacteristic voi productId" +productId, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<ProductCharacteristic>(proCha, HttpStatus.OK);
 		}
@@ -35,7 +35,7 @@ public class ProChaRestController {
 	public ResponseEntity<?> createProductCha(@RequestBody ProductCharacteristic proCha){
 		Boolean result = productChaService.createProCha(proCha);
 		if (!result) {
-			return new ResponseEntity<>(" productId" +proCha.getProductId() + "da ton tai", HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(null, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<ProductCharacteristic>(proCha, HttpStatus.OK);
 		}
@@ -46,7 +46,7 @@ public class ProChaRestController {
 		if (result) {
 			return new ResponseEntity<>("xoa thanh cong ProductCharacteristic có productId " +productId, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>("khong tim thay ProductCharacteristic có productId " +productId, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>("khong tim thay ProductCharacteristic có productId " +productId, HttpStatus.OK);
 		}
 	}
 	@PutMapping("/admin/product-cha")
@@ -55,7 +55,7 @@ public class ProChaRestController {
 		if (result) {
 			return new ResponseEntity<>("update thanh cong ProductCharacteristic có productId " +proCha.getProductId(), HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>("khong tim thay ProductCharacteristic có productId " +proCha.getProductId(), HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>("khong tim thay ProductCharacteristic có productId " +proCha.getProductId(), HttpStatus.OK);
 		}
 	}
 }

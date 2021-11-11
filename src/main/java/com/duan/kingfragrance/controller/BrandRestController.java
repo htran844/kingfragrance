@@ -46,7 +46,7 @@ public class BrandRestController {
 		if (result) {
 			return new ResponseEntity<>("xoa thanh cong brand co id " +id, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>("Brand khong ton tai co id "+ id, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>("Brand khong ton tai co id "+ id, HttpStatus.OK);
 		}
 	}
 	@PutMapping("/brand/crud/{id}")
@@ -55,7 +55,7 @@ public class BrandRestController {
 		if (result) {
 			return new ResponseEntity<>("update thanh cong brand co id " +id, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>("Brand khong ton tai co id "+ id, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>("Brand khong ton tai co id "+ id, HttpStatus.OK);
 		}
 	}
 }

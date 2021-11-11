@@ -30,6 +30,12 @@ public class Product {
 	public Product() {
 		super();
 	}
+	
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", brand=" + brand + ", slug=" + slug + ", gender=" + gender
+				+ ", image=" + image + ", description=" + description + ", hot=" + hot + "]";
+	}
 	public String getId() {
 		return id;
 	}

@@ -11,6 +11,7 @@ import com.duan.kingfragrance.model.Product;
 
 @Repository
 public interface ProductRepository extends MongoRepository<Product, String> {
+	
 	@Query("{'slug': ?0}")
 	Optional<Product> findBySlug(String slug);
 }

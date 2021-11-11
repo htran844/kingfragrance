@@ -23,6 +23,8 @@ import com.duan.kingfragrance.model.ProductCharacteristic;
 import com.duan.kingfragrance.repository.ProductRepository;
 import com.duan.kingfragrance.service.ProductService;
 
+import ch.qos.logback.core.joran.conditional.IfAction;
+
 @RestController
 public class ProductRestController {
 	
@@ -32,7 +34,8 @@ public class ProductRestController {
 	private ProductRepository productRepo;
 	@PostMapping("admin/product-up")
 	public ResponseEntity<?> upload(@RequestParam("file") MultipartFile file, @RequestParam("slug") String slug){
-		if (slug.length()>0) {
+		Optional<Product> optional = productRepo.findBySlug(slug);
+		if(optional.isPresent()) {
 			Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
 					"cloud_name", "hoang844",
 					"api_key", "217959259192693",
@@ -46,7 +49,6 @@ public class ProductRestController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			Optional<Product> optional = productRepo.findBySlug(slug);
 			Product product = optional.get();
 			product.setImage(link);
 			productRepo.save(product);
@@ -54,6 +56,7 @@ public class ProductRestController {
 		} else {
 			return new ResponseEntity<>(null, HttpStatus.OK);
 		}
+		
 	}
 	
 	@PostMapping("admin/product-main")
@@ -62,15 +65,15 @@ public class ProductRestController {
 		if (result!=null) {
 			return new ResponseEntity<Product>(result, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>("product nay da ton tai "+product.getName(), HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(null, HttpStatus.OK);
 		}
-		
+//		return new ResponseEntity<>("hihi", HttpStatus.OK);
 	}
 	@GetMapping("/admin/product-main")
 	public ResponseEntity<?> getProduct(@RequestParam("slug") String slug){
 		Product product = productService.getOneProduct(slug);
 		if (product == null) {
-			return new ResponseEntity<>("khong tim thay Product voi slug" +slug, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>("khong tim thay Product voi slug" +slug, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<Product>(product, HttpStatus.OK);
 		}
@@ -81,7 +84,7 @@ public class ProductRestController {
 		if (result) {
 			return new ResponseEntity<>("xoa thanh cong Product có slug " +slug, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>("khong tim thay Product có slug " +slug, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>("khong tim thay Product có slug " +slug, HttpStatus.OK);
 		}
 	}
 	@PutMapping("/admin/product-main")
@@ -90,7 +93,7 @@ public class ProductRestController {
 		if (result) {
 			return new ResponseEntity<>("update thanh cong Product có slug " +product.getSlug(), HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>("khong tim thay Product có slug " +product.getSlug(), HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>("khong tim thay Product có slug " +product.getSlug(), HttpStatus.OK);
 		}
 	}
 	
