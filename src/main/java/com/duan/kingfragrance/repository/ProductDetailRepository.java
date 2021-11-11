@@ -12,4 +12,7 @@ import com.duan.kingfragrance.model.ProductDetail;
 public interface ProductDetailRepository extends MongoRepository<ProductDetail, String> {
 	@Query("{'productId': ?0}")
 	Optional<ProductDetail> findByProductId(String productId);
+	
+	@Query("{'productId': ?0, 'capacity': ?1}")
+	Optional<ProductDetail> findByCapacityAndProductId(String productId, int capacity);
 }

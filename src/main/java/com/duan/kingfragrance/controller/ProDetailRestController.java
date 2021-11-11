@@ -25,7 +25,7 @@ public class ProDetailRestController {
 	public ResponseEntity<?> getProductDetail(@RequestParam("productId") String productId){
 		ProductDetail proDetail = productDetailService.getProDetail(productId);
 		if (proDetail == null) {
-			return new ResponseEntity<>("khong tim thay ProductDetail voi productId" +productId, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>("khong tim thay ProductDetail voi productId" +productId, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<ProductDetail>(proDetail, HttpStatus.OK);
 		}
@@ -34,7 +34,7 @@ public class ProDetailRestController {
 	public ResponseEntity<?> createProductDetail(@RequestBody ProductDetail proDetail){
 		Boolean result = productDetailService.createProDetail(proDetail);
 		if (!result) {
-			return new ResponseEntity<>(" productId" +proDetail.getProductId() + "da ton tai", HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(null, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<ProductDetail>(proDetail, HttpStatus.OK);
 		}
@@ -45,7 +45,7 @@ public class ProDetailRestController {
 		if (result) {
 			return new ResponseEntity<>("xoa thanh cong ProductDetail có productId " +productId, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>("khong tim thay ProductDetail có productId " +productId, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>("khong tim thay ProductDetail có productId " +productId, HttpStatus.OK);
 		}
 	}
 	@PutMapping("/admin/product-detail")
@@ -54,7 +54,7 @@ public class ProDetailRestController {
 		if (result) {
 			return new ResponseEntity<>("update thanh cong ProductDetail có productId " +productDetail.getProductId(), HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>("khong tim thay ProductDetail có productId " +productDetail.getProductId(), HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>("khong tim thay ProductDetail có productId " +productDetail.getProductId(), HttpStatus.OK);
 		}
 	}
 }
