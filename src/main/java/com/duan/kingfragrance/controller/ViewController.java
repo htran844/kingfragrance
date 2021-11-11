@@ -8,13 +8,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.duan.kingfragrance.model.Brand;
+import com.duan.kingfragrance.model.Product;
 import com.duan.kingfragrance.service.BrandService;
+import com.duan.kingfragrance.service.ProductService;
 
 @Controller
 public class ViewController {
 
 	@Autowired
 	private BrandService brandService;
+	
 	
 	@GetMapping("/thuong-hieu")
 	public String getThuongHieu(Model model) {		
@@ -45,7 +48,9 @@ public class ViewController {
 	}
 
 	@GetMapping("/product")
-	public String getProduct() {
+	public String getProduct(Model model) {
+		List<Product> brands = pro.getAllBrand();
+		model.addAttribute("listBrand", brands);
 		return "product";
 	}
 	@GetMapping("/product-detailts")

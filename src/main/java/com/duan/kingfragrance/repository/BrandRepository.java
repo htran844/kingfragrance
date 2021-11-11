@@ -14,4 +14,5 @@ public interface BrandRepository extends MongoRepository<Brand, String> {
 	
 	@Query("{'name': ?0}")
 	Optional<Brand> findByBrand(String name);
+	
 }
