@@ -2,9 +2,14 @@ package com.duan.kingfragrance.service.impl;
 
 
 
+import java.util.List;
 import java.util.Optional;
 
+import javax.management.Query;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.query.BasicQuery;
+import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.stereotype.Service;
 
 import com.duan.kingfragrance.model.Brand;
@@ -70,6 +75,24 @@ public class ProductServiceImpl implements ProductService {
 		} else {
 			return false;
 		}
+	}
+
+	@Override
+	public List<Product> getAdminProduct(int page, String search, String gender) {
+		List<Product> listProduct;
+		if(search.equalsIgnoreCase("null") && gender.equalsIgnoreCase("null")) {
+			
+			listProduct	= productRepo.findAll();
+		} else if (search.equalsIgnoreCase("null")) {
+			listProduct	= productRepo.findByGender(gender);
+		} else if (gender.equalsIgnoreCase("null")) {
+			listProduct	= productRepo.findByName(search);
+		} else {
+			listProduct	= productRepo.findAllAdminProduct(search, gender);
+		}
+			
+//		listProduct	= productRepo.findAllAdminProduct(search, gender);
+		return listProduct;
 	}
 
 }
