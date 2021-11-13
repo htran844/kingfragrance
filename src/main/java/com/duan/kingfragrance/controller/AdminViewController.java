@@ -19,4 +19,8 @@ public class AdminViewController {
 	public String getAdminProduct(Model model) {
 		return "admin-products";
 	}
+	@GetMapping("/admin/products/{slug}")
+	public String getAdminEditProduct(Model model) {
+		return "admin-edit-product";
+	}
 }

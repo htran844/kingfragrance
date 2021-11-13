@@ -1,5 +1,6 @@
 package com.duan.kingfragrance.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,6 +65,17 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 		} else {
 			return false;
 		}
+	}
+
+	@Override
+	public List<ProductDetail> getAllProductDetailById(String productId) {
+		List<ProductDetail> lst = productDetailRepo.findAllByProductId(productId);
+		if (lst.size()>0) {
+			return lst;
+		} else {
+			return null;
+		}
+		
 	}
 
 }

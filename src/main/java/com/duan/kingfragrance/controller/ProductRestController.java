@@ -73,11 +73,11 @@ public class ProductRestController {
 		}
 //		return new ResponseEntity<>("hihi", HttpStatus.OK);
 	}
-	@GetMapping("/admin/product-main")
-	public ResponseEntity<?> getProduct(@RequestParam("slug") String slug){
+	@GetMapping("/admin/product-main/{slug}")
+	public ResponseEntity<?> getProduct(@PathVariable String slug){
 		Product product = productService.getOneProduct(slug);
 		if (product == null) {
-			return new ResponseEntity<>("khong tim thay Product voi slug" +slug, HttpStatus.OK);
+			return new ResponseEntity<>(null, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<Product>(product, HttpStatus.OK);
 		}

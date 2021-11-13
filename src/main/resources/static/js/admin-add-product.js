@@ -1,13 +1,6 @@
 const moreProductItem = `<div class="col-3">
 <label class="mb-1">Chọn dung tích</label>
-<div class="wrap-color d-flex align-items-center">
-	<select name="type" required id="product-capacity">
-		<option value="" selected disabled>Chọn dung tích</option>
-		<option value="10">10ml</option>
-		<option value="50">50ml</option>
-		<option value="100">100ml</option>
-	</select>
-</div>
+<input type="number" name="capacity" class="product-capacity" placeholder="Dung tích" required />
 </div>
 <div class="col-3">
 <label class="mb-1">Nhập giá</label>
@@ -88,7 +81,7 @@ form.addEventListener("submit", async  (e) => {
     hot = false;
   }
   //    check.checked == true ? hot=true : hot=false;
-  const gender = document.querySelector("#product-gender");
+  const gender = document.querySelector("#product-type");
   // const color = document.querySelector('.product-color')
   // const total = document.querySelector('.product-total')
   const description = document.querySelector("#product-description");
@@ -133,7 +126,7 @@ const dataRespon =  await	$.ajax({
 	}
 	var postStatus = true;
   for (let item of products) {
-      let capacityDetail = item.querySelector("#product-capacity").value;
+      let capacityDetail = item.querySelector(".product-capacity").value;
       let costDetail = item.querySelector(".product-cost").value;
       let quantityDetail = item.querySelector(".product-quantity").value;
 	let dataProductDetail = {

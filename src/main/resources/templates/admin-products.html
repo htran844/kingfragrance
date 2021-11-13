@@ -31,7 +31,7 @@
 
 <body>
     <div class="admin-nav">
-        <h1>K14-Shop</h1>
+        <h1>King Fragrance</h1>
         <a href="/admin" name-nav="dashboard"><i class="fas fa-columns"></i>
             <span>Dashboard</span>
         </a>
@@ -75,9 +75,9 @@
                             <!-- <i class="fas fa-filter"></i>
 			Add filter -->
                             <select name="select-filter" onchange="handleFilter(this)">
-                                <option value="">Add filter</option>
+                                <option value="null">Add filter</option>
                                 <option value="nam">Nam</option>
-                                <option value="nu">Nữ</option>
+                                <option value="nữ">Nữ</option>
                                 <option value="unisex">Unisex</option>
                             </select>
                         </div>
@@ -88,7 +88,7 @@
                         <div class="total-products">
                             <i class="fas fa-box"></i>
                             Tổng sản phẩm:&nbsp;
-                            <span>0</span>
+                            <span id="total-product">0</span>
                         </div>
                     </div>
                     <table class="table table-hover">
