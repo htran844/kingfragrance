@@ -1,5 +1,7 @@
 package com.duan.kingfragrance.service;
 
+import java.util.List;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import com.duan.kingfragrance.model.Product;
@@ -14,4 +16,6 @@ public interface ProductService {
 	public Boolean deleteProductBySlug(String slug);
 	
 	public Boolean updateProduct(Product product) ;
+	
+	public List<Product> getAdminProduct(int page, String search, String gender);
 }

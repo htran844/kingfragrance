@@ -15,4 +15,12 @@ public class AdminViewController {
 	public String getAdminAddProduct(Model model) {
 		return "admin-add-product";
 	}
+	@GetMapping("/admin/products")
+	public String getAdminProduct(Model model) {
+		return "admin-products";
+	}
+	@GetMapping("/admin/products/{slug}")
+	public String getAdminEditProduct(Model model) {
+		return "admin-edit-product";
+	}
 }

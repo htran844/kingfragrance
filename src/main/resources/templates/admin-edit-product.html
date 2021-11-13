@@ -33,7 +33,7 @@
 
 <body>
     <div class="admin-nav">
-        <h1>King Fragrance</h1>
+        <h1>K14-Shop</h1>
         <a href="/admin" name-nav="dashboard"><i class="fas fa-columns"></i>
             <span>Dashboard</span>
         </a>
@@ -70,7 +70,7 @@
 
             <div class="admin-content">
                 <form >
-                    <h2 class="title-header">Thêm sản phẩm</h2>
+                    <h2 class="title-header">Cập nhật sản phẩm</h2>
 
                     <label for="product-name">Tên sản phẩm</label>
                     <input type="text" placeholder="Tên sản phẩm" name="name" id="product-name" required />
@@ -86,9 +86,9 @@
                         <div class="col-4">
                             <select name="type" required id="product-type">
                                 <option value="" selected disabled>Chọn giới tính</option>
-                                <option value="Nam">Nam</option>
-                                <option value="Nữ">Nữ</option>
-                                <option value="Unisex">Unisex</option>
+                                <option value="nam">Nam</option>
+                                <option value="nữ">Nữ</option>
+                                <option value="unisex">Unisex</option>
                             </select>
                         </div>
                     </div>
@@ -98,24 +98,7 @@
                     </div>
                     <div class="more-product-wrap">
                         <div class="row more-product-item d-flex align-items-center">
-                            <div class="col-3">
-                                <label class="mb-1">Chọn dung tích</label>
-                                 <input type="number" name="capacity" class="product-capacity" placeholder="Dung tích" required />
-                            </div>
-                            <div class="col-3">
-                                <label class="mb-1">Nhập giá</label>
-                                <input type="number" name="cost" class="product-cost" placeholder="Giá" required />
-                            </div>
-                            <div class="col-3">
-                                <label class="mb-1">Số lượng</label>
-                                <input type="number" name="quantity" class="product-quantity" placeholder="Số lượng"
-                                    required />
-                            </div>
-                            <div class="col-3 more-product-delete-btn mt-3">
-                                <button type="button" onclick="$(this).parent().parent().remove()">
-                                    Xóa
-                                </button>
-                            </div>
+                            
                         </div>
                     </div>
 
@@ -143,7 +126,7 @@
                     <input type="text" placeholder="Giới tính" name="gender" id="product-gender" required />
                     <input type="text" placeholder="Độ tuổi" name="age" id="product-age" required />
                     <input type="text" placeholder="Độ lưu mùi" name="retention" id="product-retention" required />
-                    <button type="submit" class="add-product-button">Thêm</button>
+                    <button type="submit" class="add-product-button">Cập nhật</button>
                 </form>
 
 
@@ -177,7 +160,7 @@
 	
     <script type="text/javascript" th:src="@{/js/admin.js}"></script>
     <script type="text/javascript" th:src="@{/js/base.js}"></script>
-    <script type="text/javascript" th:src="@{/js/admin-add-product.js}"></script>
+    <script type="text/javascript" th:src="@{/js/admin-edit-product.js}"></script>
 </body>
 
 </html>

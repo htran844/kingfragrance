@@ -1,14 +1,18 @@
 package com.duan.kingfragrance.controller;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
+import javax.management.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -69,11 +73,11 @@ public class ProductRestController {
 		}
 //		return new ResponseEntity<>("hihi", HttpStatus.OK);
 	}
-	@GetMapping("/admin/product-main")
-	public ResponseEntity<?> getProduct(@RequestParam("slug") String slug){
+	@GetMapping("/admin/product-main/{slug}")
+	public ResponseEntity<?> getProduct(@PathVariable String slug){
 		Product product = productService.getOneProduct(slug);
 		if (product == null) {
-			return new ResponseEntity<>("khong tim thay Product voi slug" +slug, HttpStatus.OK);
+			return new ResponseEntity<>(null, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<Product>(product, HttpStatus.OK);
 		}
@@ -96,5 +100,9 @@ public class ProductRestController {
 			return new ResponseEntity<>("khong tim thay Product có slug " +product.getSlug(), HttpStatus.OK);
 		}
 	}
-	
+	@GetMapping("/admin/product-main/{page}/{search}/{gender}")
+	public ResponseEntity<?> getAllAdminProduct(@PathVariable int page, @PathVariable String search, @PathVariable String gender){
+		List<Product> listProduct = productService.getAdminProduct(page, search, gender);
+		return new ResponseEntity<List<Product>>(listProduct, HttpStatus.OK);
+	}
 }

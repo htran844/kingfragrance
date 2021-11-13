@@ -1,5 +1,6 @@
 package com.duan.kingfragrance.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -15,4 +16,7 @@ public interface ProductDetailRepository extends MongoRepository<ProductDetail, 
 	
 	@Query("{'productId': ?0, 'capacity': ?1}")
 	Optional<ProductDetail> findByCapacityAndProductId(String productId, int capacity);
+	
+	@Query("{'productId': ?0}")
+	List<ProductDetail> findAllByProductId(String productId);
 }
