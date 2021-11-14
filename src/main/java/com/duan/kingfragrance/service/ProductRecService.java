@@ -13,4 +13,5 @@ public interface ProductRecService {
 	public Boolean deleteProRecByProductId(String productId);
 	
 	public Boolean updateProRec(ProductRecommended proRec) ;
+	
 }

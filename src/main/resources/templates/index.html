@@ -10,8 +10,8 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 <link rel="icon" href="images/icon/fav_icon.png" type="image/png">
-<link rel="stylesheet" type="text/css" href="css/tool.min.css" />
-<link rel="stylesheet" type="text/css" href="css/main.min.css" />
+  <link rel="stylesheet" type="text/css"  th:href="@{/css/tool.min.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/main.min.css}"  />
 
 </head>
 <body class="index">
@@ -133,7 +133,6 @@
 					<h1 class="module-header text-center">sản phẩm nổi bật</h1>
 					<div class="module-content">
 						<br>
-
 						<div class="tab-content">
 							<div id="home" class="container tab-pane active">
 								<br>
@@ -142,83 +141,20 @@
 
 								<div class="bs-row product-class">
 
-									<div class="bs-col tn-33-15">
-										<div class="card">
+									<div class="bs-col tn-33-15" th:each="x : ${listProductResult}"  th:if="${listProductResult.size()>0 && x.hot && x.gender eq 'nam'}" >
+										<div class="card" >
 											<a href="productDetail.html"> <img class="card-img-top"
-												src="images/pr-1.png" alt=""></a>
+												th:src="${x.image}"></a>
 											<div class="card-body">
-												<h4 class="card-title">Creed</h4>
-												<p class="card-colorCategory">Aventus</p>
-												<p class="card-text">5.7000.000 đ</p>
+												<h4 class="card-title" th:text="${x.name}"></h4>
+												<p class="card-colorCategory" th:text="${x.slug}"></p>
+												<p><span class="card-text" th:if="${x.productDetails.size()>0 }"   th:text="${x.productDetails.get(0).cost}" ></span>
+												<span>đ</span>
+												</p>
 											</div>
 										</div>
 									</div>
-									<div class="bs-col tn-33-15">
-										<div class="card">
-											<a href="productDetail.html"> <img class="card-img-top"
-												src="images/pr-1.png" alt=""></a>
-											<div class="card-body">
-												<h4 class="card-title">Creed</h4>
-												<p class="card-colorCategory">Aventus</p>
-												<p class="card-text">5.7000.000 đ</p>
-											</div>
-										</div>
-									</div>
-									<div class="bs-col tn-33-15">
-										<div class="card">
-											<a href="productDetail.html"> <img class="card-img-top"
-												src="images/pr-1.png" alt=""></a>
-											<div class="card-body">
-												<h4 class="card-title">Creed</h4>
-												<p class="card-colorCategory">Aventus</p>
-												<p class="card-text">5.7000.000 đ</p>
-											</div>
-										</div>
-									</div>
-									<div class="bs-col tn-33-15">
-										<div class="card">
-											<a href="productDetail.html"> <img class="card-img-top"
-												src="images/pr-1.png" alt=""></a>
-											<div class="card-body">
-												<h4 class="card-title">Creed</h4>
-												<p class="card-colorCategory">Aventus</p>
-												<p class="card-text">5.7000.000 đ</p>
-											</div>
-										</div>
-									</div>
-									<div class="bs-col tn-33-15">
-										<div class="card">
-											<a href="productDetail.html"> <img class="card-img-top"
-												src="images/pr-1.png" alt=""></a>
-											<div class="card-body">
-												<h4 class="card-title">Creed</h4>
-												<p class="card-colorCategory">Aventus</p>
-												<p class="card-text">5.7000.000 đ</p>
-											</div>
-										</div>
-									</div>
-									<div class="bs-col tn-33-15">
-										<div class="card">
-											<a href="productDetail.html"> <img class="card-img-top"
-												src="images/pr-1.png" alt=""></a>
-											<div class="card-body">
-												<h4 class="card-title">Creed</h4>
-												<p class="card-colorCategory">Aventus</p>
-												<p class="card-text">5.7000.000 đ</p>
-											</div>
-										</div>
-									</div>
-									<div class="bs-col tn-33-15">
-										<div class="card">
-											<a href="productDetail.html"> <img class="card-img-top"
-												src="images/pr-1.png" alt=""></a>
-											<div class="card-body">
-												<h4 class="card-title">Creed</h4>
-												<p class="card-colorCategory">Aventus</p>
-												<p class="card-text">5.7000.000 đ</p>
-											</div>
-										</div>
-									</div>
+								
 								</div>
 							</div>
 							<div id="home" class="container tab-pane active">
@@ -226,86 +162,23 @@
 								<h1 class="module-header"
 									style="font-size: 20px; padding: 20px 0px;">Nước Hoa Nữ</h1>
 
-								<div class="bs-row product-class">
+									<div class="bs-row product-class">
 
-									<div class="bs-col tn-33-15">
-										<div class="card">
-											<a href="productDetail.html"> <img class="card-img-top"
-												src="images/pr-1.png" alt=""></a>
-											<div class="card-body">
-												<h4 class="card-title">Creed</h4>
-												<p class="card-colorCategory">Aventus</p>
-												<p class="card-text">5.7000.000 đ</p>
+										<div class="bs-col tn-33-15" th:each="x : ${listProductResult}" th:if="${listProductResult.size()>0 && x.hot && x.gender eq 'nữ'}" >
+											<div class="card" >
+												<a href="productDetail.html"> <img class="card-img-top"
+													th:src="${x.image}"></a>
+												<div class="card-body">
+													<h4 class="card-title" th:text="${x.name}"></h4>
+													<p class="card-colorCategory" th:text="${x.slug}"></p>
+													<p><span class="card-text" th:if="${x.productDetails.size()>0 }"   th:text="${x.productDetails.get(0).cost}" ></span>
+													<span>đ</span>
+													</p>
+												</div>
 											</div>
 										</div>
+									
 									</div>
-									<div class="bs-col tn-33-15">
-										<div class="card">
-											<a href="productDetail.html"> <img class="card-img-top"
-												src="images/pr-1.png" alt=""></a>
-											<div class="card-body">
-												<h4 class="card-title">Creed</h4>
-												<p class="card-colorCategory">Aventus</p>
-												<p class="card-text">5.7000.000 đ</p>
-											</div>
-										</div>
-									</div>
-									<div class="bs-col tn-33-15">
-										<div class="card">
-											<a href="productDetail.html"> <img class="card-img-top"
-												src="images/pr-1.png" alt=""></a>
-											<div class="card-body">
-												<h4 class="card-title">Creed</h4>
-												<p class="card-colorCategory">Aventus</p>
-												<p class="card-text">5.7000.000 đ</p>
-											</div>
-										</div>
-									</div>
-									<div class="bs-col tn-33-15">
-										<div class="card">
-											<a href="productDetail.html"> <img class="card-img-top"
-												src="images/pr-1.png" alt=""></a>
-											<div class="card-body">
-												<h4 class="card-title">Creed</h4>
-												<p class="card-colorCategory">Aventus</p>
-												<p class="card-text">5.7000.000 đ</p>
-											</div>
-										</div>
-									</div>
-									<div class="bs-col tn-33-15">
-										<div class="card">
-											<a href="productDetail.html"> <img class="card-img-top"
-												src="images/pr-1.png" alt=""></a>
-											<div class="card-body">
-												<h4 class="card-title">Creed</h4>
-												<p class="card-colorCategory">Aventus</p>
-												<p class="card-text">5.7000.000 đ</p>
-											</div>
-										</div>
-									</div>
-									<div class="bs-col tn-33-15">
-										<div class="card">
-											<a href="productDetail.html"> <img class="card-img-top"
-												src="images/pr-1.png" alt=""></a>
-											<div class="card-body">
-												<h4 class="card-title">Creed</h4>
-												<p class="card-colorCategory">Aventus</p>
-												<p class="card-text">5.7000.000 đ</p>
-											</div>
-										</div>
-									</div>
-									<div class="bs-col tn-33-15">
-										<div class="card">
-											<a href="productDetail.html"> <img class="card-img-top"
-												src="images/pr-1.png" alt=""></a>
-											<div class="card-body">
-												<h4 class="card-title">Creed</h4>
-												<p class="card-colorCategory">Aventus</p>
-												<p class="card-text">5.7000.000 đ</p>
-											</div>
-										</div>
-									</div>
-								</div>
 							</div>
 							<div id="home" class="container tab-pane active">
 								<br>
@@ -313,86 +186,23 @@
 									style="font-size: 20px; padding: 20px 0px;">Nước Hoa
 									Unisex</h1>
 
-								<div class="bs-row product-class">
+									<div class="bs-row product-class">
 
-									<div class="bs-col tn-33-15">
-										<div class="card">
-											<a href="productDetail.html"> <img class="card-img-top"
-												src="images/pr-1.png" alt=""></a>
-											<div class="card-body">
-												<h4 class="card-title">Creed</h4>
-												<p class="card-colorCategory">Aventus</p>
-												<p class="card-text">5.7000.000 đ</p>
+										<div class="bs-col tn-33-15" th:each="x : ${listProductResult}" th:if="${listProductResult.size()>0 && x.hot && x.gender eq 'unisex'}" >
+											<div class="card" >
+												<a href="productDetail.html"> <img class="card-img-top"
+													th:src="${x.image}"></a>
+												<div class="card-body">
+													<h4 class="card-title" th:text="${x.name}"></h4>
+													<p class="card-colorCategory" th:text="${x.slug}"></p>
+													<p><span class="card-text" th:if="${x.productDetails.size()>0 }"   th:text="${x.productDetails.get(0).cost}" ></span>
+													<span>đ</span>
+													</p>
+												</div>
 											</div>
 										</div>
+									
 									</div>
-									<div class="bs-col tn-33-15">
-										<div class="card">
-											<a href="productDetail.html"> <img class="card-img-top"
-												src="images/pr-1.png" alt=""></a>
-											<div class="card-body">
-												<h4 class="card-title">Creed</h4>
-												<p class="card-colorCategory">Aventus</p>
-												<p class="card-text">5.7000.000 đ</p>
-											</div>
-										</div>
-									</div>
-									<div class="bs-col tn-33-15">
-										<div class="card">
-											<a href="productDetail.html"> <img class="card-img-top"
-												src="images/pr-1.png" alt=""></a>
-											<div class="card-body">
-												<h4 class="card-title">Creed</h4>
-												<p class="card-colorCategory">Aventus</p>
-												<p class="card-text">5.7000.000 đ</p>
-											</div>
-										</div>
-									</div>
-									<div class="bs-col tn-33-15">
-										<div class="card">
-											<a href="productDetail.html"> <img class="card-img-top"
-												src="images/pr-1.png" alt=""></a>
-											<div class="card-body">
-												<h4 class="card-title">Creed</h4>
-												<p class="card-colorCategory">Aventus</p>
-												<p class="card-text">5.7000.000 đ</p>
-											</div>
-										</div>
-									</div>
-									<div class="bs-col tn-33-15">
-										<div class="card">
-											<a href="productDetail.html"> <img class="card-img-top"
-												src="images/pr-1.png" alt=""></a>
-											<div class="card-body">
-												<h4 class="card-title">Creed</h4>
-												<p class="card-colorCategory">Aventus</p>
-												<p class="card-text">5.7000.000 đ</p>
-											</div>
-										</div>
-									</div>
-									<div class="bs-col tn-33-15">
-										<div class="card">
-											<a href="productDetail.html"> <img class="card-img-top"
-												src="images/pr-1.png" alt=""></a>
-											<div class="card-body">
-												<h4 class="card-title">Creed</h4>
-												<p class="card-colorCategory">Aventus</p>
-												<p class="card-text">5.7000.000 đ</p>
-											</div>
-										</div>
-									</div>
-									<div class="bs-col tn-33-15">
-										<div class="card">
-											<a href="productDetail.html"> <img class="card-img-top"
-												src="images/pr-1.png" alt=""></a>
-											<div class="card-body">
-												<h4 class="card-title">Creed</h4>
-												<p class="card-colorCategory">Aventus</p>
-												<p class="card-text">5.7000.000 đ</p>
-											</div>
-										</div>
-									</div>
-								</div>
 							</div>
 						</div>
 					</div>
@@ -452,8 +262,8 @@
 
 
 
-	<script src="js/tool.min.js"></script>
-	<script src="js/main.min.js"></script>
+<script  th:src="@{/js/tool.min.js}"></script>
+<script th:src="@{/js/main.min.js}" ></script>
 
 	<script>
 		$(document).ready(function() {
@@ -462,8 +272,8 @@
 			});
 
 			$('.brand-class').slick({
-				slidesToShow : 4,
-				slidesToScroll : 4,
+				slidesToShow : 5,
+				slidesToScroll : 5,
 				autoplay : false,
 				autoplaySpeed : 2000,
 				dots : true,
@@ -471,8 +281,8 @@
 
 			});
 			$('.product-class').slick({
-				slidesToShow : 5,
-				slidesToScroll : 5,
+				slidesToShow : 4,
+				slidesToScroll : 4,
 				dots : true,
 				swipeToSlide : true,
 

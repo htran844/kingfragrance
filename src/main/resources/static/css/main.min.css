@@ -26,7 +26,9 @@
 	line-height: 27px;
 	margin: 25px 0
 }
-
+.page-numbers span:hover{
+	text-decoration: underline;
+}
 #main .section-cart .minus, #main .section-cart .plus {
 	right: 0;
 	border-left: 1px solid #ccc;
@@ -592,7 +594,8 @@
 	width: 100%;
 	margin-top: -18px;
 	-o-object-fit: contain;
-	object-fit: contain
+	object-fit: contain;
+	height:246px;
 }
 
 .section-product-special .card p {
@@ -600,11 +603,22 @@
 }
 
 .section-product-special .card .card-title {
-	color: #8f5f177d;
-	border-bottom: 1px solid;
-	padding-bottom: 14px;
-	max-width: 80px;
-	margin: 0 auto 15px
+	    color: #8f5f177d;
+    border-bottom: 1px solid;
+    padding-bottom: 14px;
+    /* max-width: 80px; */
+    font-size: 18px;
+    margin: 0 auto 15px;
+    height: 45px;
+
+
+}
+.section-product-special .card .card-body {
+	 
+    
+    height: 180px;
+
+
 }
 
 .section-product-special .slick-dots {
