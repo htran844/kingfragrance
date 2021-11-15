@@ -2,27 +2,38 @@ package com.duan.kingfragrance.service.impl;
 
 
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
 import javax.management.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.mongodb.core.query.BasicQuery;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.stereotype.Service;
 
 import com.duan.kingfragrance.model.Brand;
 import com.duan.kingfragrance.model.Product;
+import com.duan.kingfragrance.model.ProductDetail;
 import com.duan.kingfragrance.model.ProductRecommended;
+import com.duan.kingfragrance.model.ProductResult;
+import com.duan.kingfragrance.repository.ProductDetailRepository;
 import com.duan.kingfragrance.repository.ProductRepository;
 import com.duan.kingfragrance.service.ProductService;
 
 @Service
 public class ProductServiceImpl implements ProductService {
-
+	
+	
 	@Autowired
 	private ProductRepository productRepo;
+	@Autowired
+	private ProductDetailRepository productDetailRepository;
 	
 	@Override
 	public Product CreateProduct(Product product) {
@@ -94,5 +105,37 @@ public class ProductServiceImpl implements ProductService {
 //		listProduct	= productRepo.findAllAdminProduct(search, gender);
 		return listProduct;
 	}
+
+	@Override
+	public List<ProductResult> getAllProductResult() {
+		List<ProductResult> list = new ArrayList<ProductResult>();
+		List<ProductDetail> ListproductDetails = productDetailRepository.findAll();//list productDetail
+		List<Product> lstProduct = productRepo.findAll();//list product
+		
+		for (Product x : lstProduct) {
+			List<ProductDetail> temp = new ArrayList<>();
+			double money=0;
+			for (ProductDetail y : ListproductDetails) {
+				if (x.getId().equals(y.getProductId())) {
+					temp.add(y);
+					if (y.getCost()>money) {
+						temp.set(0, y);
+					}
+					money = y.getCost();
+					
+				}
+			}
+			list.add(new ProductResult(x.getId(), x.getName(), x.getBrand(), x.getSlug(), x.getGender(), x.getImage(),
+					x.getDescription(), x.getHot(), temp));
+		}
+		return list;
+	}
+
+	@Override
+	public Page<Product> findPaginated(int pageNo, int pageSize) {
+		PageRequest pageable = PageRequest.of(pageNo-1, pageSize);
+		return productRepo.findAll(pageable);
+	}
+
 
 }
