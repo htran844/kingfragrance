@@ -35,6 +35,7 @@ public class ProductChaServiceImpl implements ProductChaService {
 			return false;
 		} else {
 			productChaRepo.save(proCha);
+			
 			return true;
 		}
 	}

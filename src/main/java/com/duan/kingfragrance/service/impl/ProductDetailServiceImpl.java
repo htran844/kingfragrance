@@ -54,15 +54,17 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 
 	@Override
 	public Boolean updateProDetail(ProductDetail proDetail) {
-		Optional<ProductDetail> proDetailOptional = productDetailRepo.findByProductId(proDetail.getProductId());
+		Optional<ProductDetail> proDetailOptional = productDetailRepo.findByCapacityAndProductId(proDetail.getProductId(), proDetail.getCapacity());
 		if (proDetailOptional.isPresent()) {
 			ProductDetail proDetailUpdate = proDetailOptional.get();
+			System.out.print(proDetailUpdate.toString());
 			proDetailUpdate.setCapacity(proDetail.getCapacity());
 			proDetailUpdate.setCost(proDetail.getCost());
 			proDetailUpdate.setQuantity(proDetail.getQuantity());
-			productDetailRepo.save(proDetail);
+			productDetailRepo.save(proDetailUpdate);
 			return true;
 		} else {
+			createProDetail(proDetail);
 			return false;
 		}
 	}

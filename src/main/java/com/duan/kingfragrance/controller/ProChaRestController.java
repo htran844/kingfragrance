@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,11 +23,11 @@ public class ProChaRestController {
 	@Autowired
 	private ProductChaService productChaService;
 	
-	@GetMapping("/admin/product-cha")
-	public ResponseEntity<?> getProductCha(@RequestParam("productId") String productId){
+	@GetMapping("/admin/product-cha/{productId}")
+	public ResponseEntity<?> getProductCha(@PathVariable String productId){
 		ProductCharacteristic proCha = productChaService.getProCha(productId);
 		if (proCha == null) {
-			return new ResponseEntity<>("khong tim thay ProductCharacteristic voi productId" +productId, HttpStatus.OK);
+			return new ResponseEntity<>(null, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<ProductCharacteristic>(proCha, HttpStatus.OK);
 		}

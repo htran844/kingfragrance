@@ -23,6 +23,13 @@ public class ProductCharacteristic {
 		this.age = age;
 		this.retention = retention;
 	}
+	
+	@Override
+	public String toString() {
+		return "ProductCharacteristic [id=" + id + ", productId=" + productId + ", release=" + release + ", gender="
+				+ gender + ", age=" + age + ", retention=" + retention + "]";
+	}
+
 	public ProductCharacteristic() {
 		super();
 	}

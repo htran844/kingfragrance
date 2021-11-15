@@ -65,7 +65,7 @@ public class ProDetailRestController {
 	public ResponseEntity<?> updateProDetail(@RequestBody ProductDetail productDetail){
 		Boolean result = productDetailService.updateProDetail(productDetail);
 		if (result) {
-			return new ResponseEntity<>("update thanh cong ProductDetail có productId " +productDetail.getProductId(), HttpStatus.OK);
+			return new ResponseEntity<>("update thanh cong ProductDetail " +productDetail.getCapacity(), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>("khong tim thay ProductDetail có productId " +productDetail.getProductId(), HttpStatus.OK);
 		}

@@ -64,7 +64,7 @@ function searchProduct() {
 	if(!search.length>0){
 		search="null"
 	}
-	console.log(search)
+	
 	getProducts()
 }
 $('.products-action .action-search input').on('keyup', processChange)

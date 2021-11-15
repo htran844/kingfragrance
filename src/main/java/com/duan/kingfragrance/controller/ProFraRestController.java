@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,11 +22,11 @@ public class ProFraRestController {
 	@Autowired
 	private ProductFraService productFraService;
 	
-	@GetMapping("/admin/product-fra")
-	public ResponseEntity<?> getProductFra(@RequestParam("productId") String productId){
+	@GetMapping("/admin/product-fra/{productId}")
+	public ResponseEntity<?> getProductFra(@PathVariable String productId){
 		ProductFragrance proFra = productFraService.getProFra(productId);
 		if (proFra == null) {
-			return new ResponseEntity<>("khong tim thay ProductFragrance voi productId" +productId, HttpStatus.OK);
+			return new ResponseEntity<>(null, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<ProductFragrance>(proFra, HttpStatus.OK);
 		}

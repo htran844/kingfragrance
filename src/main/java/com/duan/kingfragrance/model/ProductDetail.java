@@ -53,6 +53,11 @@ public class ProductDetail {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+	@Override
+	public String toString() {
+		return "ProductDetail [id=" + id + ", productId=" + productId + ", capacity=" + capacity + ", cost=" + cost
+				+ ", quantity=" + quantity + "]";
+	}
 	
 	
 }

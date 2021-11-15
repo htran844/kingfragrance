@@ -198,12 +198,13 @@ const dataRespon =  await	$.ajax({
 		// tao bang characteristic
 	let release = document.querySelector("#product-release").value;
 	let genderCha = document.querySelector("#product-gender").value;
+	console.log(genderCha)
 	let age = document.querySelector("#product-age").value;
 	let retention = document.querySelector("#product-retention").value;
 	let dataCha = {
 		productId: productId,
 		release: release,
-		genderCha: genderCha,
+		gender: genderCha,
 		age: age,
 		retention: retention
 	}
