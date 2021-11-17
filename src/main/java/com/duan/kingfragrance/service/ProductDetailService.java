@@ -11,9 +11,11 @@ public interface ProductDetailService {
 	
 	public Boolean createProDetail(ProductDetail proDetail);
 
-	public Boolean deleteProDetailByProductId(String productId);
+	public Boolean deleteProDetailByProductIdAndCapacity(String productId, int capacity);
 	
 	public Boolean updateProDetail(ProductDetail proDetail) ;
 	
 	public List<ProductDetail> getAllProductDetailById(String productId);
+	
+	public Boolean deleteAllProDetail(String productId);
 }

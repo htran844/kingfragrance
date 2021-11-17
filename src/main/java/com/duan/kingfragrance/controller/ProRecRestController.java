@@ -39,13 +39,13 @@ public class ProRecRestController {
 			return new ResponseEntity<ProductRecommended>(proRec, HttpStatus.OK);
 		}
 	}
-	@DeleteMapping("/admin/product-rec")
-	public ResponseEntity<?> deleteProductRec(@RequestParam("productId") String productId){
+	@DeleteMapping("/admin/product-rec/{productId}")
+	public ResponseEntity<?> deleteProductRec(@PathVariable String productId){
 		Boolean result = proRecService.deleteProRecByProductId(productId);
 		if (result) {
 			return new ResponseEntity<>("xoa thanh cong product recommended có productId " +productId, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>("khong tim thay product recommended có productId " +productId, HttpStatus.OK);
+			return new ResponseEntity<>(null, HttpStatus.OK);
 		}
 	}
 	@PutMapping("/admin/product-rec")
@@ -54,7 +54,7 @@ public class ProRecRestController {
 		if (result) {
 			return new ResponseEntity<>("update thanh cong product recommended có productId " +proRec.getProductId(), HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>("khong tim thay product recommended có productId " +proRec.getProductId(), HttpStatus.OK);
+			return new ResponseEntity<>(null, HttpStatus.OK);
 		}
 	}
 }

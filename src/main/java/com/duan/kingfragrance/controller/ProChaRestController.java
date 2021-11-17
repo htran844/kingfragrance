@@ -41,13 +41,13 @@ public class ProChaRestController {
 			return new ResponseEntity<ProductCharacteristic>(proCha, HttpStatus.OK);
 		}
 	}
-	@DeleteMapping("/admin/product-cha")
-	public ResponseEntity<?> deleteProductCha(@RequestParam("productId") String productId){
+	@DeleteMapping("/admin/product-cha/{productId}")
+	public ResponseEntity<?> deleteProductCha(@PathVariable String productId){
 		Boolean result = productChaService.deleteProChaByProductId(productId);
 		if (result) {
 			return new ResponseEntity<>("xoa thanh cong ProductCharacteristic có productId " +productId, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>("khong tim thay ProductCharacteristic có productId " +productId, HttpStatus.OK);
+			return new ResponseEntity<>(null, HttpStatus.OK);
 		}
 	}
 	@PutMapping("/admin/product-cha")

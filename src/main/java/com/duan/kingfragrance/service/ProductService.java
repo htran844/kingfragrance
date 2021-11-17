@@ -25,4 +25,6 @@ public interface ProductService {
 	public List<ProductResult> getAllProductResult();
 	
 	public Page<Product> findPaginated(int pageNo, int pageSize);
+	
+	public Boolean deleteProductById(String id);
 }

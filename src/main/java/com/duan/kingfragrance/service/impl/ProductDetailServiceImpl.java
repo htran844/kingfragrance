@@ -1,5 +1,6 @@
 package com.duan.kingfragrance.service.impl;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,8 +42,8 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 	}
 
 	@Override
-	public Boolean deleteProDetailByProductId(String productId) {
-		Optional<ProductDetail> proDetailOptional = productDetailRepo.findByProductId(productId);
+	public Boolean deleteProDetailByProductIdAndCapacity(String productId, int capacity) {
+		Optional<ProductDetail> proDetailOptional = productDetailRepo.findByCapacityAndProductId(productId, capacity);
 		if (proDetailOptional.isPresent()) {
 			ProductDetail proDetail = proDetailOptional.get();
 			productDetailRepo.deleteById(proDetail.getId());
@@ -57,7 +58,7 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 		Optional<ProductDetail> proDetailOptional = productDetailRepo.findByCapacityAndProductId(proDetail.getProductId(), proDetail.getCapacity());
 		if (proDetailOptional.isPresent()) {
 			ProductDetail proDetailUpdate = proDetailOptional.get();
-			System.out.print(proDetailUpdate.toString());
+			
 			proDetailUpdate.setCapacity(proDetail.getCapacity());
 			proDetailUpdate.setCost(proDetail.getCost());
 			proDetailUpdate.setQuantity(proDetail.getQuantity());
@@ -78,6 +79,20 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 			return null;
 		}
 		
+	}
+
+	@Override
+	public Boolean deleteAllProDetail(String productId) {
+		List<ProductDetail> lst = productDetailRepo.findAllByProductId(productId);
+		if (lst.size()>0) {
+			for(int i = 0; i< lst.size(); i++) {
+				productDetailRepo.deleteById(lst.get(i).getId());
+				System.out.print(lst.get(i).getId());
+			}
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }

@@ -52,13 +52,13 @@ public class ProDetailRestController {
 			return new ResponseEntity<ProductDetail>(proDetail, HttpStatus.OK);
 		}
 	}
-	@DeleteMapping("/admin/product-detail")
-	public ResponseEntity<?> deleteProductDetail(@RequestParam("productId") String productId){
-		Boolean result = productDetailService.deleteProDetailByProductId(productId);
+	@DeleteMapping("/admin/product-detail/{productId}/{capacity}")
+	public ResponseEntity<?> deleteProductDetail(@PathVariable String productId, @PathVariable int capacity){
+		Boolean result = productDetailService.deleteProDetailByProductIdAndCapacity(productId, capacity);
 		if (result) {
 			return new ResponseEntity<>("xoa thanh cong ProductDetail có productId " +productId, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>("khong tim thay ProductDetail có productId " +productId, HttpStatus.OK);
+			return new ResponseEntity<>(null, HttpStatus.OK);
 		}
 	}
 	@PutMapping("/admin/product-detail")
@@ -68,6 +68,15 @@ public class ProDetailRestController {
 			return new ResponseEntity<>("update thanh cong ProductDetail " +productDetail.getCapacity(), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>("khong tim thay ProductDetail có productId " +productDetail.getProductId(), HttpStatus.OK);
+		}
+	}
+	@DeleteMapping("/admin/product-detail/{productId}")
+	public ResponseEntity<?> deleteAllProductDetail(@PathVariable String productId){
+		Boolean result = productDetailService.deleteAllProDetail(productId);
+		if (result) {
+			return new ResponseEntity<>("xoa thanh cong ProductDetail có productId " +productId, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(null, HttpStatus.OK);
 		}
 	}
 }
