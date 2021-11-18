@@ -108,6 +108,7 @@ image = products.image;
   	url: `/admin/product-fra/${productId}`,
   	type: 'GET'
   })
+  
 	tone.value = productFra.tone;
 	first.value = productFra.first;
 	midle.value = productFra.midle;
@@ -176,7 +177,7 @@ console.log(dataRespon)
   	  	headers: {
   		  "Content-Type":"application/json"
   	  		},
-  		type: 'PUT',
+  		type: 'PUT',			
   		data: JSON.stringify(dataProductDetail),
       });
 	console.log(resultProductDetail)

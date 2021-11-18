@@ -19,8 +19,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.duan.kingfragrance.model.Brand;
 import com.duan.kingfragrance.model.Product;
+import com.duan.kingfragrance.model.ProductDetail;
+import com.duan.kingfragrance.model.ProductFragrance;
+import com.duan.kingfragrance.model.ProductRecommended;
 import com.duan.kingfragrance.model.ProductResult;
 import com.duan.kingfragrance.service.BrandService;
+import com.duan.kingfragrance.service.ProductDetailService;
+import com.duan.kingfragrance.service.ProductFraService;
+import com.duan.kingfragrance.service.ProductRecService;
+import com.duan.kingfragrance.service.ProductService;
 import com.duan.kingfragrance.service.impl.ProductServiceImpl;
 
 @Controller
@@ -29,7 +36,13 @@ public class ViewController {
 	@Autowired
 	private BrandService brandService;
 	@Autowired
-	private ProductServiceImpl ProductServiceImpl;
+	private ProductService ProductService;
+	@Autowired
+	private ProductFraService productFraService;
+	@Autowired
+	private ProductRecService productRecService;
+	@Autowired
+	private ProductDetailService ProductDetailService;
 
 	@GetMapping("/thuong-hieu")
 	public String getThuongHieu(Model model) {
@@ -40,7 +53,7 @@ public class ViewController {
 
 	@GetMapping("/")
 	public String getTrangChu(Model model) {
-		List<ProductResult> list = ProductServiceImpl.getAllProductResult();
+		List<ProductResult> list = ProductService.getAllProductResult(ProductService.getAllProduct());
 		model.addAttribute("listProductResult", list);
 		return "index";
 
@@ -70,33 +83,32 @@ public class ViewController {
 	public String getProduct(Model model) {
 		return fintPaginated(1, model);
 	}
-
-	// hùng làm
 	@GetMapping("/product/page/{pageNo}")
 	public String fintPaginated(@PathVariable(value = "pageNo") int pageNo, Model model) {
 		int pageSize = 16;
-		List<ProductResult> list = ProductServiceImpl.getAllProductResult();
-		Page<Product> page = ProductServiceImpl.findPaginated(pageNo, pageSize);
-		List<Product> products = page.getContent();
+		Page<Product> page = ProductService.findPaginated(pageNo, pageSize);
+		List<Product> lstproducts = page.getContent();
 		List<ProductResult> listProductResult = new ArrayList<ProductResult>();
-
-		for (ProductResult x : list) {
-			for (Product y : products) {
-				if (x.getId().equals(y.getId())) {
-					listProductResult.add(x);
-				}
-			}
+		List<ProductDetail> listProductDetail; 
+		for (Product x : lstproducts) {
+			listProductDetail= ProductDetailService.getAllProductDetailById(x.getId());
+			listProductResult.add(new ProductResult(x, listProductDetail));
 		}
 		model.addAttribute("currentPage", pageNo);
 		model.addAttribute("totalPages", page.getTotalPages());
 		model.addAttribute("totalItems", page.getTotalElements());
 		model.addAttribute("listProductResult", listProductResult);
 		return "product";
-
 	}
 
-	@GetMapping("/product-detailts")
-	public String getProductDetail() {
+	@GetMapping("/product-detailts/{slug}")
+	public String getProductDetail(@PathVariable(value = "slug") String slug, Model model) {
+		ProductResult productResult = ProductService.getOneProductResultBySlug(slug);
+		ProductFragrance ProductFragrance = productFraService.getProFra(productResult.getProduct().getId());
+		ProductRecommended productRecommended = productRecService.getProRec(productResult.getProduct().getId());
+		model.addAttribute("productDetails", productResult);
+		model.addAttribute("ProductFragrance", ProductFragrance);
+		model.addAttribute("productRecommended", productRecommended);
 		return "productDetail";
 	}
 

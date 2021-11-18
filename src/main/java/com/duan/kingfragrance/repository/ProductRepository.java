@@ -16,6 +16,7 @@ public interface ProductRepository extends MongoRepository<Product, String> {
 	@Query("{'slug': ?0}")
 	Optional<Product> findBySlug(String slug);
 	
+	
 	@Query(value = "{ $and: [ { 'name' : {$regex:?0,$options:'i'} }, { 'gender' : {$regex:?1,$options:'i'} } ] }")
 	List<Product> findAllAdminProduct(String search, String gender);
 	
