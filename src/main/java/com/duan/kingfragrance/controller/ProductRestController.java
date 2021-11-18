@@ -84,13 +84,13 @@ public class ProductRestController {
 			return new ResponseEntity<Product>(product, HttpStatus.OK);
 		}
 	}
-	@DeleteMapping("/admin/product-main")
-	public ResponseEntity<?> deleteProduct(@RequestParam("slug") String slug){
-		Boolean result = productService.deleteProductBySlug(slug);
+	@DeleteMapping("/admin/product-main/{productId}")
+	public ResponseEntity<?> deleteProduct(@PathVariable String productId){
+		Boolean result = productService.deleteProductById(productId);
 		if (result) {
-			return new ResponseEntity<>("xoa thanh cong Product có slug " +slug, HttpStatus.OK);
+			return new ResponseEntity<>("xoa thanh cong Product có id " +productId, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>("khong tim thay Product có slug " +slug, HttpStatus.OK);
+			return new ResponseEntity<>(null, HttpStatus.OK);
 		}
 	}
 	@PutMapping("/admin/product-main")

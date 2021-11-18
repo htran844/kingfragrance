@@ -25,11 +25,11 @@ function renderListOfProducts(products) {
                                             <i class="fas fa-edit"></i>
                                         </button>
                                     </a>
-                                    <a href="#" onclick="deleteProductCode(event)">
+                                    <div  onclick="deleteProductCode('${products.id}')">
                                         <button>
                                             <i class="far fa-trash-alt"></i>
                                         </button>
-                                    </a>
+                                    </div>
 
                                 </td>
                             </tr>`
@@ -37,7 +37,34 @@ function renderListOfProducts(products) {
 	createTable('admin-products', html, products.length)
 	document.querySelector('.total-products span').innerHTML = products.length
 }
-
+async function deleteProductCode(productId) {
+	const conf = confirm('Bạn chắc chắn muốn xóa sản phẩm')
+	if (!conf) return
+	
+	const deleteProduct =  await	$.ajax({
+  	url: `/admin/product-main/${productId}`,
+  	type: 'DELETE'
+  })
+	const deleteProductDetail =  await	$.ajax({
+  	url: `/admin/product-detail/${productId}`,
+  	type: 'DELETE'
+  })
+	const deleteProducRec =  await	$.ajax({
+  	url: `/admin/product-rec/${productId}`,
+  	type: 'DELETE'
+  })
+	const deleteProducFra =  await	$.ajax({
+  	url: `/admin/product-fra/${productId}`,
+  	type: 'DELETE'
+  })
+	const deleteProducCha =  await	$.ajax({
+  	url: `/admin/product-cha/${productId}`,
+  	type: 'DELETE'
+  })
+	alert('xóa sản phẩm thành công')
+	getProducts()
+	
+}
 async function getProducts() {
 	if(!checkOnline()){
 		alert('Không có kết nối internet')

@@ -56,12 +56,12 @@ public class ProductChaServiceImpl implements ProductChaService {
 	public Boolean updateProCha(ProductCharacteristic proCha) {
 		Optional<ProductCharacteristic> proRecOptional = productChaRepo.findByProductId(proCha.getProductId());
 		if (proRecOptional.isPresent()) {
-			ProductCharacteristic proFraUpdate = proRecOptional.get();
-			proFraUpdate.setRelease(proCha.getRelease());
-			proFraUpdate.setGender(proCha.getGender());
-			proFraUpdate.setAge(proCha.getAge());
-			proFraUpdate.setRetention(proCha.getRetention());
-			productChaRepo.save(proFraUpdate);
+			ProductCharacteristic proChaUpdate = proRecOptional.get();
+			proChaUpdate.setRelease(proCha.getRelease());
+			proChaUpdate.setGender(proCha.getGender());
+			proChaUpdate.setAge(proCha.getAge());
+			proChaUpdate.setRetention(proCha.getRetention());
+			productChaRepo.save(proChaUpdate);
 			return true;
 		} else {
 			return false;

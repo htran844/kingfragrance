@@ -28,4 +28,6 @@ public interface ProductService {
 
 	public List<Product> getAllProduct();
 	public Page<Product> findPaginated(int pageNo, int pageSize);
+	
+	public Boolean deleteProductById(String id);
 }

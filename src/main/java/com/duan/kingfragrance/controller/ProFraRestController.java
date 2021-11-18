@@ -40,13 +40,13 @@ public class ProFraRestController {
 			return new ResponseEntity<ProductFragrance>(proFra, HttpStatus.OK);
 		}
 	}
-	@DeleteMapping("/admin/product-fra")
-	public ResponseEntity<?> deleteProductFra(@RequestParam("productId") String productId){
+	@DeleteMapping("/admin/product-fra/{productId}")
+	public ResponseEntity<?> deleteProductFra(@PathVariable String productId){
 		Boolean result = productFraService.deleteProFraByProductId(productId);
 		if (result) {
 			return new ResponseEntity<>("xoa thanh cong ProductFragrance có productId " +productId, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>("khong tim thay ProductFragrance có productId " +productId, HttpStatus.OK);
+			return new ResponseEntity<>(null, HttpStatus.OK);
 		}
 	}
 	@PutMapping("/admin/product-fra")
@@ -55,7 +55,7 @@ public class ProFraRestController {
 		if (result) {
 			return new ResponseEntity<>("update thanh cong ProductFragrance có productId " +proFra.getProductId(), HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>("khong tim thay ProductFragrance có productId " +proFra.getProductId(), HttpStatus.OK);
+			return new ResponseEntity<>(null, HttpStatus.OK);
 		}
 	}
 }

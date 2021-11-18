@@ -147,4 +147,16 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 
+	public Boolean deleteProductById(String id) {
+		Optional<Product> optional = productRepo.findById(id);
+		if (optional.isPresent()) {
+			productRepo.deleteById(id);
+			return true;
+		} else {
+			return false;
+		}	
+	}
+
+
+
 }
