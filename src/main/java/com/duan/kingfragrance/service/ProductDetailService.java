@@ -18,4 +18,6 @@ public interface ProductDetailService {
 	public List<ProductDetail> getAllProductDetailById(String productId);
 	
 	public Boolean deleteAllProDetail(String productId);
+	
+	
 }

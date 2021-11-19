@@ -22,17 +22,16 @@
 			<div class="module-product-detailt">
 				<div class="bs-row">
 					<div class="bs-col tn-50">
-						<img th:src="${productDetails.product.image}" id="image_pr" alt="" width="70%">
+						<img th:src="${productDetails.product.image}" id="image_pr" alt=""
+							width="70%">
 						<div class="mt-5">Mô tả</div>
 						<p th:text="${productDetails.product.description}"></p>
-					                          
-					
-
 					</div>
 					<div class="bs-col tn-50">
 
 						<div class="module">
-							<p class="brandname-single" th:text="${productDetails.product.brand}"></p>
+							<p class="brandname-single"
+								th:text="${productDetails.product.brand}"></p>
 
 							<h1 class="product_title entry-title" id="name_pr"
 								th:text="${productDetails.product.name}"></h1>
@@ -53,23 +52,19 @@
 									th:text="${productDetails.product.gender}"></span>
 							</p>
 							<p>
-								<span id="cost_pr" th:text="${productDetails.productDetails.get(0).cost}"></span><span>đ</span>
+								
 							</p>
 							<br>
 							<table class="variations" cellspacing="0">
 								<tbody>
 									<tr>
-										<td class="label"><label for="dung-tich">Dung
-												Tích</label></td>
-										<td class="value"><select id="capacity_pr" onclick="getMoneyByCapacity()"  class="ml-5"
-											name="attribute_dung-tich"
-											data-attribute_name="attribute_dung-tich"
-											data-show_option_none="yes">
-												<option  id="capacity_pr" th:each="i : ${productDetails.productDetails}"
-	th:value="${i.capacity}"
-													class="attached enabled" th:text="${i.capacity} + ml"></option>
-										</select><a class="reset_variations" href="#"
-											style="visibility: hidden;">Xóa</a></td>
+									     <p ><span> Giá tiền</span><span id="cost_pr" class="float-right"></span><span></span></p>
+                                        <p>
+                                            <span>Dung tích:</span>
+                                            <select name="" id="capacity">
+                                              
+                                            </select>
+                                        </p>
 									</tr>
 								</tbody>
 							</table>
@@ -84,7 +79,7 @@
 										inputmode="numeric">
 								</div>
 
-								<button type="" class="d-inline-block" id="addToCart">Thêm
+								<button type="" class="d-inline-block" onclick="pushLocalStorage()">Thêm
 									vào giỏ hàng</button>
 
 
@@ -135,16 +130,17 @@
 				</div>
 			</div>
 			<br>
-		
 
-			
+
+
 		</div>
 	</div>
 	</main>
 	<div th:insert="footer-page :: footer-page"></div>
-
+	
 	<script th:src="@{/js/tool.min.js}"></script>
 	<script th:src="@{/js/main.min.js}"></script>
+<script th:src="@{/js/productDetais.js}"></script>
 
 	<script>
 		$('.product-new-class').slick({
@@ -153,6 +149,9 @@
 			dots : true,
 			swipeToSlide : true,
 		});
+		
+
+		
 	</script>
 
 </body>
