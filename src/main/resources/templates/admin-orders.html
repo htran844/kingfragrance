@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+
+<head>
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Admin</title>
+
+        <!-- Reset css -->
+        <link th:href="@{/css/admin-style/reset.css}" rel="stylesheet" />
+
+        <!-- Font awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+            integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet" />
+
+        <!-- Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+            crossorigin="anonymous" />
+
+         <link th:href="@{/css/admin-style/admin.css}" rel="stylesheet" />
+        <link th:href="@{/css/admin-style/admin-orders.css}" rel="stylesheet" />
+    </head>
+
+</head>
+
+<body>
+    <div class="admin-nav">
+        <h1>King Fragrance</h1>
+        <a href="/admin" name-nav="dashboard"><i class="fas fa-columns"></i>
+            <span>Dashboard</span>
+        </a>
+        <a href="/admin/products" name-nav="products"><i class="fas fa-list"></i>
+            <span>Products</span>
+        </a>
+        <a href="/admin/customers" name-nav="customers"><i class="fas fa-user-friends"></i>
+            <span>Customers</span>
+        </a>
+        <a href="/admin/orders" name-nav="orders"><i class="fas fa-shopping-bag"></i>
+            <span>Orders</span>
+        </a>
+        <a href="/admin/news" name-nav="news"><i class="fas fa-newspaper"></i>
+            <span>News</span>
+        </a>
+        <a href="/admin/account" name-nav="account"><i class="fas fa-user"></i>
+            <span>Account</span>
+        </a>
+       
+    </div>
+
+    <div class="admin-main">
+        <div>
+            <div class="admin-header">
+                <div class="right-side">
+                    <i class="far fa-bell"></i>
+                    <img src="https://nghialagi.org/wp-content/uploads/2020/03/background-la-gi.jpg" alt="" />
+                </div>
+            </div>
+
+
+            <div class="admin-content">
+                <h2>Quản lí đơn hàng</h2>
+<div class="admin-orders">
+	<div class="orders-action">
+		<div class="action-search">
+			<i class="fas fa-search"></i>
+			<input type="text" placeholder="Tìm đơn hàng" />
+		</div>
+		<div class="action-filter">
+			<select name="select-filter" onchange="handleFilter(this)" >
+				<option value="null">Add filter</option>
+				<option value="waiting">Đang chờ</option>
+				<option value="delivery">Đang giao</option>
+				<option value="done">Đã giao</option>
+				<option value="cancelled">Đơn hủy</option>
+				<option value="refund">Đơn hoàn</option>
+				
+			</select>
+		</div>
+		<div class="total-orders">
+			<i class="fas fa-box"></i>
+			Đơn chưa giao:&nbsp;
+			<span>0</span>
+		</div>
+	</div>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>STT</th>
+				<th>Người nhận</th>
+				<th>Số điện thoại</th>
+				
+                <th class="action-date" style="cursor: pointer;">Ngày đặt
+					
+				</th>
+				<th>Tổng tiền</th>
+				
+				<th>Trạng thái</th>
+				<th>Hành động</th>
+			</tr>
+		</thead>
+	</table>
+	<div class="pagination">
+	</div>
+</div>
+
+
+                <style>
+                    .form-check.form-switch input {
+                        width: 45px;
+                        cursor: pointer;
+                    }
+                </style>
+  
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Tạo lớp overlay loading -->
+    <div class="lazy-loading hide">
+        <div class="lazy-text">Loading...</div>
+        <div class="line-loading"></div>
+    </div>
+
+
+    <!-- Jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- Pagination -->
+    <!-- <script src="/public/js/pagination.min.js"></script> -->
+
+
+   
+    <script type="text/javascript" th:src="@{/js/admin.js}"></script>
+    <script type="text/javascript" th:src="@{/js/base.js}"></script>
+    <script type="text/javascript" th:src="@{/js/admin-orders.js}"></script>
+
+</body>
+
+</html>
