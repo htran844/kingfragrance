@@ -11,7 +11,10 @@
 	max-height: 230px;
 	margin-bottom: 30px
 }
-
+.item-product{
+	list-style: none;
+	position: relative;
+}
 #main .section-brand-special .list-cat a {
 	color: #000
 }

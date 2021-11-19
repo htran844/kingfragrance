@@ -118,6 +118,7 @@ async function getInfoProduct() {
   	url: `/admin/product-fra/${productId}`,
   	type: 'GET'
   })
+  
 	tone.value = productFra.tone;
 	first.value = productFra.first;
 	midle.value = productFra.midle;
@@ -186,7 +187,7 @@ form.addEventListener('submit', async (e) => {
   	  	headers: {
   		  "Content-Type":"application/json"
   	  		},
-  		type: 'PUT',
+  		type: 'PUT',			
   		data: JSON.stringify(dataProductDetail),
       });
 	

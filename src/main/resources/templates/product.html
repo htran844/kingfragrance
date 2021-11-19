@@ -10,8 +10,8 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 <link rel="icon" href="images/icon/fav_icon.png" type="image/png">
-  <link rel="stylesheet" type="text/css"  th:href="@{/css/tool.min.css}" />
-<link rel="stylesheet" type="text/css" th:href="@{/css/main.min.css}"  />
+<link rel="stylesheet" type="text/css" th:href="@{/css/tool.min.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/main.min.css}" />
 
 </head>
 
@@ -360,7 +360,7 @@
 														</form>
 
 
-													
+
 
 													</div>
 												</div>
@@ -368,7 +368,7 @@
 										</div>
 
 									</div>
-				</div>
+								</div>
 							</div>
 							<div class="bs-col tn-70-15">
 								<div class="uk-width-5-5@s uk-width-4-5@m ">
@@ -395,19 +395,19 @@
 														class="woman-attr product type-product post-3855 status-publish first instock product_cat-armaf product_tag-chanel-coco-mademoselle product_tag-club product_tag-club-de-nuit product_tag-coco-chanel has-post-thumbnail shipping-taxable purchasable product-type-variable">
 														<a href=""
 														class="woocommerce-LoopProduct-link woocommerce-loop-product__link"><img
-															width="100%" th:src="${x.image}"
+															width="100%" th:src="${x.product.image}"
 															class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
 															alt="Armaf Club de Nuit Woman" loading="lazy"
 															sizes="(max-width: 300px) 100vw, 300px"> </a>
 														<div class="name-product">
 															<a href=""
 																class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
-																<span class="brand" th:text="${x.brand}"></span>
+																<span class="brand" th:text="${x.product.brand}"></span>
 															</a><a href=""
 																class="product-name woocommerce-loop-product__title"
-																th:text="${x.name}"></a>
+																th:text="${x.product.name}"></a>
 														</div> <span class="price"><span class="highlight"><span
-																class="woocommerce-Price-amount amount"><bdi
+																class="woocommerce-Price-amount amount"><bdi 
 																		th:if="${x.productDetails.size()>0 }"
 																		th:text="${x.productDetails.get(0).cost}">&nbsp;<span
 																		class="woocommerce-Price-currencySymbol"></span></bdi></span></span>đ</span>
@@ -457,8 +457,8 @@
 
 
 
-<script  th:src="@{/js/tool.min.js}"></script>
-<script th:src="@{/js/main.min.js}" ></script>
+	<script th:src="@{/js/tool.min.js}"></script>
+	<script th:src="@{/js/main.min.js}"></script>
 
 
 </body>

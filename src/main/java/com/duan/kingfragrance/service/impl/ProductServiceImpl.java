@@ -1,7 +1,5 @@
 package com.duan.kingfragrance.service.impl;
 
-
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -28,13 +26,12 @@ import com.duan.kingfragrance.service.ProductService;
 
 @Service
 public class ProductServiceImpl implements ProductService {
-	
-	
+
 	@Autowired
 	private ProductRepository productRepo;
 	@Autowired
 	private ProductDetailRepository productDetailRepository;
-	
+
 	@Override
 	public Product CreateProduct(Product product) {
 		Optional<Product> Optional = productRepo.findBySlug(product.getSlug());
@@ -51,11 +48,11 @@ public class ProductServiceImpl implements ProductService {
 		Optional<Product> Optional = productRepo.findBySlug(slug);
 		if (Optional.isPresent()) {
 			Product product = Optional.get();
-			return product;		
+			return product;
 		} else {
 			return null;
 		}
-		
+
 	}
 
 	@Override
@@ -91,53 +88,65 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<Product> getAdminProduct(int page, String search, String gender) {
 		List<Product> listProduct;
-		if(search.equalsIgnoreCase("null") && gender.equalsIgnoreCase("null")) {
-			
-			listProduct	= productRepo.findAll();
+		if (search.equalsIgnoreCase("null") && gender.equalsIgnoreCase("null")) {
+
+			listProduct = productRepo.findAll();
 		} else if (search.equalsIgnoreCase("null")) {
-			listProduct	= productRepo.findByGender(gender);
+			listProduct = productRepo.findByGender(gender);
 		} else if (gender.equalsIgnoreCase("null")) {
-			listProduct	= productRepo.findByName(search);
+			listProduct = productRepo.findByName(search);
 		} else {
-			listProduct	= productRepo.findAllAdminProduct(search, gender);
+			listProduct = productRepo.findAllAdminProduct(search, gender);
 		}
-			
+
 //		listProduct	= productRepo.findAllAdminProduct(search, gender);
 		return listProduct;
 	}
 
 	@Override
-	public List<ProductResult> getAllProductResult() {
-		List<ProductResult> list = new ArrayList<ProductResult>();
-		List<ProductDetail> ListproductDetails = productDetailRepository.findAll();//list productDetail
-		List<Product> lstProduct = productRepo.findAll();//list product
-		
-		for (Product x : lstProduct) {
-			List<ProductDetail> temp = new ArrayList<>();
-			double money=0;
-			for (ProductDetail y : ListproductDetails) {
-				if (x.getId().equals(y.getProductId())) {
-					temp.add(y);
-					if (y.getCost()>money) {
-						temp.set(0, y);
-					}
-					money = y.getCost();
-					
-				}
-			}
-			list.add(new ProductResult(x.getId(), x.getName(), x.getBrand(), x.getSlug(), x.getGender(), x.getImage(),
-					x.getDescription(), x.getHot(), temp));
-		}
-		return list;
-	}
-
-	@Override
 	public Page<Product> findPaginated(int pageNo, int pageSize) {
-		PageRequest pageable = PageRequest.of(pageNo-1, pageSize);
+		PageRequest pageable = PageRequest.of(pageNo - 1, pageSize);
 		return productRepo.findAll(pageable);
 	}
 
 	@Override
+	public ProductResult getOneProductResultBySlug(String Slug) {
+		// TODO Auto-generated method stub
+		Product product = getOneProduct(Slug);
+		List<ProductDetail> lstProductDetail = productDetailRepository.findAllByProductId(product.getId());
+		ProductResult productResult = new ProductResult(product, lstProductDetail);
+		if (productResult == null) {
+			return null;
+		}
+		return productResult;
+
+	}
+
+	@Override
+	public List<ProductResult> getAllProductResult(List<Product> listProduct) {
+		List<ProductResult> listProductResult = new ArrayList<ProductResult>();
+		for (Product x : listProduct) {
+			List<ProductDetail> lstProductDetailt = productDetailRepository.findAllByProductId(x.getId());
+			Collections.sort(lstProductDetailt, Comparator.comparing(ProductDetail::getCapacity));// xep san pham co ml
+																									// thap nhat len dau
+			listProductResult.add(new ProductResult(x, lstProductDetailt));
+		}
+		if (listProductResult.size() > 0) {
+			return listProductResult;
+		}
+		return null;
+	}
+
+	@Override
+	public List<Product> getAllProduct() {
+		List<Product> list = productRepo.findAll();
+		if (list.size()==0) {
+			return null;
+		}
+		return list;
+	}
+	
+
 	public Boolean deleteProductById(String id) {
 		Optional<Product> optional = productRepo.findById(id);
 		if (optional.isPresent()) {
@@ -147,6 +156,7 @@ public class ProductServiceImpl implements ProductService {
 			return false;
 		}	
 	}
+
 
 
 }

@@ -13,5 +13,4 @@ public interface ProductRecRepository extends MongoRepository<ProductRecommended
 
 	@Query("{'productId': ?0}")
 	Optional<ProductRecommended> findByProductId(String productId);
-	
 }

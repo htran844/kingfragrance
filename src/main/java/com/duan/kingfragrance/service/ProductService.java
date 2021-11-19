@@ -11,19 +11,22 @@ import com.duan.kingfragrance.model.ProductFragrance;
 import com.duan.kingfragrance.model.ProductResult;
 
 public interface ProductService {
-	
+
 	public Product CreateProduct(Product product);
-	
+
 	public Product getOneProduct(String slug);
-	
+
 	public Boolean deleteProductBySlug(String slug);
-	
-	public Boolean updateProduct(Product product) ;
-	
+
+	public Boolean updateProduct(Product product);
+
 	public List<Product> getAdminProduct(int page, String search, String gender);
 
-	public List<ProductResult> getAllProductResult();
-	
+	public List<ProductResult> getAllProductResult(List<Product> listProduct);
+
+	public ProductResult getOneProductResultBySlug(String Slug);
+
+	public List<Product> getAllProduct();
 	public Page<Product> findPaginated(int pageNo, int pageSize);
 	
 	public Boolean deleteProductById(String id);

@@ -1,6 +1,7 @@
 package com.duan.kingfragrance.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,16 +15,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.duan.kingfragrance.model.Product;
 import com.duan.kingfragrance.model.ProductDetail;
 
 import com.duan.kingfragrance.service.ProductDetailService;
+import com.duan.kingfragrance.service.ProductService;
 
 @RestController
 public class ProDetailRestController {
 	
 	@Autowired
 	private ProductDetailService productDetailService;
-	
+	@Autowired
+	private ProductService productService;
 	@GetMapping("/admin/product-detail")
 	public ResponseEntity<?> getProductDetail(@RequestParam("productId") String productId){
 		ProductDetail proDetail = productDetailService.getProDetail(productId);
@@ -42,6 +46,18 @@ public class ProDetailRestController {
 		} else {
 			return new ResponseEntity<List<ProductDetail>>(lst, HttpStatus.OK);
 		}
+	}
+	@GetMapping("/admin/product-detail-slug/{slug}")
+	public ResponseEntity<?> getAllProductDetailBySlug(@PathVariable String slug){
+		Product product = productService.getOneProduct(slug);
+		List<ProductDetail> lst;
+		if (product==null) {
+			return new ResponseEntity<>(null, HttpStatus.OK);
+		}
+		else {
+			lst = productDetailService.getAllProductDetailById(product.getId());
+			return new ResponseEntity<List<ProductDetail>>(lst, HttpStatus.OK);
+		}	
 	}
 	@PostMapping("/admin/product-detail")
 	public ResponseEntity<?> createProductDetail(@RequestBody ProductDetail proDetail){
