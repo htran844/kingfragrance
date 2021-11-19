@@ -23,4 +23,8 @@ public class AdminViewController {
 	public String getAdminEditProduct(Model model) {
 		return "admin-edit-product";
 	}
+	@GetMapping("/admin/orders")
+	public String getAdminOrder(Model model) {
+		return "admin-orders";
+	}
 }
