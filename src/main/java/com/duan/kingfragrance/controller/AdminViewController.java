@@ -27,4 +27,8 @@ public class AdminViewController {
 	public String getAdminOrder(Model model) {
 		return "admin-orders";
 	}
+	@GetMapping("/invoices/{id}")
+	public String getInvoices(Model model) {
+		return "invoices";
+	}
 }

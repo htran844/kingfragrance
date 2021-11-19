@@ -107,5 +107,13 @@ public class ProductRestController {
 		List<Product> listProduct = productService.getAdminProduct(page, search, gender);
 		return new ResponseEntity<List<Product>>(listProduct, HttpStatus.OK);
 	}
-	
+	@GetMapping("/admin/product-mainid/{id}")
+	public ResponseEntity<?> getProductById(@PathVariable String id){
+		Product product = productService.getOneProductById(id);
+		if (product == null) {
+			return new ResponseEntity<>(null, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Product>(product, HttpStatus.OK);
+		}
+	}
 }

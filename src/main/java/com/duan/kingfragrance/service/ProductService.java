@@ -30,4 +30,6 @@ public interface ProductService {
 	public Page<Product> findPaginated(int pageNo, int pageSize);
 	
 	public Boolean deleteProductById(String id);
+	
+	public Product getOneProductById(String id);
 }

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		 <link th:href="@{/css/bill.css}" rel="stylesheet" />
+		<link
+			href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css"
+			rel="stylesheet"
+		/>
+		<title>King-Invoices</title>
+	</head>
+
+	<body>
+		<div class="bill-container">
+			<div class="bill-head">
+				<div class="bill-header__left">King Fragrance</div>
+				<!-- <div class="bill-header__right">
+                <a href="/products">
+                    <span>Shop</span>
+                    <span>
+                        <i class='bx bx-spreadsheet'></i>
+                    </span>
+                </a>
+            </div> -->
+			</div>
+			<div class="bill-body">
+				<div class="bill-body__status">
+					<div class="bill-body-status__logo">
+						<i class="bx bx-check-square"></i>
+					</div>
+					<h2>Cảm ơn vì đơn hàng của bạn</h2>
+					<p>
+						Cảm ơn bạn đã đặt hàng tại <a href="/"><span>King Fragrance</span></a
+						>. Vui lòng kiểm tra thông tin đặt hàng của bạn. Mọi thắc mắc vui
+						lòng liên hệ 199931112 để được hỗ trợ. Cảm ơn!
+					</p>
+				</div>
+				<div class="bill-body__info">
+					<table>
+						<thead>
+							<th>Mã đơn hàng #</th>
+							<th id="order-id">id order</th>
+						</thead>
+						<tbody id="listbody">
+							
+							
+							
+							<tr class="price-total">
+								<td><strong>Thành tiền</strong></td>
+								<td>
+									<strong id="total-cost">400.000 VNĐ</strong>
+								</td>
+							</tr>
+							<tr>
+								<td><strong>Địa chỉ giao hàng</strong></td>
+								<td><strong>Thời gian giao dự kiến</strong></td>
+							</tr>
+							<tr>
+								<td id="">117 tran cung, hanoi</td>
+								<td>3 ngày kể từ khi đặt hàng</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="bill-banner">		
+				<a href="/products">Tiếp tục mua sắm</a>
+			</div>
+			
+		</div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		
+		<script type="text/javascript" th:src="@{/js/bill.js}"></script>
+	</body>
+</html>

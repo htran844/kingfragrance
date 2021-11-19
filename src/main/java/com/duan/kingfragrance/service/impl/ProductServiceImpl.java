@@ -157,6 +157,16 @@ public class ProductServiceImpl implements ProductService {
 		}	
 	}
 
+	@Override
+	public Product getOneProductById(String id) {
+		Optional<Product> optional = productRepo.findById(id);
+		if (optional.isPresent()) {	
+			return optional.get();
+		} else {
+			return null;
+		}	
+	}
+
 
 
 }
