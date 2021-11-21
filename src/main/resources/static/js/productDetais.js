@@ -5,7 +5,7 @@ async function getProductDetail(){
 	 productDetail =  await	$.ajax({	
 			url: `/admin/product-detail-slug/${slugProduct}`,
 			type: 'GET',	
-	})
+	}) 
 	  
 
 	for (let i = 0; i < productDetail.length; i++) {
@@ -17,14 +17,17 @@ async function getProductDetail(){
 		  document.querySelector("#capacity").appendChild(optionalCon);
 		}
 		let selectCapa = document.querySelector("#capacity");
+		document.querySelector("#cost_pr").innerHTML = parseFloat(
+		        productDetail[0].cost) .toLocaleString("en")
+		        .replace(/,/g, ".") + "  đ";
 		selectCapa.addEventListener("change", function () {
 		  for (let i = 0; i < productDetail.length; i++) {
 		    if (selectCapa.value == productDetail[i].capacity) {
 		      document.querySelector("#cost_pr").innerHTML = parseFloat(
 		        productDetail[i].cost
-		      )
+		      ) 
 		        .toLocaleString("en")
-		        .replace(/,/g, ".");
+		        .replace(/,/g, ".") + "  đ";
 		    }
 		  }
 		});
@@ -39,7 +42,7 @@ function pushLocalStorage() {
   for (let i = 0; i < productDetail.length; i++) {
     if (productDetail[i].capacity == capacity) {
       Product = {
-        "productId": productDetail[i].productId,
+        "slug": slugProduct,
         "quantity": quantity,
         "productDetailId": productDetail[i].id,
       }
@@ -50,27 +53,14 @@ function pushLocalStorage() {
 	  Product= JSON.stringify(Product);
     let ListProduct = localStorage.getItem("ListProduct") ? JSON.parse(localStorage.getItem("ListProduct")) : [];
     	ListProduct.push(Product);
-    	
-    	delete ListProduct[3];
-    localStorage.setItem("ListProduct",JSON.stringify(ListProduct) );
+    	alert("thêm vào giỏ hàng thành công!")
+    localStorage.setItem("ListProduct",JSON.stringify(ListProduct));
   }
 }
 
 
-//loi 
-//async function requestServerCart() {
-//	let dataFra = {
-//			so1:3,
-//		}
-//	let cart = await $.ajax({
-//	        url: '/gio-hang',
-//	  	  	headers: {
-//	  		  "Content-Type":"application/json"
-//	  	  		},
-//	  		type: 'GET',
-//	  		data: JSON.stringify(dataFra),
-//	});
-//
-//
-//}
-//requestServerCart()
+
+
+
+
+

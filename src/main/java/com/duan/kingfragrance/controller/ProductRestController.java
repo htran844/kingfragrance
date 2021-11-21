@@ -1,13 +1,18 @@
 package com.duan.kingfragrance.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 import javax.management.Query;
+import javax.xml.crypto.Data;
 
+import org.bson.json.JsonObject;
+import org.cloudinary.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.gson.GsonProperties;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,11 +30,10 @@ import org.springframework.web.multipart.MultipartFile;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.duan.kingfragrance.model.Product;
-import com.duan.kingfragrance.model.ProductCharacteristic;
+import com.duan.kingfragrance.model.ProductResult;
 import com.duan.kingfragrance.repository.ProductRepository;
 import com.duan.kingfragrance.service.ProductService;
 
-import ch.qos.logback.core.joran.conditional.IfAction;
 
 @RestController
 public class ProductRestController {
@@ -107,5 +111,13 @@ public class ProductRestController {
 		List<Product> listProduct = productService.getAdminProduct(page, search, gender);
 		return new ResponseEntity<List<Product>>(listProduct, HttpStatus.OK);
 	}
+	
+	@GetMapping("/getCartFromLocalStorage")
+	public ResponseEntity<?> getAllProductFromLocalStorage(@RequestParam String slug,@RequestParam String productDetailId){
+		ProductResult productResult = productService.getProductResultBySlugAndDetailId(slug, productDetailId);
+		return new ResponseEntity<>(productResult, HttpStatus.OK);
+	}
+	
+	
 	
 }

@@ -150,7 +150,7 @@
 }
 
 #main .section-cart .quantity input {
-	width: 80%;
+	width: 30%;
 	text-align: left
 }
 
@@ -252,11 +252,46 @@
 }
 
 #main .section-logined, #main .section-product-detailt {
-	padding: 170px 0 100px
+	padding: 170px 0 100px;
+	   
 }
-
+.section-product-detailt  p{
+	line-height:40px;
+}
+#main{
+	 font-family: initial;
+	    font-size:20px;
+}
 #main .section-brand #brands-filter li a {
 	color: #000
+}
+.product_title{
+	    color: #5a5151;
+}
+.gender-wrap{
+	    margin: -14px;
+}
+#capacity{
+	    outline: none;
+    border: 1px solid #dad4d4;
+}
+.section-product-special .card {
+  
+    height: 416px;
+}
+#huong >h4{
+	    margin: 53px -30px -39px -10px;
+}
+#huong span{
+	padding-left:45px;
+	display: block;
+}
+#huong i{
+	margin-right:4px;
+	margin-left:-7px;
+}
+#huong li{
+	padding:10px 0px;
 }
 
 #main .section-brand #brands-filter li .letter {
@@ -320,11 +355,19 @@
 #main .section-product-detailt .slick-dots li {
 	margin: 0 1px
 }
+.brandname-single{
+	    font-size: 21px;
+    font-family: initial;
+}
 
 #main .section-product-detailt .slick-dots li.slick-active button {
 	background: rgba(14, 12, 12, .502)
 }
-
+.module-product-detailt img{
+	    display: block;
+    box-shadow: -7px 0px 15px lightgrey;
+    padding:50px;
+}
 #main .section-product-detailt .slick-dots li button {
 	border: 1px solid #6c6565;
 	width: 16px;

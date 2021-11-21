@@ -19,4 +19,7 @@ public interface ProductDetailRepository extends MongoRepository<ProductDetail, 
 	
 	@Query("{'productId': ?0}")
 	List<ProductDetail> findAllByProductId(String productId);
+	
+	@Query("{'id': ?0}")
+	ProductDetail findByProductDetailId(String productDetailId);
 }

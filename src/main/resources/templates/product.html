@@ -6,10 +6,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>ByteNext</title>
+<title>King Fragrance</title>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
-<link rel="icon" href="images/icon/fav_icon.png" type="image/png">
+
 <link rel="stylesheet" type="text/css" th:href="@{/css/tool.min.css}" />
 <link rel="stylesheet" type="text/css" th:href="@{/css/main.min.css}" />
 
@@ -393,7 +393,7 @@
 													th:if="${listProductResult.size()>0}">
 													<li
 														class="woman-attr product type-product post-3855 status-publish first instock product_cat-armaf product_tag-chanel-coco-mademoselle product_tag-club product_tag-club-de-nuit product_tag-coco-chanel has-post-thumbnail shipping-taxable purchasable product-type-variable">
-														<a href=""
+														<a th:href="@{'/product-detailts/' + ${x.product.slug}}"
 														class="woocommerce-LoopProduct-link woocommerce-loop-product__link"><img
 															width="100%" th:src="${x.product.image}"
 															class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"

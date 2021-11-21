@@ -112,7 +112,8 @@ const dataRespon =  await	$.ajax({
   	type: 'POST',
   	data: JSON.stringify(dataProduct),
 //      success: function(data) {
-  //		const productId = data.id;
+//  		const productId = data.id;
+//  		alert(data)
 //    }
   })
 	

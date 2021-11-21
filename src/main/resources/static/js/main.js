@@ -9,7 +9,6 @@ $(document).ready(function () {
         if ($(this).scrollTop() > 0) {
             $("#header").addClass("scrolled");
 
-
         } else {
             $("#header").removeClass("scrolled");
 
@@ -50,48 +49,6 @@ $(document).ready(function () {
 
 
 
-// ///them vao gio hang 
-// $('#addToCart').click(function () {
-//     image_pr = document.getElementById('image_pr').getAttribute('src');
-//     productid_pr = document.getElementById('productid_pr').innerHTML;
-//     capacity_pr = document.getElementById('capacity_pr').value;
-//     quantity_pr = document.getElementById('quantity_pr').value;
-//     cost_pr = document.getElementById('cost_pr').innerHTML;
-//     name_pr = document.getElementById('name_pr').innerHTML;
-//     if (isNaN(capacity_pr)||capacity_pr==0) {
-//         alert('Bạn chưa chọn dung tích!');
-//         return;
-//     }
-//     if (localStorage) {
-//         var product = {
-//             "productid_pr": productid_pr,
-//             "capacity_pr": capacity_pr,
-//             "quantity_pr": quantity_pr,
-//             "cost_pr": cost_pr,
-//             "name_pr":name_pr,
-//             "image_pr":image_pr
-//         }
-//         var lengStorage = localStorage.length;
-//             localStorage.setItem('product' + lengStorage, JSON.stringify(product));
-//         alert('Thêm thành công!');
-//     }
-// });
-
-
-// var moneyReal = document.getElementById('cost_pr');
-// function getMoneyByCapacity() {
-//     capacity_pr = document.getElementById('capacity_pr').value;
-//     money = document.getElementById('cost_pr').innerHTML=moneyReal.innerHTML;
-//     capacity_pr =  Number(capacity_pr);
-//     money = Number(money);
-//     document.getElementById('cost_pr').innerHTML=money+'';
-  
-//     //so tien tren 1ml
-//     var _1ml = money*0.01;
-//     var resultMoneyByMl = _1ml*capacity_pr;
-//     resultMoneyByMl=Math.round(resultMoneyByMl);
-//     document.getElementById('cost_pr').innerHTML=resultMoneyByMl+'';
-// }
 
 
 // var lengthOfLocalStorage = localStorage.length;
@@ -134,51 +91,6 @@ $(document).ready(function () {
 // getDataLocalStorageToCart();
 
 
-
-//remove cart
-// $('.icon-close').click(function () {
-//     if (localStorage) {
-//         var product=  $(this).children('span')[0].innerHTML;
-//         localStorage.removeItem(product)
-//         // lengthOfLocalStorage=1;
-//      }
-     
-//     $(this).parent('.item-product').remove();
-//     getAllProduct();
-//     tinhTien();
-// });
-function getAllProduct() {
-    var arrayCart = document.querySelectorAll(".section-cart .module-left li");
-    if (arrayCart.length == 0) {
-        $('.module-cart').hide();
-        $('#tm-main').show();
-    }
-    else {
-        $('#tm-main').hide();
-        $('.module-cart').show();
-    }
-}
-getAllProduct();
-
-function tinhTien() {
-    var sum = 0;
-    var ItemProduct = document.querySelectorAll('.item-product');
-
-    for (let index = 0; index < ItemProduct.length; index++) {
-        var getMoney = ItemProduct[index].children[3];
-        var money = getMoney.children[2].innerHTML;
-        var quantity = ItemProduct[index].children[4].children[0].children[1].value;
-        quantity = Number(quantity);
-        money = Number(money) * quantity;
-        sum += money;
-    }
-    document.getElementById('totalMoney').innerHTML = sum + '';
-    document.getElementById('tamTinh').innerHTML = sum + '';
-}
-
-function changeMoney() {
-    tinhTien();
-}
 
 
 

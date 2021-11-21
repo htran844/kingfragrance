@@ -157,6 +157,20 @@ public class ProductServiceImpl implements ProductService {
 		}	
 	}
 
+	@Override
+	public ProductResult getProductResultBySlugAndDetailId(String slug, String productDetailId) {
+		Product product = getOneProduct(slug);
+		System.out.println(product);
+		ProductDetail productDetail = productDetailRepository.findByProductDetailId(productDetailId);
+		List<ProductDetail> lstproductDetail = new ArrayList<>();
+		lstproductDetail.add(productDetail);
+		ProductResult productResult = new ProductResult(product, lstproductDetail);
+		if (productResult!=null) {
+			return productResult;
+		}
+		return null;
+	}
+
 
 
 }

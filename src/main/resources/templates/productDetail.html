@@ -5,10 +5,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>ByteNext</title>
+<title>King Fragrance</title>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
-<link rel="icon" href="images/icon/fav_icon.png" type="image/png">
 <link rel="stylesheet" type="text/css" th:href="@{/css/tool.min.css}" />
 <link rel="stylesheet" type="text/css" th:href="@{/css/main.min.css}" />
 
@@ -21,13 +20,14 @@
 		<div class="bs-container">
 			<div class="module-product-detailt">
 				<div class="bs-row">
-					<div class="bs-col tn-50">
+					<div class="bs-col tn-50-15">
 						<img th:src="${productDetails.product.image}" id="image_pr" alt=""
 							width="70%">
-						<div class="mt-5">Mô tả</div>
-						<p th:text="${productDetails.product.description}"></p>
+						<h4 class="mt-5">Mô tả</h4>
+						<p style="text-align: justify;"
+							th:text="${productDetails.product.description}"></p>
 					</div>
-					<div class="bs-col tn-50">
+					<div class="bs-col tn-50-15 pl-5">
 
 						<div class="module">
 							<p class="brandname-single"
@@ -37,34 +37,31 @@
 								th:text="${productDetails.product.name}"></h1>
 							<br>
 							<p class="gender-wrap">
-								<spanclass="uk-icon"> <svg width="29.33"
-									height="15.467">
+								<span class="uk-icon"> <svg width="29.33" height="15.467">
                                         <g id="Group_591"
-										data-name="Group 591" transform="translate(-187.924 -928.846)">
+											data-name="Group 591"
+											transform="translate(-187.924 -928.846)">
                                             <path id="Path_4501"
-										data-name="Path 4501"
-										d="M-289.386,76.107a5.191,5.191,0,0,1-3.811-1.674,5.166,5.166,0,0,1-.081-6.9,5.152,5.152,0,0,1,3.889-1.758,5.251,5.251,0,0,1,3.256,1.138l.146.114,2.658-2.69-.4-.063-.059-.011a1.246,1.246,0,0,0-.2-.027c-.208-.007-.415-.013-.623-.018-.329-.009-.669-.018-1-.033a.323.323,0,0,1-.233-.1.245.245,0,0,1-.055-.188c.017-.187.1-.267.285-.267h.011c.851.016,1.974.039,3.115.076.121,0,.261.041.268.3.026.9.055,1.967.074,3.047a.359.359,0,0,1-.079.263.26.26,0,0,1-.193.068c-.082,0-.282,0-.287-.347-.006-.413,0-.824,0-1.258,0-.187,0-.378,0-.573v-.5l-2.8,2.81.115.145A5.083,5.083,0,0,1-284.341,72a4.986,4.986,0,0,1-2.015,3.114A5.1,5.1,0,0,1-289.386,76.107Zm-.01-9.762a4.636,4.636,0,0,0-3.344,1.442,4.56,4.56,0,0,0-1.236,3.413,4.591,4.591,0,0,0,4.592,4.331h.035a4.53,4.53,0,0,0,3.239-1.365,4.508,4.508,0,0,0,1.321-3.238,4.6,4.6,0,0,0-4.537-4.583Z"
-										transform="translate(499.405 866.942)"></path>
+											data-name="Path 4501"
+											d="M-289.386,76.107a5.191,5.191,0,0,1-3.811-1.674,5.166,5.166,0,0,1-.081-6.9,5.152,5.152,0,0,1,3.889-1.758,5.251,5.251,0,0,1,3.256,1.138l.146.114,2.658-2.69-.4-.063-.059-.011a1.246,1.246,0,0,0-.2-.027c-.208-.007-.415-.013-.623-.018-.329-.009-.669-.018-1-.033a.323.323,0,0,1-.233-.1.245.245,0,0,1-.055-.188c.017-.187.1-.267.285-.267h.011c.851.016,1.974.039,3.115.076.121,0,.261.041.268.3.026.9.055,1.967.074,3.047a.359.359,0,0,1-.079.263.26.26,0,0,1-.193.068c-.082,0-.282,0-.287-.347-.006-.413,0-.824,0-1.258,0-.187,0-.378,0-.573v-.5l-2.8,2.81.115.145A5.083,5.083,0,0,1-284.341,72a4.986,4.986,0,0,1-2.015,3.114A5.1,5.1,0,0,1-289.386,76.107Zm-.01-9.762a4.636,4.636,0,0,0-3.344,1.442,4.56,4.56,0,0,0-1.236,3.413,4.591,4.591,0,0,0,4.592,4.331h.035a4.53,4.53,0,0,0,3.239-1.365,4.508,4.508,0,0,0,1.321-3.238,4.6,4.6,0,0,0-4.537-4.583Z"
+											transform="translate(499.405 866.942)"></path>
                                             <path id="Path_4499"
-										data-name="Path 4499" transform="translate(675.734 894.683)"></path>
+											data-name="Path 4499" transform="translate(675.734 894.683)"></path>
                                         </g>
-                                    </svg> </span> <span
-									th:text="${productDetails.product.gender}"></span>
+                                    </svg>
+								</span> <span th:text="${productDetails.product.gender}"></span>
 							</p>
-							<p>
-								
-							</p>
+							<p></p>
 							<br>
 							<table class="variations" cellspacing="0">
 								<tbody>
 									<tr>
-									     <p ><span> Giá tiền</span><span id="cost_pr" class="float-right"></span><span></span></p>
-                                        <p>
-                                            <span>Dung tích:</span>
-                                            <select name="" id="capacity">
-                                              
-                                            </select>
-                                        </p>
+										<p style="margin-top: -15px;">
+											<span> Giá tiền</span><span id="cost_pr" class="pl-5"></span>
+										</p>
+										<p>
+											<span>Dung tích:</span> <select name="" class="ml-4" id="capacity"></select>
+										</p>
 									</tr>
 								</tbody>
 							</table>
@@ -79,7 +76,7 @@
 										inputmode="numeric">
 								</div>
 
-								<button type="" class="d-inline-block" onclick="pushLocalStorage()">Thêm
+								<button class="d-inline-block" onclick="pushLocalStorage()">Thêm
 									vào giỏ hàng</button>
 
 
@@ -93,35 +90,35 @@
 						<!-- Tab panes -->
 						<div class="tab-content">
 							<div class="container" id="huong">
-								<h3>Hương</h3>
+								<h4>Hương</h4>
 								<ul class="mt-5">
-									<li>Tone hương <span class="float-right"
-										th:text="${ProductFragrance.tone}"></span></li>
-									<li>Hương đầu <span class="float-right"
-										th:text="${ProductFragrance.first}"></span></li>
-									<li>Hương giữa <span class="float-right"
-										th:text="${ProductFragrance.midle}"></span></li>
-									<li>Hương cuối <span class="float-right"
-										th:text="${ProductFragrance.last}"></span></li>
+									<li><i class="fas fa-angle-right"></i>Tone hương <br /><span class=""
+										th:text="${'- ' + ProductFragrance.tone}"></span></li>
+									<li><i class="fas fa-angle-right"></i>Hương đầu <br /><span class=""
+										th:text="${'- ' +ProductFragrance.first}"></span></li>
+									<li><i class="fas fa-angle-right"></i>Hương giữa <br /><span class=""
+										th:text="${'- ' +ProductFragrance.midle}"></span></li>
+									<li><i class="fas fa-angle-right"></i>Hương cuối <br /><span class=""
+										th:text="${'- ' +ProductFragrance.last}"></span></li>
 								</ul>
 
 							</div>
 							<hr />
 							<div class=" container" id="khuyendung">
-								<h3>Mùa Khuyên dùng</h3>
-								<ul class="mt-5">
-									<li>Mùa</li>
-									<li class="ml-3"><span class="float-right"
-										th:text="${productRecommended.season}"></span></li>
+								<h4>Mùa Khuyên dùng</h4>
+								<ul class="mt-3">
+									<li><i class="fas fa-angle-right "></i>Mùa</li>
+									<li class="ml-3"><span class="ml-5"
+										th:text="${'- ' +productRecommended.season}"></span></li>
 
 								</ul>
 								<hr>
 
-								<h3>Thời gian khuyên dùng</h3>
-								<ul class="mt-5">
-									<li>Thời gian</li>
-									<li class="ml-3"><span class="float-right"
-										th:text="${productRecommended.time}">%</span></li>
+								<h4>Thời gian khuyên dùng</h4>
+								<ul class="mt-3">
+									<li><i class="fas fa-angle-right"></i>Thời gian</li>
+									<li class="ml-3"><span class="ml-5"
+										th:text="${'- ' +productRecommended.time}">%</span></li>
 
 								</ul>
 							</div>
@@ -130,17 +127,14 @@
 				</div>
 			</div>
 			<br>
-
-
-
 		</div>
 	</div>
 	</main>
 	<div th:insert="footer-page :: footer-page"></div>
-	
+
 	<script th:src="@{/js/tool.min.js}"></script>
 	<script th:src="@{/js/main.min.js}"></script>
-<script th:src="@{/js/productDetais.js}"></script>
+	<script th:src="@{/js/productDetais.js}"></script>
 
 	<script>
 		$('.product-new-class').slick({
@@ -149,9 +143,6 @@
 			dots : true,
 			swipeToSlide : true,
 		});
-		
-
-		
 	</script>
 
 </body>

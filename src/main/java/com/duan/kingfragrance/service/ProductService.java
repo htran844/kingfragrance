@@ -25,7 +25,7 @@ public interface ProductService {
 	public List<ProductResult> getAllProductResult(List<Product> listProduct);
 
 	public ProductResult getOneProductResultBySlug(String Slug);
-
+	public ProductResult getProductResultBySlugAndDetailId(String slug,String productDetailId);
 	public List<Product> getAllProduct();
 	public Page<Product> findPaginated(int pageNo, int pageSize);
 	
