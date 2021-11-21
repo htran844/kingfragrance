@@ -58,4 +58,9 @@ public class OrderRestController {
 			return new ResponseEntity<>(null, HttpStatus.OK);
 		}
 	}
+	@GetMapping("admin/order/{id}")
+	public ResponseEntity<?> getOrderById(@PathVariable String id){
+		Order od = orderService.getOneOrderById(id);
+		return new ResponseEntity<Order>(od, HttpStatus.OK);
+	}
 }

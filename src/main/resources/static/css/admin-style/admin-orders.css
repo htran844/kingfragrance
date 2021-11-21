@@ -232,6 +232,6 @@ td:last-child {
 .button-action.delivery button.delivery-order,.button-action.waiting button.refund-order,.button-action.waiting button.bill-order, .button-action.delivery button.cancel-order, .button-action.cancelled button.delivery-order, .button-action.cancelled button.cancel-order, .button-action.refund button.refund-order,.button-action.cancelled button.refund-order, .button-action.refund button.delivery-order, .button-action.refund button.cancel-order {
   cursor: default;
   pointer-events: none;
-  opacity: 0.6;
+  opacity: 0.2;
  
 }
