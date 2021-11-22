@@ -406,11 +406,12 @@
 															</a><a href=""
 																class="product-name woocommerce-loop-product__title"
 																th:text="${x.product.name}"></a>
-														</div> <span class="price"><span class="highlight"><span
-																class="woocommerce-Price-amount amount"><bdi 
-																		th:if="${x.productDetails.size()>0 }"
-																		th:text="${x.productDetails.get(0).cost}">&nbsp;<span
-																		class="woocommerce-Price-currencySymbol"></span></bdi></span></span>đ</span>
+														</div> <span class="price"> 
+														<span class="cart-text1"
+															th:if="${x.productDetails.size()>0 }"
+															th:text="${x.productDetails.get(0).cost}">
+															</span>
+															</span>
 													</li>
 												</div>
 
@@ -421,25 +422,21 @@
 											</ul>
 											<nav class="woocommerce-pagination">
 												<ul class="page-numbers">
-													<li><a class="page-numbers" href="">Tổng số:
-															[[${totalPages}]]</a></li>
-													<li><a class="page-numbers" th:if="${currentPage > 1}"
-														th:href="@{'/product/page/' + ${currentPage -1}}">previous</a></li>
-													<li><span class="d-inline-block pl-2 pr-2"
+													
+													<li><a class="page-numbers page-nb" th:if="${currentPage > 1}"
+														th:href="@{'/product/page/' + ${currentPage -1}}"><i class="fas fa-long-arrow-alt-left"></i></i></a>
+														</li>
+													<li><span class="d-inline-block pl-2 pr-2 page-nb"
 														th:each="i : ${#numbers.sequence( 1,totalPages)}"><a
 															class="page-numbers" th:if="${currentPage != i}"
 															th:href="@{'/product/page/' +${i}}">[[${i}]]</a> <span
 															class="d-inline-block pl-2 pr-2"
 															th:unless="${currentPage != i}">[[${i}]]</span> </span></li>
-													<li><a class="page-numbers"
+													<li><a class="page-numbers page-nb"
 														th:if="${currentPage < totalPages}"
-														th:href="@{'/product/page/' + ${currentPage +1}}">Next</a>
-														<span th:unless="${currentPage < totalPages}">Next</span>
+														th:href="@{'/product/page/' + ${currentPage +1}}"><i class="fas fa-long-arrow-alt-right"></i></a>
 													</li>
-													<li><a class="page-numbers"
-														th:if="${currentPage < totalPages}"
-														th:href="@{'/product/page/' + ${totalPages}}">Last</a> <span
-														th:unless="${currentPage < totalPages}">Last</span></li>
+													
 												</ul>
 											</nav>
 									</div>
@@ -458,7 +455,15 @@
 
 
 	<script th:src="@{/js/tool.min.js}"></script>
-	<script th:src="@{/js/main.min.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
+	<script>
+		var card_text1 = document.querySelectorAll('.cart-text1');
+		for (var i = 0; i < card_text1.length; i++) {
+			card_text1[i].innerHTML = parseFloat(card_text1[i].innerHTML)
+					.toLocaleString("en").replace(/,/g, ".")+' đ';
+		}
+	</script>
+
 
 
 </body>

@@ -49,7 +49,6 @@ function pushLocalStorage() {
       }
     }
   }
-
   if (localStorage) {
 	  Product= JSON.stringify(Product);
     let ListProduct = localStorage.getItem("ListProduct") ? JSON.parse(localStorage.getItem("ListProduct")) : [];
