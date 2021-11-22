@@ -208,6 +208,10 @@
 	margin-bottom: 200px
 }
 
+.icon-close:hover{
+	cursor: pointer;
+}
+
 #main .section-cart .content {
 	margin: 30px 0
 }

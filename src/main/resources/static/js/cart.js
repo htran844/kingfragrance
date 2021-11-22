@@ -1,7 +1,6 @@
 var fillCart = "";
+var ListProduct = localStorage.getItem("ListProduct") ? JSON.parse(localStorage.getItem("ListProduct")) : [];
 async function fillProductToCart() {
-	
-	let ListProduct = JSON.parse(localStorage.getItem("ListProduct"));
 	for (var i = 0; i < ListProduct.length; i++) {
 
 		let Dataproduct = {
@@ -32,7 +31,7 @@ async function fillProductToCart() {
 	                                        </h3>
 	                                       
 	                                        <h4 class="cost_pr">
-	                                            <span>${products.productDetails[0].cost}</span><span>đ</span>
+	                                            <span class="cost_product_cart">${products.productDetails[0].cost}</span><span>đ</span>
 	                                        </h4>
 	                                        <div class="quantity pt-5" >
 	                                            <input type="number" id="" class="input-text qty text" step="1" min="1"
@@ -80,30 +79,20 @@ function getAllProduct() {
         $('.module-cart').show();
     }
 }
-
-//remove cart
-//$('.icon-close').click(function () {
-////   if (localStorage) {
-////       var product=  $(this).children('span')[0].innerHTML;
-////       localStorage.removeItem(product)
-////       // lengthOfLocalStorage=1;
-////    }
-////   
-////   $(this).parent('.item-product').remove();
-////   getAllProduct();
-////   tinhTien();
-//	
-//});
 function removeCart(e) {
 	var index = e.children[0].innerHTML;
-//	if (localStorage) {
-//    localStorage.removeItem(ListProduct+index)
-//    
-// }
-//	e.parent('.item-product').remove();
-//	alert(e.parent('.item-product'))
-	e.parent('.item-product').remove()
+	if (localStorage) {
+         	ListProduct.splice(index,1);     	
+            localStorage.setItem("ListProduct",JSON.stringify(ListProduct));
+            e.parentElement.remove();
+            fillCart = "";
+            fillProductToCart();
+            getAllProduct();
+	}
 }
+
+
+
 
 
 

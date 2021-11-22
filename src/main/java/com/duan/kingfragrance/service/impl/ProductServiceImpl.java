@@ -158,7 +158,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-<<<<<<< HEAD
+
 	public ProductResult getProductResultBySlugAndDetailId(String slug, String productDetailId) {
 		Product product = getOneProduct(slug);
 		System.out.println(product);
@@ -170,7 +170,7 @@ public class ProductServiceImpl implements ProductService {
 			return productResult;
 		}
 		return null;
-=======
+	}
 	public Product getOneProductById(String id) {
 		Optional<Product> optional = productRepo.findById(id);
 		if (optional.isPresent()) {	
@@ -178,7 +178,7 @@ public class ProductServiceImpl implements ProductService {
 		} else {
 			return null;
 		}	
->>>>>>> 1924ea2cefb0f4a1745b63bc50bac14594386b42
+
 	}
 
 

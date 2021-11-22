@@ -111,7 +111,7 @@ public class ProductRestController {
 		List<Product> listProduct = productService.getAdminProduct(page, search, gender);
 		return new ResponseEntity<List<Product>>(listProduct, HttpStatus.OK);
 	}
-<<<<<<< HEAD
+
 	
 	@GetMapping("/getCartFromLocalStorage")
 	public ResponseEntity<?> getAllProductFromLocalStorage(@RequestParam String slug,@RequestParam String productDetailId){
@@ -121,7 +121,7 @@ public class ProductRestController {
 	
 	
 	
-=======
+
 	@GetMapping("/admin/product-mainid/{id}")
 	public ResponseEntity<?> getProductById(@PathVariable String id){
 		Product product = productService.getOneProductById(id);
@@ -131,5 +131,5 @@ public class ProductRestController {
 			return new ResponseEntity<Product>(product, HttpStatus.OK);
 		}
 	}
->>>>>>> 1924ea2cefb0f4a1745b63bc50bac14594386b42
+
 }
