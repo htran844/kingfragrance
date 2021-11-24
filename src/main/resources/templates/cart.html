@@ -1,167 +1,180 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>King Fragrance</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    
-  <link rel="stylesheet" type="text/css"  th:href="@{/css/tool.min.css}" />
-<link rel="stylesheet" type="text/css" th:href="@{/css/main.min.css}"  />
-    
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>King Fragrance</title>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+
+<link rel="stylesheet" type="text/css" th:href="@{/css/tool.min.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/main.min.css}" />
+
 </head>
 <body class="index">
-<div th:insert="header-page :: header-page"></div>
-<main id="main" >
-    <div class="section-cart" id="cart">
-        <div class="bs-container">
-            <div class="module-cart" >
-               <form action="" method="post" id="contactForm">
-                <div class="bs-row row-justify">
-                    <div class="bs-col tn-60-10">
-                        <h1 class="title mb-5">Sản phẩm đã chọn</h1>
-                        <div class="module-left"  id="list_pr">
- 								
-                        </div>
-                         <hr>
-                           
-
-                    </div>
-                    <div class="bs-col tn-40-10">
-                        <div class="module-right-money">
-                            <h2 class="title">
-                                Phiếu thanh toán
-                            </h2>
-                            <p class="content">
-                                <b>Tạm tính</b><span class="float-right" style="    color: #493838;">đ</span><span class="money-pr float-right" style="    color: #493838;" id="tamTinh"  ></span> 
-                            </p>
-                            <hr>
-                            <p class="content">
-                                <b>Tổng</b><span class="float-right" style="font-weight: bold;">đ</span><span id="totalMoney" style="    font-weight: bold;" class="money-pr float-right" ></span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="bs-col" style="    margin-top: 160px;">
-                        <div class="section-checkout">
-                            <div class="bs-container">
-                                <div class="module-checkout">
-
-                                    <div class="bs-row" >
-                                        <div class="bs-col tn-60-10" style="margin-top: 50px">
-                                            <div class="module-left ">
-                                                <h1 class="title mt-5">Checkout</h1>
-                                                <div>
-                                                    <span class="mr-5">Mua để làm quà</span> <input type="radio" name="lo"
-                                                        id="" checked>No
-                                                    <input type="radio" name="lo" id="">Yes
-                                                </div>
-                                                <hr>
-
-                                                <div>
-                                                    Ghi chú đơn hàng(tùy chọn)
-                                                    <textarea name=""
-                                                        placeholder="Ghi chú về đơn hàng, ví dụ: thời gian hay chỉ dẫn địa điểm giao hàng chi tiết hơn."
-                                                        id="" cols="30" rows="10"></textarea>
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-                                        <div class="bs-col tn-40-10" style="margin-top: 100px">
-                                            <div class="module-right">
-                                                <h2 class="title">
-                                                    Thông tin thanh toán
-                                                </h2>
-                                                <form action="">
-                                                    <p>
-                                                        <input type="text" placeholder="tên">
-                                                    </p>
-                                                    <p>
-                                                        <input type="text" placeholder="email">
-                                                    </p>
-                                                    <p>
-                                                        <input type="text" placeholder="Số điện thoại">
-                                                    </p>
-                                                    <p>
-                                                        <input type="text" placeholder="Địa chỉ">
-                                                    </p>
-                                                    <button style="background-color: black;"> <a style="color: white;"
-                                                            href="../../dist/checkout.html"> Tiến hành thanh toán</a>
-                                                    </button>
-                                                  
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-               </form>
-
-            </div>
-            <div id="tm-main" class="tm-main uk-section uk-section-default" uk-height-viewport="expand: true">
-
-                <div class="uk-container">
-                    <article id="post-23" class=" hentry" typeof="Article">
-
-                        <meta property="name" content="Sản phẩm đã chọn">
-                        <meta property="author" typeof="Person" content="admin">
-                        <meta property="dateModified" content="2021-02-22T12:42:40+07:00">
-                        <meta class="" property="datePublished" content="2020-04-16T12:03:30+07:00">
+	<div th:insert="header-page :: header-page"></div>
+	<main id="main">
+	<div class="section-cart" id="cart">
+		<div class="bs-container">
+			<div class="module-cart">
+				<form action="/admin/order-detail" method="post" th:object="${user}">
+					<div class="bs-row row-justify">
+						<div class="bs-col tn-60-10">
+							<h1 class="title mb-5">Sản phẩm đã chọn</h1>
+							<div class="module-left" id="list_pr"></div>
+							<hr>
 
 
-                        <h1 class="">Sản phẩm đã chọn</h1>
-                        <div class="" property="text">
+						</div>
+						<div class="bs-col tn-40-10">
+							<div class="module-right-money">
+								<h2 class="title">Phiếu thanh toán</h2>
+								<p class="content">
+									<b>Tạm tính</b><span class="float-right"
+										style="color: #493838;">đ</span><span
+										class="money-pr float-right" style="color: #493838;"
+										id="tamTinh"></span>
+								</p>
+								<hr>
+								<p class="content">
+									<b>Tổng</b><span class="float-right" style="font-weight: bold;">đ</span><span
+										id="totalMoney" style="font-weight: bold;"
+										class="money-pr float-right"></span>
+								</p>
+							</div>
+						</div>
+						<div class="bs-col" style="margin-top: 160px;">
+							<div class="section-checkout">
+								<div class="bs-container">
+									
+										<div class="module-checkout">
+
+											<div class="bs-row">
+												<div class="bs-col tn-60-10" style="margin-top: 50px">
+													<div class="module-left ">
+														<h1 class="title mt-5">Checkout</h1>
+														
+														<hr>
+
+														<div>
+															Ghi chú đơn hàng(tùy chọn)
+															<textarea name=""
+																placeholder="Ghi chú về đơn hàng, ví dụ: thời gian hay chỉ dẫn địa điểm giao hàng chi tiết hơn."
+																id="" cols="30" rows="10"></textarea>
+														</div>
+													</div>
+												</div>
+												<div class="bs-col tn-40-10" style="margin-top: 100px">
+													<div class="module-right">
+														<h2 class="title">Thông tin thanh toán</h2>
+
+														<p>
+															<input type="text" placeholder="tên" id="name" class="name">
+														</p>
+														<p>
+															<input type="text" placeholder="email">
+														</p>
+														<p>
+															<input type="text" placeholder="Số điện thoại">
+														</p>
+														<p>
+															<input type="text" placeholder="Địa chỉ">
+														</p>
+														<p>
+															Hình thức thanh toán:  ship code
+														</p>
+														<button style="background-color: black;">
+															<a style="color: white;">
+																Đặt hàng</a>
+														</button>
 
 
-                            <div class="">
-                                <div class=""></div>
-                                <p class="empty-cart">Chưa có sản phẩm nào trong giỏ hàng.</p>
-                                <p class="return-to-shop">
-                                    <a class="button wc-backward">
-                                        Quay trở lại cửa hàng </a>
-                                </p>
-                            </div>
+													</div>
+												</div>
+											</div>
+
+										</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+
+			</div>
+			<div id="tm-main" class="tm-main uk-section uk-section-default"
+				uk-height-viewport="expand: true">
+
+				<div class="uk-container">
+					<article id="post-23" class=" hentry" typeof="Article">
+
+						<meta property="name" content="Sản phẩm đã chọn">
+						<meta property="author" typeof="Person" content="admin">
+						<meta property="dateModified" content="2021-02-22T12:42:40+07:00">
+						<meta class="" property="datePublished"
+							content="2020-04-16T12:03:30+07:00">
 
 
-                        </div>
+						<h1 class="">Sản phẩm đã chọn</h1>
+						<div class="" property="text">
 
 
-                    </article>
+							<div class="">
+								<div class=""></div>
+								<p class="empty-cart">Chưa có sản phẩm nào trong giỏ hàng.</p>
+								<p class="return-to-shop">
+									<a class="button wc-backward"> Quay trở lại cửa hàng </a>
+								</p>
+							</div>
 
 
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="section-contact">
-        <div class="bs-container">
-            <div class="module-contact">
-                <div class="module">
-                    <h1 class="module-header">King Fragrance</h1>
-                    <div class="module-content">
-                        <p><i class="fas fa-map-marker-alt"></i>Số 78C, ngõ 87 Láng Hạ, Hà Nội | 525/44 Tô Hiến Thành,
-                            P14, Q10, TP. Hồ Chí Minh</p>
-                        <p><i class="fas fa-mobile-alt"></i>090 721 9889
-                            <i class="far fa-envelope"></i>xxiv.fragrance@gmail.com
-                        </p>
-                        <p>Giờ mở cửa: Các ngày trong tuần từ 9:00 – 21:00</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</main>
-     <div th:insert="footer-page :: footer-page"></div>
-    
+						</div>
+
+
+					</article>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="section-contact">
+		<div class="bs-container">
+			<div class="module-contact">
+				<div class="module">
+					<h1 class="module-header">King Fragrance</h1>
+					<div class="module-content">
+						<p>
+							<i class="fas fa-map-marker-alt"></i>Số 78C, ngõ 87 Láng Hạ, Hà
+							Nội | 525/44 Tô Hiến Thành, P14, Q10, TP. Hồ Chí Minh
+						</p>
+						<p>
+							<i class="fas fa-mobile-alt"></i>090 721 9889 <i
+								class="far fa-envelope"></i>xxiv.fragrance@gmail.com
+						</p>
+						<p>Giờ mở cửa: Các ngày trong tuần từ 9:00 – 21:00</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</main>
+	<div th:insert="footer-page :: footer-page"></div>
+
 	
-<script  th:src="@{/js/tool.min.js}"></script>
-<script th:src="@{/js/main.js}" ></script>
-        <script th:src="@{/js/cart.js}"></script>
+    <!-- Tạo lớp overlay loading -->
+    <div class="lazy-loading hide">
+        <div class="lazy-text">Loading...</div>
+        <div class="line-loading"></div>
+    </div>
+	<script th:src="@{/js/tool.min.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
+	<script th:src="@{/js/base.js}"></script>
+	<script th:src="@{/js/cart.js}"></script>
+	
+	
 
 </body>
 </html>

@@ -1,6 +1,9 @@
 var fillCart = "";
+
+
 var ListProduct = localStorage.getItem("ListProduct") ? JSON.parse(localStorage.getItem("ListProduct")) : [];
 async function fillProductToCart() {
+// showLazy()
 	for (var i = 0; i < ListProduct.length; i++) {
 
 		let Dataproduct = {
@@ -56,12 +59,13 @@ async function fillProductToCart() {
 		 .toLocaleString("en")
 		 .replace(/,/g, ".");
 	}
+// hideLazy()
 }
 
 fillProductToCart()
 
 
-function tinhTien() {
+function tinhTien(cost) {
     var sum = 0;
     var ItemProduct = document.querySelectorAll('.item-product');
     for (let index = 0; index < ItemProduct.length; index++) {
@@ -84,18 +88,20 @@ function tinhTien() {
 }	
 function changeMoney(e) {
     tinhTien();
-    
-////    var index = e.children[0].innerHTML;
-//    var valueQuantityUpdate = e.value;
-//    
-// JSON.parse(ListProduct[0]).quantity=4                                                     
-//	if (localStorage) {
-////         	ListProduct.splice(index,1);     	
-//            localStorage.setItem("ListProduct",JSON.stringify(ListProduct));
-////          
-////        
-//	}
    
+    var index = e.parentElement.parentElement.parentElement.children[0].children[0].innerHTML;
+    
+   
+	 Product = {
+	            "slug": JSON.parse(ListProduct[index]).slug,
+	            "quantity": e.value,
+	            "productDetailId": JSON.parse(ListProduct[index]).productDetailId
+	            }
+	   console.log(Product);
+	 ListProduct[index]=
+		 JSON.stringify(Product);
+
+ localStorage.setItem("ListProduct",JSON.stringify(ListProduct));         
 }
 function getAllProduct() {
     var arrayCart = document.querySelectorAll(".section-cart .module-left li");
