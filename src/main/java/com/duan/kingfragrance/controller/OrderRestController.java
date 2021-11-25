@@ -63,4 +63,13 @@ public class OrderRestController {
 		Order od = orderService.getOneOrderById(id);
 		return new ResponseEntity<Order>(od, HttpStatus.OK);
 	}
+	@PutMapping("/admin/order/update")
+	public ResponseEntity<?> updateOrder(@RequestBody Order order){
+		Boolean result = orderService.updateOrder(order);
+		if (result) {
+			return new ResponseEntity<>("update thành công", HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(null, HttpStatus.OK);
+		}
+	}
 }

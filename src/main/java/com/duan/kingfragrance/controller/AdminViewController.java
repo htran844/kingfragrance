@@ -31,4 +31,8 @@ public class AdminViewController {
 	public String getInvoices(Model model) {
 		return "invoices";
 	}
+	@GetMapping("/admin/orders/{orderId}")
+	public String getAdminOrderDetail(Model model) {
+		return "admin-order-detail"; 
+	}
 }

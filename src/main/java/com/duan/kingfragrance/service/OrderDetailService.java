@@ -8,5 +8,7 @@ public interface OrderDetailService {
 	
 	Boolean createOrderDetail(OrderDetail orderDetail);
 	
+	Boolean updateOrderDetail(OrderDetail orderDetail);
+	
 	List<OrderDetail> getListOdDetails(String orderId);
 }

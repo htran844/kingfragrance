@@ -53,8 +53,19 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public Boolean updateOrder(Order order) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Order> op = orderRepo.findById(order.getId());
+		if (op.isPresent()) {
+			Order od = op.get();
+			od.setName(order.getName());
+			od.setPhone(order.getPhone());
+			od.setAddress(order.getAddress());
+			od.setNote(order.getNote());
+			orderRepo.save(od);
+			return true;
+		} else {
+			return false;
+		}
+		
 	}
 
 	@Override

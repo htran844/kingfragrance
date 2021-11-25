@@ -1,6 +1,7 @@
 package com.duan.kingfragrance.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,24 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 			return lst;
 		} else {
 			return null;
+		}
+		
+	}
+	@Override
+	public Boolean updateOrderDetail(OrderDetail orderDetail) {
+		Optional<OrderDetail> op = orderDetailRepo.findById(orderDetail.getId());
+		if (op.isPresent()) {
+			OrderDetail od = op.get();
+			od.setCapacity(orderDetail.getCapacity());
+			od.setCost(orderDetail.getCost());
+			od.setOrderId(orderDetail.getOrderId());
+			od.setProductId(orderDetail.getProductId());
+			od.setQuantity(orderDetail.getQuantity());
+			od.setTotal(orderDetail.getTotal());
+			orderDetailRepo.save(od);
+			return true;
+		} else {
+			return false;
 		}
 		
 	}
