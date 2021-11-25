@@ -60,7 +60,8 @@
 											<span> Giá tiền</span><span id="cost_pr" class="pl-5"></span>
 										</p>
 										<p>
-											<span>Dung tích:</span> <select name="" class="ml-4" id="capacity"></select>
+											<span>Dung tích:</span> <select name="" class="ml-4"
+												id="capacity"></select>
 										</p>
 									</tr>
 								</tbody>
@@ -92,14 +93,14 @@
 							<div class="container" id="huong">
 								<h4>Hương</h4>
 								<ul class="mt-5">
-									<li><i class="fas fa-angle-right"></i>Tone hương <br /><span class=""
-										th:text="${'- ' + ProductFragrance.tone}"></span></li>
-									<li><i class="fas fa-angle-right"></i>Hương đầu <br /><span class=""
-										th:text="${'- ' +ProductFragrance.first}"></span></li>
-									<li><i class="fas fa-angle-right"></i>Hương giữa <br /><span class=""
-										th:text="${'- ' +ProductFragrance.midle}"></span></li>
-									<li><i class="fas fa-angle-right"></i>Hương cuối <br /><span class=""
-										th:text="${'- ' +ProductFragrance.last}"></span></li>
+									<li><i class="fas fa-angle-right"></i>Tone hương <br />
+									<span class="" th:text="${'- ' + ProductFragrance.tone}"></span></li>
+									<li><i class="fas fa-angle-right"></i>Hương đầu <br />
+									<span class="" th:text="${'- ' +ProductFragrance.first}"></span></li>
+									<li><i class="fas fa-angle-right"></i>Hương giữa <br />
+									<span class="" th:text="${'- ' +ProductFragrance.midle}"></span></li>
+									<li><i class="fas fa-angle-right"></i>Hương cuối <br />
+									<span class="" th:text="${'- ' +ProductFragrance.last}"></span></li>
 								</ul>
 
 							</div>
@@ -119,7 +120,6 @@
 									<li><i class="fas fa-angle-right"></i>Thời gian</li>
 									<li class="ml-3"><span class="ml-5"
 										th:text="${'- ' +productRecommended.time}">%</span></li>
-
 								</ul>
 							</div>
 						</div>
@@ -133,7 +133,7 @@
 	<div th:insert="footer-page :: footer-page"></div>
 
 	<script th:src="@{/js/tool.min.js}"></script>
-	<script th:src="@{/js/main.min.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
 	<script th:src="@{/js/productDetail.js}"></script>
 
 	<script>

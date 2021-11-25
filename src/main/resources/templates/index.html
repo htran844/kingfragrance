@@ -102,24 +102,10 @@
 							<div>
 								<a href=""><img src="images/brand5.png" alt=""></a>
 							</div>
-							<div>
-								<a href=""><img src="images/brand5.png" alt=""></a>
+						<div>
+								<a href=""><img src="images/brand2.png" alt=""></a>
 							</div>
-							<div>
-								<a href=""><img src="images/brand5.png" alt=""></a>
-							</div>
-							<div>
-								<a href=""><img src="images/brand5.png" alt=""></a>
-							</div>
-							<div>
-								<a href=""><img src="images/brand5.png" alt=""></a>
-							</div>
-							<div>
-								<a href=""><img src="images/brand5.png" alt=""></a>
-							</div>
-							<div>
-								<a href=""><img src="images/brand5.png" alt=""></a>
-							</div>
+							
 						</div>
 					</div>
 				</div>
@@ -134,7 +120,7 @@
 					<div class="module-content">
 						<br>
 						<div class="tab-content">
-							<div id="home" class="container tab-pane active">
+							<div  class="container mt-4">
 								<br>
 								<h1 class="module-header"
 									style="font-size: 20px; padding: 20px 0px;">Nước Hoa Nam</h1>
@@ -157,7 +143,7 @@
 								
 								</div>
 							</div>
-							<div id="home" class="container tab-pane active">
+							<div  class="container mt-4">
 								<br>
 								<h1 class="module-header"
 									style="font-size: 20px; padding: 20px 0px;">Nước Hoa Nữ</h1>
@@ -180,7 +166,7 @@
 									
 									</div>
 							</div>
-							<div id="home" class="container tab-pane active">
+							<div class="container mt-4">
 								<br>
 								<h1 class="module-header"
 									style="font-size: 20px; padding: 20px 0px;">Nước Hoa
@@ -263,7 +249,7 @@
 
 
 <script  th:src="@{/js/tool.min.js}"></script>
-<script th:src="@{/js/main.min.js}" ></script>
+<script th:src="@{/js/main.js}" ></script>
 
 	<script>
 		$(document).ready(function() {
@@ -307,7 +293,15 @@
 			speed : 1000,
 			autoplaySpeed : 5000,
 		});
-	</script>
+		var card_text= document.querySelectorAll('.card-text'); 
+		console.log(card_text.length);
+
+		for (var i = 0; i < card_text.length; i++) {
+			card_text[i].innerHTML=parseFloat(card_text[i].innerHTML).toLocaleString("en")
+			.replace(/,/g, ".") ;
+		}
+		
+		</script>
 
 </body>
 </html>

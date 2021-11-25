@@ -42,25 +42,26 @@ function pushLocalStorage() {
   var quantity = document.getElementById('quantity_pr').value;
   for (let i = 0; i < productDetail.length; i++) {
     if (productDetail[i].capacity == capacity) {
-      Product = {
+       Product = {
         "slug": slugProduct,
         "quantity": quantity,
         "productDetailId": productDetail[i].id,
       }
     }
   }
-
   if (localStorage) {
-	  Product= JSON.stringify(Product);
+	 
     let ListProduct = localStorage.getItem("ListProduct") ? JSON.parse(localStorage.getItem("ListProduct")) : [];
 if (ListProduct.length>0) {
     		for (var i = 0; i < ListProduct.length; i++) {
-    			if (JSON.parse(ListProduct[i]).slug ===JSON.parse(Product).slug && 
-    					JSON.parse(ListProduct[i]).productDetailId ===JSON.parse(Product).productDetailId ) {
-    				ListProduct.splice(i,1);
+    			if (JSON.parse(ListProduct[i]).slug ===Product.slug && 
+    					JSON.parse(ListProduct[i]).productDetailId ===Product.productDetailId ) {
+    				Product.quantity=Number(Product.quantity)+Number(JSON.parse(ListProduct[i]).quantity);
+    					    				ListProduct.splice(i,1);
     			}
     		}
-}
+} 
+Product= JSON.stringify(Product);
     		ListProduct.push(Product);
     	alert("thêm vào giỏ hàng thành công!")
     localStorage.setItem("ListProduct",JSON.stringify(ListProduct));
