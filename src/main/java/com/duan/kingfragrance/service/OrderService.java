@@ -10,7 +10,7 @@ public interface OrderService {
 	
 	public List<Order> getAllOrder(String phone, String status);
 	
-	public Boolean createOrder(Order order);
+	public Order createOrder(Order order);
 	
 	public Boolean updateOrder(Order order);
 	

@@ -3,7 +3,7 @@ var fillCart = "";
 
 var ListProduct = localStorage.getItem("ListProduct") ? JSON.parse(localStorage.getItem("ListProduct")) : [];
 async function fillProductToCart() {
-// showLazy()
+ showLazy()
 	for (var i = 0; i < ListProduct.length; i++) {
 
 		let Dataproduct = {
@@ -59,7 +59,7 @@ async function fillProductToCart() {
 		 .toLocaleString("en")
 		 .replace(/,/g, ".");
 	}
-// hideLazy()
+ hideLazy()
 }
 
 fillProductToCart()

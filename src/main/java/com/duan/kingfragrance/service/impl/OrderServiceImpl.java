@@ -45,10 +45,11 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public Boolean createOrder(Order order) {
+	public Order createOrder(Order order) {
 		order.setCreateAt(new Date(System.currentTimeMillis()));
-		orderRepo.save(order);
-		return true;
+		Order result = orderRepo.save(order);
+	
+		return result;
 	}
 
 	@Override

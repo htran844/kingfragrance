@@ -28,8 +28,13 @@ public class OrderRestController {
 	}
 	@PostMapping("/admin/orders")
 	public ResponseEntity<?> createOrder(@RequestBody Order order){
-		Boolean result = orderService.createOrder(order);
-		return new ResponseEntity<>("Tạo đơn hàng thành công", HttpStatus.OK);
+		 Order result = orderService.createOrder(order);
+		
+		if (result!=null) {
+			return new ResponseEntity<>(result.getId(), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(null, HttpStatus.OK);
+		}
 	}
 	@PutMapping("/admin/delivery/{orderId}")
 	public ResponseEntity<?> changeStatusDelivery(@PathVariable String orderId){
