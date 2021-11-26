@@ -8,8 +8,6 @@
  url: `/admin/product-detail-slug/${slugProduct}`,
  type: 'GET',
  })
-	  
-
  for (let i = 0; i < productDetail.length; i++) {
  let optionHtml = ` <option value="">${productDetail[i].capacity}
  ml</option>`;

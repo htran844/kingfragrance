@@ -1,7 +1,7 @@
 var fillCart = "";
-
-
+var totalCost = 0;
 var ListProduct = localStorage.getItem("ListProduct") ? JSON.parse(localStorage.getItem("ListProduct")) : [];
+
 async function fillProductToCart() {
  showLazy()
 	for (var i = 0; i < ListProduct.length; i++) {
@@ -19,9 +19,12 @@ async function fillProductToCart() {
 			type : "GET",
 			data : Dataproduct,
 			  success: function (response) {
-				  
+				
 			    }
 		})	
+		var qtt = JSON.parse(ListProduct[i]).quantity;
+				  var cost = products.productDetails[0].cost;
+				  totalCost += Number(cost) * Number(qtt);
 		 fillCart +=`   <hr>
 			 <li class="item-product bs-row">
 			 
@@ -97,11 +100,14 @@ function changeMoney(e) {
 	            "quantity": e.value,
 	            "productDetailId": JSON.parse(ListProduct[index]).productDetailId
 	            }
-	   console.log(Product);
+	  
 	 ListProduct[index]=
 		 JSON.stringify(Product);
 
- localStorage.setItem("ListProduct",JSON.stringify(ListProduct));         
+ localStorage.setItem("ListProduct",JSON.stringify(ListProduct));  
+  fillCart = "";
+  totalCost = 0;
+ fillProductToCart()
 }
 function getAllProduct() {
     var arrayCart = document.querySelectorAll(".section-cart .module-left li");

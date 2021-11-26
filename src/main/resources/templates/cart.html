@@ -19,7 +19,7 @@
 	<div class="section-cart" id="cart">
 		<div class="bs-container">
 			<div class="module-cart">
-				<form action="/admin/order-detail" method="post" th:object="${user}">
+				
 					<div class="bs-row row-justify">
 						<div class="bs-col tn-60-10">
 							<h1 class="title mb-5">Sản phẩm đã chọn</h1>
@@ -62,7 +62,7 @@
 															Ghi chú đơn hàng(tùy chọn)
 															<textarea name=""
 																placeholder="Ghi chú về đơn hàng, ví dụ: thời gian hay chỉ dẫn địa điểm giao hàng chi tiết hơn."
-																id="" cols="30" rows="10"></textarea>
+																id="note" cols="30" rows="10"></textarea>
 														</div>
 													</div>
 												</div>
@@ -74,19 +74,19 @@
 															<input type="text" placeholder="tên" id="name" class="name">
 														</p>
 														<p>
-															<input type="text" placeholder="email">
+															<input type="text" placeholder="email" id="email" class="email">
 														</p>
 														<p>
-															<input type="text" placeholder="Số điện thoại">
+															<input type="text" placeholder="Số điện thoại" id="phone" class="phone">
 														</p>
 														<p>
-															<input type="text" placeholder="Địa chỉ">
+															<input type="text" placeholder="Địa chỉ" id="address" class="address">
 														</p>
 														<p>
 															Hình thức thanh toán:  ship code
 														</p>
 														<button style="background-color: black;">
-															<a style="color: white;">
+															<a style="color: white;" onclick="getIdOrder()">
 																Đặt hàng</a>
 														</button>
 
@@ -101,7 +101,7 @@
 							</div>
 						</div>
 					</div>
-				</form>
+				
 
 			</div>
 			<div id="tm-main" class="tm-main uk-section uk-section-default"
@@ -173,7 +173,7 @@
 	<script th:src="@{/js/main.js}"></script>
 	<script th:src="@{/js/base.js}"></script>
 	<script th:src="@{/js/cart.js}"></script>
-	
+	<script th:src="@{/js/order.js}"></script>
 	
 
 </body>
