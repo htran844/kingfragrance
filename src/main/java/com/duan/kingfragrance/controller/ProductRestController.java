@@ -2,6 +2,8 @@ package com.duan.kingfragrance.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -30,6 +32,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.duan.kingfragrance.model.Product;
+import com.duan.kingfragrance.model.ProductDetail;
 import com.duan.kingfragrance.model.ProductResult;
 import com.duan.kingfragrance.repository.ProductRepository;
 import com.duan.kingfragrance.service.ProductService;
@@ -79,15 +82,7 @@ public class ProductRestController {
 		}
 //		return new ResponseEntity<>("hihi", HttpStatus.OK);
 	}
-	@GetMapping("/admin/product-main/{slug}")
-	public ResponseEntity<?> getProduct(@PathVariable String slug){
-		Product product = productService.getOneProduct(slug);
-		if (product == null) {
-			return new ResponseEntity<>(null, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<Product>(product, HttpStatus.OK);
-		}
-	}
+
 	@DeleteMapping("/admin/product-main/{productId}")
 	public ResponseEntity<?> deleteProduct(@PathVariable String productId){
 		Boolean result = productService.deleteProductById(productId);
@@ -113,18 +108,50 @@ public class ProductRestController {
 	}
 
 	
-	@GetMapping("/getCartFromLocalStorage")
-	public ResponseEntity<?> getAllProductFromLocalStorage(@RequestParam String slug,@RequestParam String productDetailId){
-		ProductResult productResult = productService.getProductResultBySlugAndDetailId(slug, productDetailId);
-		return new ResponseEntity<>(productResult, HttpStatus.OK);
-	}
-	
-	
 	
 
 	@GetMapping("/admin/product-mainid/{id}")
 	public ResponseEntity<?> getProductById(@PathVariable String id){
 		Product product = productService.getOneProductById(id);
+		if (product == null) {
+			return new ResponseEntity<>(null, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Product>(product, HttpStatus.OK);
+		}
+	}
+	@GetMapping("/getAllProductResult/{by}")
+	public ResponseEntity<?> getAllProductResult_By(@PathVariable String by){
+		List<Product> lstProduct = productService.getAllProduct();
+		List<ProductResult> lstProductResult = productService.getAllProductResult(lstProduct);
+		if (by.equals("price")) {
+			for (ProductResult x : lstProductResult) {
+				
+			}
+		}
+		if (lstProductResult!=null) {
+			return new ResponseEntity<>(lstProductResult, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(lstProductResult, HttpStatus.OK);
+	
+	}
+	@GetMapping("/getCartFromLocalStorage")
+	public ResponseEntity<?> getAllProductFromLocalStorage(@RequestParam String slug,@RequestParam String productDetailId){
+		ProductResult productResult = productService.getProductResultBySlugAndDetailId(slug, productDetailId);
+		return new ResponseEntity<>(productResult, HttpStatus.OK);
+	}
+	@GetMapping("/getAllProductResult")
+	public ResponseEntity<?> getAllProductResult(){
+		List<Product> lstProduct = productService.getAllProduct();
+		List<ProductResult> lstProductResult = productService.getAllProductResult(lstProduct);
+		if (lstProductResult!=null) {
+			return new ResponseEntity<>(lstProductResult, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(null, HttpStatus.OK);
+	
+	}
+	@GetMapping("/admin/product-main/{slug}")
+	public ResponseEntity<?> getProduct(@PathVariable String slug){
+		Product product = productService.getOneProduct(slug);
 		if (product == null) {
 			return new ResponseEntity<>(null, HttpStatus.OK);
 		} else {

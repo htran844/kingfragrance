@@ -1,8 +1,5 @@
 async function getIdOrder() {
-	var confirmDatHang = confirm("Bạn có chắc chắn muốn đặt hàng không?")
-	if (!confirmDatHang) {
-		return;
-	}
+	
 	 var name = document.getElementById('name').value;
 	var phone = document.getElementById('phone').value;
 	var email = document.getElementById('email').value;
@@ -22,6 +19,10 @@ async function getIdOrder() {
 	
 	if (address==="") {
 		alert("Không được để trống address!")
+		return;
+	}
+	var confirmDatHang = confirm("Bạn có chắc chắn muốn đặt hàng không?")
+	if (!confirmDatHang) {
 		return;
 	}
 	
@@ -101,7 +102,9 @@ async function getIdOrder() {
 	} 
 	hideLazy()
 	setTimeout(() => {
+		localStorage.clear();
 		 alert("Đặt hàng thành công!")
+		 
 }, 200);
 	
 

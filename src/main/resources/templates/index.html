@@ -132,7 +132,7 @@
 											<a th:href="@{'/product-detailts/' + ${x.product.slug}}"> <img class="card-img-top"
 												th:src="${x.product.image}"></a>
 											<div class="card-body">
-												<h4 class="card-title" th:text="${x.product.name}"></h4>
+												<h4 class="card-title" th:text="${x.product.brand}"></h4>
 												<p class="card-colorCategory" th:text="${x.product.slug}"></p>
 												<p><span class="card-text" th:if="${x.productDetails.size()>0 }"   th:text="${x.productDetails.get(0).cost}" ></span>
 												<span>đ</span>
@@ -155,7 +155,7 @@
 												<a th:href="@{'/product-detailts/' + ${x.product.slug}}"> <img class="card-img-top"
 													th:src="${x.product.image}"></a>
 												<div class="card-body">
-													<h4 class="card-title" th:text="${x.product.name}"></h4>
+													<h4 class="card-title" th:text="${x.product.brand}"></h4>
 													<p class="card-colorCategory" th:text="${x.product.slug}"></p>
 													<p><span class="card-text" th:if="${x.productDetails.size()>0 }"   th:text="${x.productDetails.get(0).cost}" ></span>
 													<span>đ</span>
@@ -179,7 +179,7 @@
 												<a th:href="@{'/product-detailts/' + ${x.product.slug}}"> <img class="card-img-top"
 													th:src="${x.product.image}"></a>
 												<div class="card-body">
-													<h4 class="card-title" th:text="${x.product.name}"></h4>
+													<h4 class="card-title" th:text="${x.product.brand}"></h4>
 													<p class="card-colorCategory" th:text="${x.product.slug}"></p>
 													<p><span class="card-text" th:if="${x.productDetails.size()>0 }"   th:text="${x.productDetails.get(0).cost}" ></span>
 													<span>đ</span>

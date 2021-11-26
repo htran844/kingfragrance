@@ -80,26 +80,31 @@ public class ViewController {
 	}
 
 	@GetMapping("/product")
-	public String getProduct(Model model) {
-		return fintPaginated(1, model);
-	}
-	@GetMapping("/product/page/{pageNo}")
-	public String fintPaginated(@PathVariable(value = "pageNo") int pageNo, Model model) {
-		int pageSize = 16;
-		Page<Product> page = ProductService.findPaginated(pageNo, pageSize);
-		List<Product> lstproducts = page.getContent();
-		List<ProductResult> listProductResult = new ArrayList<ProductResult>();
-		List<ProductDetail> listProductDetail; 
-		for (Product x : lstproducts) {
-			listProductDetail= ProductDetailService.getAllProductDetailById(x.getId());
-			listProductResult.add(new ProductResult(x, listProductDetail));
-		}
-		model.addAttribute("currentPage", pageNo);
-		model.addAttribute("totalPages", page.getTotalPages());
-		model.addAttribute("totalItems", page.getTotalElements());
-		model.addAttribute("listProductResult", listProductResult);
+	public String getProduct() {
 		return "product";
 	}
+//	@GetMapping("/product{filterBy}")
+//	public String getProduct_Sort(Model model,@PathVariable String filterBy) {
+//		System.out.println("oke roi day    "+filterBy);
+//		return fintPaginated(1, model);
+//	}
+//	@GetMapping("/product/page/{pageNo}")
+//	public String fintPaginated(@PathVariable(value = "pageNo") int pageNo, Model model) {
+//		int pageSize = 16;
+//		Page<Product> page = ProductService.findPaginated(pageNo, pageSize);
+//		List<Product> lstproducts = page.getContent();
+//		List<ProductResult> listProductResult = new ArrayList<ProductResult>();
+//		List<ProductDetail> listProductDetail; 
+//		for (Product x : lstproducts) {
+//			listProductDetail= ProductDetailService.getAllProductDetailById(x.getId());
+//			listProductResult.add(new ProductResult(x, listProductDetail));
+//		}
+//		model.addAttribute("currentPage", pageNo);
+//		model.addAttribute("totalPages", page.getTotalPages());
+//		model.addAttribute("totalItems", page.getTotalElements());
+//		model.addAttribute("listProductResult", listProductResult);
+//		return "product";
+//	}
 
 	@GetMapping("/product-detailts/{slug}")
 	public String getProductDetail(@PathVariable(value = "slug") String slug, Model model) {
