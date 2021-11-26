@@ -34,30 +34,28 @@ import com.cloudinary.utils.ObjectUtils;
 import com.duan.kingfragrance.model.Product;
 import com.duan.kingfragrance.model.ProductDetail;
 import com.duan.kingfragrance.model.ProductResult;
+import com.duan.kingfragrance.repository.ProductDetailRepository;
 import com.duan.kingfragrance.repository.ProductRepository;
 import com.duan.kingfragrance.service.ProductService;
 
-
 @RestController
 public class ProductRestController {
-	
+
 	@Autowired
 	private ProductService productService;
 	@Autowired
 	private ProductRepository productRepo;
+
 	@PostMapping("admin/product-up")
-	public ResponseEntity<?> upload(@RequestParam("file") MultipartFile file, @RequestParam("slug") String slug){
+	public ResponseEntity<?> upload(@RequestParam("file") MultipartFile file, @RequestParam("slug") String slug) {
 		Optional<Product> optional = productRepo.findBySlug(slug);
-		if(optional.isPresent()) {
-			Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
-					"cloud_name", "hoang844",
-					"api_key", "217959259192693",
-					"api_secret", "RSCRmsau04ynTetZx3L3jYGNbkY",
-					"secure", true));
-			String link ="" ;
+		if (optional.isPresent()) {
+			Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap("cloud_name", "hoang844", "api_key",
+					"217959259192693", "api_secret", "RSCRmsau04ynTetZx3L3jYGNbkY", "secure", true));
+			String link = "";
 			try {
 				Map uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
-				link = String.valueOf(uploadResult.get("url")) ;
+				link = String.valueOf(uploadResult.get("url"));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -69,13 +67,13 @@ public class ProductRestController {
 		} else {
 			return new ResponseEntity<>(null, HttpStatus.OK);
 		}
-		
+
 	}
-	
+
 	@PostMapping("admin/product-main")
-	public ResponseEntity<?> createProduct(@RequestBody Product product){
+	public ResponseEntity<?> createProduct(@RequestBody Product product) {
 		Product result = productService.CreateProduct(product);
-		if (result!=null) {
+		if (result != null) {
 			return new ResponseEntity<Product>(result, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(null, HttpStatus.OK);
@@ -84,73 +82,62 @@ public class ProductRestController {
 	}
 
 	@DeleteMapping("/admin/product-main/{productId}")
-	public ResponseEntity<?> deleteProduct(@PathVariable String productId){
+	public ResponseEntity<?> deleteProduct(@PathVariable String productId) {
 		Boolean result = productService.deleteProductById(productId);
 		if (result) {
-			return new ResponseEntity<>("xoa thanh cong Product có id " +productId, HttpStatus.OK);
+			return new ResponseEntity<>("xoa thanh cong Product có id " + productId, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(null, HttpStatus.OK);
 		}
 	}
+
 	@PutMapping("/admin/product-main")
-	public ResponseEntity<?> updateProductCha(@RequestBody Product product){
+	public ResponseEntity<?> updateProductCha(@RequestBody Product product) {
 		Boolean result = productService.updateProduct(product);
 		if (result) {
-			return new ResponseEntity<>("update thanh cong Product có slug " +product.getSlug(), HttpStatus.OK);
+			return new ResponseEntity<>("update thanh cong Product có slug " + product.getSlug(), HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>("khong tim thay Product có slug " +product.getSlug(), HttpStatus.OK);
+			return new ResponseEntity<>("khong tim thay Product có slug " + product.getSlug(), HttpStatus.OK);
 		}
 	}
+
 	@GetMapping("/admin/product-main/{page}/{search}/{gender}")
-	public ResponseEntity<?> getAllAdminProduct(@PathVariable int page, @PathVariable String search, @PathVariable String gender){
+	public ResponseEntity<?> getAllAdminProduct(@PathVariable int page, @PathVariable String search,
+			@PathVariable String gender) {
 		List<Product> listProduct = productService.getAdminProduct(page, search, gender);
 		return new ResponseEntity<List<Product>>(listProduct, HttpStatus.OK);
 	}
 
-	
-	
-
 	@GetMapping("/admin/product-mainid/{id}")
-	public ResponseEntity<?> getProductById(@PathVariable String id){
+	public ResponseEntity<?> getProductById(@PathVariable String id) {
 		Product product = productService.getOneProductById(id);
-		if (product == null) {
+		if (product ==null) {
 			return new ResponseEntity<>(null, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<Product>(product, HttpStatus.OK);
 		}
 	}
-	@GetMapping("/getAllProductResult/{by}")
-	public ResponseEntity<?> getAllProductResult_By(@PathVariable String by){
-		List<Product> lstProduct = productService.getAllProduct();
-		List<ProductResult> lstProductResult = productService.getAllProductResult(lstProduct);
-		if (by.equals("price")) {
-			for (ProductResult x : lstProductResult) {
-				
-			}
-		}
-		if (lstProductResult!=null) {
-			return new ResponseEntity<>(lstProductResult, HttpStatus.OK);
-		}
-		return new ResponseEntity<>(lstProductResult, HttpStatus.OK);
-	
-	}
+
 	@GetMapping("/getCartFromLocalStorage")
-	public ResponseEntity<?> getAllProductFromLocalStorage(@RequestParam String slug,@RequestParam String productDetailId){
+	public ResponseEntity<?> getAllProductFromLocalStorage(@RequestParam String slug,
+			@RequestParam String productDetailId) {
 		ProductResult productResult = productService.getProductResultBySlugAndDetailId(slug, productDetailId);
 		return new ResponseEntity<>(productResult, HttpStatus.OK);
 	}
+
 	@GetMapping("/getAllProductResult")
-	public ResponseEntity<?> getAllProductResult(){
+	public ResponseEntity<?> getAllProductResult() {
 		List<Product> lstProduct = productService.getAllProduct();
 		List<ProductResult> lstProductResult = productService.getAllProductResult(lstProduct);
-		if (lstProductResult!=null) {
+		if (lstProductResult != null) {
 			return new ResponseEntity<>(lstProductResult, HttpStatus.OK);
 		}
 		return new ResponseEntity<>(null, HttpStatus.OK);
-	
+
 	}
+
 	@GetMapping("/admin/product-main/{slug}")
-	public ResponseEntity<?> getProduct(@PathVariable String slug){
+	public ResponseEntity<?> getProduct(@PathVariable String slug) {
 		Product product = productService.getOneProduct(slug);
 		if (product == null) {
 			return new ResponseEntity<>(null, HttpStatus.OK);
@@ -159,4 +146,40 @@ public class ProductRestController {
 		}
 	}
 
+	@GetMapping("/getAllProductResult/{by}")
+	public ResponseEntity<?> getAllProductResult_By(@PathVariable String by) {
+		List<Product> lstProduct = productService.getAllProduct();
+		List<ProductResult> lstProductResult = productService.getAllProductResult(lstProduct);
+		
+		if (by.equals("price")) {
+			for (int i = 0; i < lstProductResult.size(); i++) {
+				for (int j = 0; j < lstProductResult.size(); j++) {
+					if (lstProductResult.get(i).getProductDetails().get(0).getCost() < lstProductResult.get(j)
+							.getProductDetails().get(0).getCost()) {
+						ProductResult temp = new ProductResult();
+						temp = lstProductResult.get(i);
+						lstProductResult.set(i, lstProductResult.get(j));
+						lstProductResult.set(j,temp);
+					}
+				}	
+			}
+		}
+		if (by.equals("price-desc")) {
+			for (int i = 0; i < lstProductResult.size(); i++) {
+				for (int j = 0; j < lstProductResult.size(); j++) {
+					if (lstProductResult.get(i).getProductDetails().get(0).getCost() > lstProductResult.get(j)
+							.getProductDetails().get(0).getCost()) {
+						ProductResult temp = new ProductResult();
+						temp = lstProductResult.get(i);
+						lstProductResult.set(i, lstProductResult.get(j));
+						lstProductResult.set(j,temp);
+					}
+				}	
+			}
+		}
+		if (lstProductResult != null) {
+			return new ResponseEntity<>(lstProductResult, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(null, HttpStatus.OK);
+	}
 }

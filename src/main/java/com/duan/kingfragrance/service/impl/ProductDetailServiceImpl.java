@@ -87,7 +87,7 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 		if (lst.size()>0) {
 			for(int i = 0; i< lst.size(); i++) {
 				productDetailRepo.deleteById(lst.get(i).getId());
-				System.out.print(lst.get(i).getId());
+				
 			}
 			return true;
 		} else {

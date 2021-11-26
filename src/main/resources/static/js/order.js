@@ -101,13 +101,15 @@ async function getIdOrder() {
 	 })
 	} 
 	hideLazy()
-	setTimeout(() => {
-		localStorage.clear();
+	localStorage.clear();
+		var ItemProduct = document.querySelectorAll('.item-product');
+		for (var i = 0; i < ItemProduct.length; i++) {
+			ItemProduct[i].remove();
+		}
+		getAllProduct();
+	setTimeout(() => {	
 		 alert("Đặt hàng thành công!")
-		 
-}, 200);
-	
-
+}, 100);
 }
 
 
