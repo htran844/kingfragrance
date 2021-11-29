@@ -78,7 +78,6 @@ async function getListBrand() {
 //3
  function sortBy() {
  var sortBy = document.getElementById('sort').value;
-	
  getProducts_By(sortBy);
  }
  
@@ -151,6 +150,13 @@ renderListOfProducts(products);
 
 // runned
 getProducts()
+$(".checkbox-filter-sidebar").click(function (e) { 
+	if (this.checked) {
+		alert('ban da chon ' +e.innerHTML)
+	}
+  
+});
+
 
 
 

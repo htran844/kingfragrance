@@ -51,35 +51,7 @@
 
 
 												</div>
-												<script>
-													function myFunction() {
-														var input, filter, table, tr, td, i, txtValue;
-														input = document
-																.getElementById("myInput");
-														filter = input.value
-																.toUpperCase();
-														table = document
-																.getElementById("myTable");
-														tr = table
-																.getElementsByTagName("tr");
-														for (i = 0; i < tr.length; i++) {
-															td = tr[i]
-																	.getElementsByTagName("td")[0];
-															if (td) {
-																txtValue = td.textContent
-																		|| td.innerText;
-																if (txtValue
-																		.toUpperCase()
-																		.indexOf(
-																				filter) > -1) {
-																	tr[i].style.display = "";
-																} else {
-																	tr[i].style.display = "none";
-																}
-															}
-														}
-													}
-												</script>
+												
 
 											</div>
 
@@ -222,6 +194,7 @@
 				</div>
 			</div>
 		</div>
+		
 	</div>
 	</main>
 	<div th:insert="footer-page :: footer-page"></div>
@@ -231,7 +204,6 @@
 		<div class="lazy-text">Loading...</div>
 		<div class="line-loading"></div>
 	</div>
-
 	<script th:src="@{/js/tool.min.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
 	<script th:src="@{/js/base.js}"></script>

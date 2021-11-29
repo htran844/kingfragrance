@@ -150,7 +150,6 @@ public class ProductRestController {
 	public ResponseEntity<?> getAllProductResult_By(@PathVariable String by) {
 		List<Product> lstProduct = productService.getAllProduct();
 		List<ProductResult> lstProductResult = productService.getAllProductResult(lstProduct);
-		
 		if (by.equals("price")) {
 			for (int i = 0; i < lstProductResult.size(); i++) {
 				for (int j = 0; j < lstProductResult.size(); j++) {

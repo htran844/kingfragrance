@@ -6,6 +6,9 @@ thead {
 h4 {
   color: #4e55e1;
 }
+.more-product-item label{
+	    width: 100%;
+}
 input {
   outline: none;
   border: 1px solid transparent;
