@@ -22,7 +22,7 @@
 		<div class="module-brand-special">
 			<div class="bs-container">
 				<div class="module">
-					<h1 class="module-header text-center">Shop</h1>
+					<h1 class="module-header text-center" th:text="${titleBrand}"></h1>
 					<div class="module-content">
 						<div class="bs-row">
 							<div class="bs-col tn-30-15">
@@ -41,45 +41,21 @@
 														onkeyup="myFunction()" placeholder="Tìm kiếm nhanh"
 														title="Type in a name">
 													<div class="list-cat">
-														<table >
+														<table>
 															<tbody id="myTable">
-																 
-															
+																<tr th:each=" listBrand: ${listBrand}">
+																	<td><a
+																		th:href="'/product/thuonghieu/' + ${listBrand.name}"
+																		class="" th:text="${listBrand.name}"></a></td>
+																</tr>
+
 															</tbody>
 														</table>
 													</div>
 
 
 												</div>
-												<script>
-													function myFunction() {
-														var input, filter, table, tr, td, i, txtValue;
-														input = document
-																.getElementById("myInput");
-														filter = input.value
-																.toUpperCase();
-														table = document
-																.getElementById("myTable");
-														tr = table
-																.getElementsByTagName("tr");
-														for (i = 0; i < tr.length; i++) {
-															td = tr[i]
-																	.getElementsByTagName("td")[0];
-															if (td) {
-																txtValue = td.textContent
-																		|| td.innerText;
-																if (txtValue
-																		.toUpperCase()
-																		.indexOf(
-																				filter) > -1) {
-																	tr[i].style.display = "";
-																} else {
-																	tr[i].style.display = "none";
-																}
-															}
-														}
-													}
-												</script>
+
 
 											</div>
 
@@ -108,7 +84,7 @@
 																<p>
 																	<label> <input
 																		class="uk-checkbox checkbox-filter-sidebar gender-checkbox-filter"
-																		name="filter_gioi-tinh" type="checkbox" value="nu">Nữ
+																		name="filter_gioi-tinh" type="checkbox" value="nữ">Nữ
 																	</label>
 																</p>
 
@@ -123,40 +99,6 @@
 
 														</div>
 
-
-														<div class="filter-sidebar season-filter">
-															<h3>MÙA</h3>
-															<div class="item-child">
-																<p>
-																	<label> <input
-																		class="uk-checkbox checkbox-filter-sidebar season-checkbox-filter"
-																		name="filter_mua" type="checkbox" value="dong">Đông
-																	</label>
-																</p>
-
-																<p>
-																	<label> <input
-																		class="uk-checkbox checkbox-filter-sidebar season-checkbox-filter"
-																		name="filter_mua" type="checkbox" value="ha">Hạ
-																	</label>
-																</p>
-
-																<p>
-																	<label> <input
-																		class="uk-checkbox checkbox-filter-sidebar season-checkbox-filter"
-																		name="filter_mua" type="checkbox" value="thu">Thu
-																	</label>
-																</p>
-
-																<p>
-																	<label> <input
-																		class="uk-checkbox checkbox-filter-sidebar season-checkbox-filter"
-																		name="filter_mua" type="checkbox" value="xuan">Xuân
-																	</label>
-																</p>
-
-															</div>
-														</div>
 
 														<div class="filter-sidebar">
 															<h3>THEO GIÁ</h3>
@@ -188,7 +130,6 @@
 												</div>
 											</div>
 										</div>
-
 									</div>
 								</div>
 							</div>
@@ -209,10 +150,30 @@
 											</select> <input type="hidden" name="paged" value="1">
 										</form>
 										<ul class="products " id="productssss">
-
+											<div class="bs-row">
+												<div class="bs-col tn-25-10"
+													th:each="products : ${lstProductResult}">
+													<li class="woman-attr product type-product "><a
+														th:href="${'/product-detailts/' + products.product.slug}"
+														class="woocommerce-LoopProduct-link woocommerce-loop-product__link"><img
+															width="100%" th:src="${products.product.image}"
+															class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
+															alt="Armaf Club de Nuit Woman" loading="lazy"
+															sizes="(max-width: 300px) 100vw, 300px"> </a>
+														<div class="name-product">
+															<a href=""
+																class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
+																<span class="brand" th:text="${products.product.brand}"></span>
+															</a><a href=""
+																class="product-name woocommerce-loop-product__title"
+																th:text="${products.product.name}"></a>
+														</div> <span class="price"> <span class="cart-text1"
+															th:text="${products.productDetails[0].cost}"> </span>
+													</span></li>
+												</div>
+											</div>
 										</ul>
-										<nav class="woocommerce-pagination">
-											</ul>
+
 									</div>
 
 								</div>
@@ -222,6 +183,7 @@
 				</div>
 			</div>
 		</div>
+
 	</div>
 	</main>
 	<div th:insert="footer-page :: footer-page"></div>
@@ -231,15 +193,36 @@
 		<div class="lazy-text">Loading...</div>
 		<div class="line-loading"></div>
 	</div>
-
 	<script th:src="@{/js/tool.min.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
 	<script th:src="@{/js/base.js}"></script>
 	<script th:src="@{/js/product.js}"></script>
+	<script type="text/javascript">
+		var card_text1 = document.querySelectorAll('.cart-text1');
 
-
-
-
+		for (var i = 0; i < card_text1.length; i++) {
+			card_text1[i].innerHTML = parseFloat(card_text1[i].innerHTML)
+					.toLocaleString("en").replace(/,/g, ".")
+					+ ' đ';
+		}
+		function myFunction() {
+			var input, filter, table, tr, td, i, txtValue;
+			input = document.getElementById("myInput");
+			filter = input.value.toUpperCase();
+			table = document.getElementById("myTable");
+			tr = table.getElementsByTagName("tr");
+			for (i = 0; i < tr.length; i++) {
+				td = tr[i].getElementsByTagName("td")[0];
+				if (td) {
+					txtValue = td.textContent || td.innerText;
+					if (txtValue.toUpperCase().indexOf(filter) > -1) {
+						tr[i].style.display = "";
+					} else {
+						tr[i].style.display = "none";
+					}
+				}
+			}
+		}
+	</script>
 </body>
-
 </html>

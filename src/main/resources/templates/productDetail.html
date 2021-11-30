@@ -100,35 +100,35 @@
 							</ul>
 
 							<!-- Tab panes -->
-							<div class="tab-content">
-								<div id="huong1" class="container tab-pane active" style="    border: 1px solid #e7e7e7;">
-									<ul class="mt-3">
-										<li><i class="fas fa-angle-right"></i>Tone hương 
-											<span class="" th:text="${'- ' + ProductFragrance.tone}"></span></li>
-										<li><i class="fas fa-angle-right"></i>Hương đầu  <span
-											class="" th:text="${'- ' +ProductFragrance.first}"></span></li>
-										<li><i class="fas fa-angle-right"></i>Hương giữa 
-											<span class="" th:text="${'- ' +ProductFragrance.midle}"></span></li>
-										<li><i class="fas fa-angle-right"></i>Hương cuối 
-											<span class="" th:text="${'- ' +ProductFragrance.last}"></span></li>
-									</ul>
-								</div>
-								<div id="mua1" class="container tab-pane fade " style="    border: 1px solid #e7e7e7;">
-									<ul class="mt-3">
-										<li><i class="fas fa-angle-right "></i>Mùa</li>
-										<li class="ml-3"><span class="ml-5"
-											th:text="${'- ' +productRecommended.season}"></span></li>
+						<div class="tab-content">
+<div id="huong1" class="container tab-pane active" style="    border: 1px solid #e7e7e7;">
+    <ul class="mt-3">
+        <li><i class="fas fa-bullseye"></i>Tone hương 
+            <span class="" th:text="${'- ' + ProductFragrance.tone}"></span></li>
+        <li><i class="fas fa-bullseye"></i>Hương đầu  <span
+            class="" th:text="${'- ' +ProductFragrance.first}"></span></li>
+        <li><i class="fas fa-bullseye"></i>Hương giữa 
+            <span class="" th:text="${'- ' +ProductFragrance.midle}"></span></li>
+        <li><i class="fas fa-bullseye"></i>Hương cuối 
+            <span class="" th:text="${'- ' +ProductFragrance.last}"></span></li>
+    </ul>
+</div>
+<div id="mua1" class="container tab-pane fade " style="    border: 1px solid #e7e7e7;">
+    <ul class="mt-3">
+        <li><i class="fas fa-bullseye"></i>Mùa</li>
+        <li class="ml-3"><span class="ml-5"
+            th:text="${'- ' +productRecommended.season}"></span></li>
 
-									</ul>
-								</div>
-								<div id="thoigian1" class="container tab-pane fade" style="    border: 1px solid #e7e7e7;">
-									<ul class="mt-3">
-										<li><i class="fas fa-angle-right"></i>Thời gian</li>
-										<li class="ml-3"><span class="ml-5"
-											th:text="${'- ' +productRecommended.time}">%</span></li>
-									</ul>
-								</div>
-							</div>
+    </ul>
+</div>
+<div id="thoigian1" class="container tab-pane fade" style="    border: 1px solid #e7e7e7;">
+    <ul class="mt-3">
+        <li><i class="fas fa-bullseye"></i>Thời gian</li>
+        <li class="ml-3"><span class="ml-5"
+            th:text="${'- ' +productRecommended.time}">%</span></li>
+    </ul>
+</div>
+</div>
 						
 
 
@@ -143,11 +143,9 @@
 	</div>
 	</main>
 	<div th:insert="footer-page :: footer-page"></div>
-
 	<script th:src="@{/js/tool.min.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
 	<script th:src="@{/js/productDetail.js}"></script>
-
 	<script>
 		$('.product-new-class').slick({
 			slidesToShow : 5,

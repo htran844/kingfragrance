@@ -35,4 +35,5 @@ public class AdminViewController {
 	public String getAdminOrderDetail(Model model) {
 		return "admin-order-detail"; 
 	}
+	
 }
