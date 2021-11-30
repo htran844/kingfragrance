@@ -31,11 +31,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.duan.kingfragrance.model.Brand;
 import com.duan.kingfragrance.model.Product;
 import com.duan.kingfragrance.model.ProductDetail;
 import com.duan.kingfragrance.model.ProductResult;
 import com.duan.kingfragrance.repository.ProductDetailRepository;
 import com.duan.kingfragrance.repository.ProductRepository;
+import com.duan.kingfragrance.service.BrandService;
 import com.duan.kingfragrance.service.ProductService;
 
 @RestController
@@ -45,7 +47,10 @@ public class ProductRestController {
 	private ProductService productService;
 	@Autowired
 	private ProductRepository productRepo;
-
+	@Autowired
+private ProductService ProductService;
+	@Autowired 
+	private BrandService brandService;
 	@PostMapping("admin/product-up")
 	public ResponseEntity<?> upload(@RequestParam("file") MultipartFile file, @RequestParam("slug") String slug) {
 		Optional<Product> optional = productRepo.findBySlug(slug);
@@ -181,4 +186,56 @@ public class ProductRestController {
 		}
 		return new ResponseEntity<>(null, HttpStatus.OK);
 	}
+	
+	@GetMapping("/fillterProductBy")
+	public ResponseEntity<?> getProduct(@RequestParam(value="fillter_gender" , required=false) String Ftgender
+			,@RequestParam(value="fillter_season" , required=false) String Ftseason,
+			@RequestParam(value="fillter_money" , required=false) String Ftmoney) {
+		List<Product> lstProduct = ProductService.getAllProduct();
+		List<ProductResult> lstProductResult = ProductService.getAllProductResult(lstProduct);
+		List<Brand> brands = brandService.getAllBrand();
+		List<ProductResult> lstProductResultUpdate ;
+		if (Ftgender!=null) {
+			lstProductResultUpdate = new ArrayList<>();
+			for (ProductResult x : lstProductResult) {
+				if (x.getProduct().getGender().equals(Ftgender)) {
+					lstProductResultUpdate.add(x);
+				}
+			}
+			lstProductResult=lstProductResultUpdate;
+		}
+		if (Ftmoney!=null&&Ftmoney.equals("1500000-3000000")) {
+			lstProductResultUpdate = new ArrayList<>();
+			for (ProductResult x : lstProductResult) {
+				if (x.getProductDetails().get(0).getCost()>=1500000&&
+						x.getProductDetails().get(0).getCost()<=3000000) {
+					lstProductResultUpdate.add(x);
+				}
+			}
+			lstProductResult=lstProductResultUpdate;
+		}
+		else if (Ftmoney!=null&&Ftmoney.equals("3000000-5000000")) {
+			lstProductResultUpdate = new ArrayList<>();
+			for (ProductResult x : lstProductResult) {
+				if (x.getProductDetails().get(0).getCost()>=3000000&&
+						x.getProductDetails().get(0).getCost()<=5000000) {
+					lstProductResultUpdate.add(x);
+				}
+			}
+			lstProductResult=lstProductResultUpdate;
+		}
+		else if (Ftmoney!=null&&Ftmoney.equals("5000000-100000000")) {
+			lstProductResultUpdate = new ArrayList<>();
+			for (ProductResult x : lstProductResult) {
+				if (x.getProductDetails().get(0).getCost()>=5000000&&
+						x.getProductDetails().get(0).getCost()<=100000000) {
+					lstProductResultUpdate.add(x);
+				}
+			}
+			lstProductResult=lstProductResultUpdate;
+		}
+		return new ResponseEntity<List<ProductResult>>(lstProductResult, HttpStatus.OK);
+	}
+
+
 }

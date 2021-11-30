@@ -52,7 +52,7 @@ public class ViewController {
 		List<Brand> brands = brandService.getAllBrand();
 		model.addAttribute("listBrand", brands);
 		return "brand";
-		
+
 	}
 
 	@GetMapping("/")
@@ -72,39 +72,46 @@ public class ViewController {
 	public String getBlog() {
 		return "blog";
 	}
-	
+
 	@GetMapping("/gio-hang")
 	public String getGioHang() {
-		
 		return "cart";
 	}
 
+
 	@GetMapping("/product")
-	public String getProduct() {
+	public String getProduct(Model model) {
+		List<Product> lstProduct = ProductService.getAllProduct();
+		List<ProductResult> lstProductResult = ProductService.getAllProductResult(lstProduct);
+		List<Brand> brands = brandService.getAllBrand();
+		model.addAttribute("listBrand", brands);
+		model.addAttribute("lstProductResult", lstProductResult);
+		model.addAttribute("titleBrand", "SHOP");
 		return "product";
 	}
-//	@GetMapping("/product{filterBy}")
-//	public String getProduct_Sort(Model model,@PathVariable String filterBy) {
-//		System.out.println("oke roi day    "+filterBy);
-//		return fintPaginated(1, model);
-//	}
-//	@GetMapping("/product/page/{pageNo}")
-//	public String fintPaginated(@PathVariable(value = "pageNo") int pageNo, Model model) {
-//		int pageSize = 16;
-//		Page<Product> page = ProductService.findPaginated(pageNo, pageSize);
-//		List<Product> lstproducts = page.getContent();
-//		List<ProductResult> listProductResult = new ArrayList<ProductResult>();
-//		List<ProductDetail> listProductDetail; 
-//		for (Product x : lstproducts) {
-//			listProductDetail= ProductDetailService.getAllProductDetailById(x.getId());
-//			listProductResult.add(new ProductResult(x, listProductDetail));
-//		}
-//		model.addAttribute("currentPage", pageNo);
-//		model.addAttribute("totalPages", page.getTotalPages());
-//		model.addAttribute("totalItems", page.getTotalElements());
-//		model.addAttribute("listProductResult", listProductResult);
-//		return "product";
-//	}
+
+	
+	
+	
+	
+	@GetMapping("/product/thuonghieu/{brandName}")
+	public String getProductByBrand(@PathVariable(value = "brandName") String brandName, Model model) {
+		List<Product> lstProduct = ProductService.getAllProduct();
+		List<ProductResult> lstProductResult = ProductService.getAllProductResult(lstProduct);
+		List<ProductResult> lstProductResultByBrandName = new ArrayList<>();
+		for (ProductResult x : lstProductResult) {
+			if (x.getProduct().getBrand().equals(brandName)) {
+				lstProductResultByBrandName.add(x);
+			}
+		}
+		
+		model.addAttribute("titleBrand", brandName);
+
+		List<Brand> brands = brandService.getAllBrand();
+		model.addAttribute("listBrand", brands);
+		model.addAttribute("lstProductResult", lstProductResultByBrandName);
+		return "product";
+	}
 
 	@GetMapping("/product-detailts/{slug}")
 	public String getProductDetail(@PathVariable(value = "slug") String slug, Model model) {
@@ -116,6 +123,28 @@ public class ViewController {
 		model.addAttribute("productRecommended", productRecommended);
 		return "productDetail";
 	}
+	
+	
+	
+//	@GetMapping("/product/page/{pageNo}")
+//	public String fintPaginated(@PathVariable(value = "pageNo") int pageNo, Model model) {
+//		int pageSize = 16;
+//		Page<Product> page = ProductService.findPaginated(pageNo, pageSize);
+//		List<Product> lstproducts = page.getContent();
+////		List<ProductResult> listProductResult = new ArrayList<ProductResult>();
+////		List<ProductDetail> listProductDetail; 
+////		for (Product x : lstproducts) {
+////			listProductDetail= ProductDetailService.getAllProductDetailById(x.getId());
+////			listProductResult.add(new ProductResult(x, listProductDetail));
+////		}
+//		for (Product x : lstproducts) {
+//			System.out.println(x);
+//		}
+//		model.addAttribute("currentPage", pageNo);
+//		model.addAttribute("totalPages", page.getTotalPages());
+//		model.addAttribute("totalItems", page.getTotalElements());
+////		model.addAttribute("listProductResult", listProductResult);
+//		return "product";
+//	}
 
 }
-

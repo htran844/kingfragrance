@@ -49,6 +49,15 @@
 	color: #000
 }
 
+
+.section-product-detailt i {
+    color: #e7ae87;
+    margin: 7px 7px 7px 0px;
+}
+.section-product-detailt li {
+       margin: 7px 0px;
+}
+
 #main .section-brand-special .type-product .brand {
 	display: block;
 	color: #d1bf7f;
