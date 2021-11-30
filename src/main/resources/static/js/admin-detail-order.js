@@ -60,7 +60,7 @@ function addProductDetail(idDetail = '', id = '', name = '', capacity = '', quan
 		                        <input type="number" name="cost" class="product-cost" min="0"  placeholder="Giá" value="${cost}" required />
 	                        </div>
 	                        
-	                        <div class=" more-product-delete-btn mb-2 ml-2 px-2">
+	                        <div class=" more-product-delete-btn mb-2 ml-2 px-2" onclick="tinhtien()">
 								<button type="button" id="bt" onclick="$(this).parent().parent().remove()">
 									Xóa
 								</button>                       
@@ -73,10 +73,11 @@ function addProductDetail(idDetail = '', id = '', name = '', capacity = '', quan
 	return moreE
 }
 // tinh tong tien
+let tong = 0;
 function tinhtien(){
 	let quantitys = document.getElementsByName('quantity');
 	let costs = document.getElementsByName('cost');
-	let tong = 0;
+	tong = 0;
 	for(let i = 0; i< quantitys.length; i++){
 		
 		tong += Number(quantitys[i].value) * Number(costs[i].value)
@@ -129,6 +130,7 @@ $('.action-search input').on('keyup', processChange)
 
 // update
 async function updateOrder(){
+	// cap nhat bang order
 	let name = document.querySelector('#name-nn').value 
 	let phone = document.querySelector('#phone-nn').value 
 	let address = document.querySelector('#address-nn').value 
@@ -138,7 +140,8 @@ async function updateOrder(){
 		name: name,
 		phone: phone,
 		address: address,
-		note: note
+		note: note,
+		totalCost: tong
 	}
 	const updateOd = await $.ajax({
 		url: '/admin/order/update',
@@ -151,10 +154,16 @@ async function updateOrder(){
 	const orderDetails = document.querySelectorAll(
     ".more-product-wrap .more-product-item"
   );
+	// delete all orderdetail
+	const deleteAll = await $.ajax({
+		url: `/admin/order-detail/update/${orderId}`,
+		type: "DELETE",
+	})
+	console.log(deleteAll)
+// cap nhat order detail
 	for (let item of orderDetails) {
 		let capacity = item.querySelector(".product-capacity").value;
 		let orderDetailId = item.querySelector(".order-detail-id").value;
-console.log(orderDetailId)
 		let cost = item.querySelector(".product-cost").value;
         let quantity = item.querySelector(".product-quantity").value;
         let name = item.querySelector(".product-name").value;
@@ -169,7 +178,7 @@ console.log(orderDetailId)
 			quantity: quantity,
 			total: total,
 		}
-		console.log(orderDt)
+		
 		const updateDetail = await $.ajax({
 		url: '/admin/order-detail/update',
 		headers: {
@@ -178,7 +187,7 @@ console.log(orderDetailId)
 		type: "PUT",
 		data: JSON.stringify(orderDt),
 	})
-	console.log(updateDetail)
+	
 	}
 	alert(updateOd)
 }

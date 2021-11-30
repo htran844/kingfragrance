@@ -61,6 +61,7 @@ public class OrderServiceImpl implements OrderService {
 			od.setPhone(order.getPhone());
 			od.setAddress(order.getAddress());
 			od.setNote(order.getNote());
+			od.setTotalCost(order.getTotalCost());
 			orderRepo.save(od);
 			return true;
 		} else {

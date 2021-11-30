@@ -11,4 +11,6 @@ public interface OrderDetailService {
 	Boolean updateOrderDetail(OrderDetail orderDetail);
 	
 	List<OrderDetail> getListOdDetails(String orderId);
+	
+	Boolean deleteAllDetail(String orderId);
 }

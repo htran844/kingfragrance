@@ -31,21 +31,30 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 	}
 	@Override
 	public Boolean updateOrderDetail(OrderDetail orderDetail) {
-		Optional<OrderDetail> op = orderDetailRepo.findById(orderDetail.getId());
-		if (op.isPresent()) {
-			OrderDetail od = op.get();
-			od.setCapacity(orderDetail.getCapacity());
-			od.setCost(orderDetail.getCost());
-			od.setOrderId(orderDetail.getOrderId());
-			od.setProductId(orderDetail.getProductId());
-			od.setQuantity(orderDetail.getQuantity());
-			od.setTotal(orderDetail.getTotal());
-			orderDetailRepo.save(od);
-			return true;
-		} else {
-			return false;
-		}
-		
+//		Optional<OrderDetail> op = orderDetailRepo.findById(orderDetail.getId());
+//		if (op.isPresent()) {
+//			OrderDetail od = op.get();
+//			od.setCapacity(orderDetail.getCapacity());
+//			od.setCost(orderDetail.getCost());
+//			od.setOrderId(orderDetail.getOrderId());
+//			od.setProductId(orderDetail.getProductId());
+//			od.setQuantity(orderDetail.getQuantity());
+//			od.setTotal(orderDetail.getTotal());
+//			orderDetailRepo.save(od);
+//			return true;
+//		} else {
+//			return false;
+//		}
+		orderDetailRepo.save(orderDetail);
+		return true;
+	}
+	@Override
+	public Boolean deleteAllDetail(String orderId) {
+	List<OrderDetail> lst =	orderDetailRepo.getlstOdDetails(orderId);
+	for (OrderDetail orderDetail : lst) {
+		orderDetailRepo.deleteById(orderDetail.getId());
+	}
+		return true;
 	}
 
 }
