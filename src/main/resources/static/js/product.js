@@ -1,4 +1,29 @@
 //1
+
+function init() {
+	var _url = location.href
+	var gender = document.getElementsByClassName('gender-checkbox-filter');
+	var price = document.getElementsByClassName('price-checkbox-filter');
+	if (_url.match('fillter_gender=nam')) {
+		gender[0].checked = true;
+	}
+	else if (_url.match("fillter_gender=nu")) {
+		gender[1].checked = true;
+	}
+	else if (_url.match("fillter_gender=unisex")) {
+		gender[2].checked = true;
+	}
+	if (_url.match('fillter_money=1500000-3000000')) {
+		price[0].checked = true;
+	}
+	else if (_url.match('fillter_money=3000000-5000000')) {
+		price[1].checked = true;
+	}
+	else if (_url.match('fillter_money=5000000-100000000')) {
+		price[2].checked = true;
+	}
+}
+init();
 function renderListOfProducts(products) {
 	var productHTML = "";
 	var cols = "";
@@ -151,53 +176,73 @@ async function getProducts_By(sortBy) {
 // 
 // 
 // 
-// // function init() {
-// //
-// // var url = location.href
-// // if (url.match("fillter_gender=nam")) {
-// //
-// // }
-// //}
-// // init()
 
 
 
 var urlParams = new Array();
 $('.checkbox-filter-sidebar').click(function (e) {
+
+	var gender = document.getElementsByClassName('gender-checkbox-filter');
+	var price = document.getElementsByClassName('price-checkbox-filter');
+
+	var hrefLocation = location.href;
+	if (!hrefLocation.match("fillter_gender") && !hrefLocation.match("fillter_money")) {
+		document.cookie = "/product?fillter_money" + '=; expires=Thu, 01 Dec 2021 00:00:00 GMT;path=/;'
+		document.cookie = "/product?fillter_gender" + '=; expires=Thu, 01 Dec 2021 00:00:00 GMT;path=/;'
+	}
+	
 	if (this.className.match('gender-checkbox-filter')) {
-
 		if (this.checked) {
+			for (let index = 0; index < gender.length; index++) {
+				gender[index].checked = false;
+				this.checked = true;
+			}
 			urlParams.push('fillter_gender=' + this.value);
+			var urlPr = urlParams.toString().replace(/,/g, "&&");
+			url = `/product?${urlPr}`;
+			document.cookie = url;
+			window.location.assign(url)
 		}
-		// else{
-		// 	urlParams.splice()
-		// }
 	}
-
 	if (this.className.match('price-checkbox-filter')) {
-		
 		if (this.checked) {
+			for (let index = 0; index < price.length; index++) {
+				price[index].checked = false;
+				this.checked = true;
+			}
 			urlParams.push('fillter_money=' + this.value);
+			var url;
+			var urlPr = urlParams.toString().replace(/,/g, "&&");
+			url = `/product?${urlPr}`;
+			document.cookie = url;
+			window.location.assign(url)
 		}
 	}
-		var urlPr = urlParams.toString().replace(/,/g, "&&");
-		history.pushState({}, "", `/product?${urlPr}`);
-		filterProduct(urlPr)
-});
-async function filterProduct(urlPr){
-	showLazy()
-	const filterProduct = await $.ajax({
-		url: `/fillterProductBy?${urlPr}`,
-		type: 'GET',
-		
-	})		
-	renderListOfProducts(filterProduct);
-	var card_text1 = document.querySelectorAll('.cart-text1');
 
-	for (var i = 0; i < card_text1.length; i++) {
-		card_text1[i].innerHTML = parseFloat(card_text1[i].innerHTML)
-				.toLocaleString("en").replace(/,/g, ".")
-				+ ' đ';
+	if (getCookie("/product?fillter_gender") && getCookie("/product?fillter_money")) {
+		urlParams.splice(0, 1);
+		urlParams.push('fillter_gender=' + getCookie("/product?fillter_gender"));
+		urlParams.push('fillter_money=' + getCookie("/product?fillter_money"));
+		var url;
+		var urlPr = urlParams.toString().replace(/,/g, "&&");
+		url = `/product?${urlPr}`;
+		window.location.assign(url)
 	}
-	hideLazy()
+});
+
+function getCookie(cname) {
+	let name = cname + "=";
+	let decodedCookie = decodeURIComponent(document.cookie);
+	let ca = decodedCookie.split(';');
+	for (let i = 0; i < ca.length; i++) {
+		let c = ca[i];
+		while (c.charAt(0) == ' ') {
+			c = c.substring(1);
+		}
+		if (c.indexOf(name) == 0) {
+			return c.substring(name.length, c.length);
+		}
+	}
+	return "";
+
 }

@@ -101,16 +101,55 @@ async function getIdOrder() {
 	 })
 	} 
 	hideLazy()
-	localStorage.clear();
+		localStorage.removeItem("ListProduct");
 		var ItemProduct = document.querySelectorAll('.item-product');
 		for (var i = 0; i < ItemProduct.length; i++) {
 			ItemProduct[i].remove();
 		}
 		getAllProduct();
+		renderDatHangThanhCong();
 	setTimeout(() => {	
 		 alert("Đặt hàng thành công!")
 }, 100);
 }
 
+function renderDatHangThanhCong() {
+	
+		document.getElementById('tm-main').innerHTML=
+			`
+			
+
+			<div class="uk-container">
+				<article id="post-23" class=" hentry" typeof="Article">
+
+					<meta property="name" content="Sản phẩm đã chọn">
+					<meta property="author" typeof="Person" content="admin">
+					<meta property="dateModified" content="2021-02-22T12:42:40+07:00">
+					<meta class="" property="datePublished" content="2020-04-16T12:03:30+07:00">
+
+
+					<h1 class="">Đặt hàng thành công!</h1>
+					<div class="" property="text">
+
+
+						<div class="">
+							<div class=""></div>
+							<p class="empty-cart">Cảm ơn quý khách đã ghé thăm</p>
+							<p class="return-to-shop">
+								<a href="/" class="button wc-backward"> Quay trở lại cửa hàng </a>
+							</p>
+						</div>
+
+
+					</div>
+
+
+				</article>
+
+
+			</div>
+		`
+
+}
 
 

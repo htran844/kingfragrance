@@ -11,6 +11,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.mongodb.core.FindPublisherPreparer;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -80,10 +82,58 @@ public class ViewController {
 
 
 	@GetMapping("/product")
-	public String getProduct(Model model) {
+	public String getProduct(Model model,@RequestParam(value="fillter_gender" , required=false) String Ftgender
+			,@RequestParam(value="fillter_season" , required=false) String Ftseason,
+			@RequestParam(value="fillter_money" , required=false) String Ftmoney) {
 		List<Product> lstProduct = ProductService.getAllProduct();
 		List<ProductResult> lstProductResult = ProductService.getAllProductResult(lstProduct);
 		List<Brand> brands = brandService.getAllBrand();
+		List<ProductResult> lstProductResultUpdate ;
+		if (Ftgender!=null) {
+			lstProductResultUpdate = new ArrayList<>();
+			for (ProductResult x : lstProductResult) {
+				if (Ftgender.equals("nu")) {
+					Ftgender="nữ";
+				}
+				if (x.getProduct().getGender().equalsIgnoreCase(Ftgender)) {
+					lstProductResultUpdate.add(x);
+				}
+			}
+			lstProductResult=lstProductResultUpdate;
+		}
+		if (Ftmoney!=null&&Ftmoney.equals("1500000-3000000")) {
+			lstProductResultUpdate = new ArrayList<>();
+			for (ProductResult x : lstProductResult) {
+				if (x.getProductDetails().get(0).getCost()>=1500000&&
+						x.getProductDetails().get(0).getCost()<=3000000) {
+					lstProductResultUpdate.add(x);
+				}
+			}
+			lstProductResult=lstProductResultUpdate;
+		}
+		else if (Ftmoney!=null&&Ftmoney.equals("3000000-5000000")) {
+			lstProductResultUpdate = new ArrayList<>();
+			for (ProductResult x : lstProductResult) {
+				if (x.getProductDetails().get(0).getCost()>=3000000&&
+						x.getProductDetails().get(0).getCost()<=5000000) {
+					lstProductResultUpdate.add(x);
+				}
+			}
+			lstProductResult=lstProductResultUpdate;
+		}
+		else if (Ftmoney!=null&&Ftmoney.equals("5000000-100000000")) {
+			lstProductResultUpdate = new ArrayList<>();
+			for (ProductResult x : lstProductResult) {
+				if (x.getProductDetails().get(0).getCost()>=5000000&&
+						x.getProductDetails().get(0).getCost()<=100000000) {
+					lstProductResultUpdate.add(x);
+				}
+			}
+			lstProductResult=lstProductResultUpdate;
+		}
+		if (lstProductResult.size()==0) {
+			model.addAttribute("notFind", "Không tìm thấy sản phẩm nào!");
+		}
 		model.addAttribute("listBrand", brands);
 		model.addAttribute("lstProductResult", lstProductResult);
 		model.addAttribute("titleBrand", "SHOP");
@@ -95,7 +145,9 @@ public class ViewController {
 	
 	
 	@GetMapping("/product/thuonghieu/{brandName}")
-	public String getProductByBrand(@PathVariable(value = "brandName") String brandName, Model model) {
+	public String getProductByBrand(@PathVariable(value = "brandName") String brandName, Model model,@RequestParam(value="fillter_gender" , required=false) String Ftgender
+			,@RequestParam(value="fillter_season" , required=false) String Ftseason,
+			@RequestParam(value="fillter_money" , required=false) String Ftmoney) {
 		List<Product> lstProduct = ProductService.getAllProduct();
 		List<ProductResult> lstProductResult = ProductService.getAllProductResult(lstProduct);
 		List<ProductResult> lstProductResultByBrandName = new ArrayList<>();
@@ -104,9 +156,54 @@ public class ViewController {
 				lstProductResultByBrandName.add(x);
 			}
 		}
+		List<ProductResult> lstProductResultUpdate ;
+		if (Ftgender!=null) {
+			lstProductResultUpdate = new ArrayList<>();
+			for (ProductResult x : lstProductResultByBrandName) {
+				if (Ftgender.equals("nu")) {
+					Ftgender="nữ";
+				}
+				if (x.getProduct().getGender().equalsIgnoreCase(Ftgender)) {
+					lstProductResultUpdate.add(x);
+				}
+			}
+			lstProductResultByBrandName=lstProductResultUpdate;
+		}
+		if (Ftmoney!=null&&Ftmoney.equals("1500000-3000000")) {
+			lstProductResultUpdate = new ArrayList<>();
+			for (ProductResult x : lstProductResultByBrandName) {
+				if (x.getProductDetails().get(0).getCost()>=1500000&&
+						x.getProductDetails().get(0).getCost()<=3000000) {
+					lstProductResultUpdate.add(x);
+				}
+			}
+			lstProductResultByBrandName=lstProductResultUpdate;
+		}
+		else if (Ftmoney!=null&&Ftmoney.equals("3000000-5000000")) {
+			lstProductResultUpdate = new ArrayList<>();
+			for (ProductResult x : lstProductResultByBrandName) {
+				if (x.getProductDetails().get(0).getCost()>=3000000&&
+						x.getProductDetails().get(0).getCost()<=5000000) {
+					lstProductResultUpdate.add(x);
+				}
+			}
+			lstProductResultByBrandName=lstProductResultUpdate;
+		}
+		else if (Ftmoney!=null&&Ftmoney.equals("5000000-100000000")) {
+			lstProductResultUpdate = new ArrayList<>();
+			for (ProductResult x : lstProductResultByBrandName) {
+				if (x.getProductDetails().get(0).getCost()>=5000000&&
+						x.getProductDetails().get(0).getCost()<=100000000) {
+					lstProductResultUpdate.add(x);
+				}
+			}
+			lstProductResultByBrandName=lstProductResultUpdate;
+		}
+		if (lstProductResult.size()==0) {
+			model.addAttribute("notFind", "Không tìm thấy sản phẩm nào!");
+		}
 		
 		model.addAttribute("titleBrand", brandName);
-
 		List<Brand> brands = brandService.getAllBrand();
 		model.addAttribute("listBrand", brands);
 		model.addAttribute("lstProductResult", lstProductResultByBrandName);
@@ -148,3 +245,6 @@ public class ViewController {
 //	}
 
 }
+
+
+
