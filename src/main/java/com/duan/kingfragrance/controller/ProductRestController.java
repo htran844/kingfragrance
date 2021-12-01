@@ -151,42 +151,5 @@ private ProductService ProductService;
 		}
 	}
 
-	@GetMapping("/getAllProductResult/{by}")
-	public ResponseEntity<?> getAllProductResult_By(@PathVariable String by) {
-		List<Product> lstProduct = productService.getAllProduct();
-		List<ProductResult> lstProductResult = productService.getAllProductResult(lstProduct);
-		if (by.equals("price")) {
-			for (int i = 0; i < lstProductResult.size(); i++) {
-				for (int j = 0; j < lstProductResult.size(); j++) {
-					if (lstProductResult.get(i).getProductDetails().get(0).getCost() < lstProductResult.get(j)
-							.getProductDetails().get(0).getCost()) {
-						ProductResult temp = new ProductResult();
-						temp = lstProductResult.get(i);
-						lstProductResult.set(i, lstProductResult.get(j));
-						lstProductResult.set(j,temp);
-					}
-				}	
-			}
-		}
-		if (by.equals("price-desc")) {
-			for (int i = 0; i < lstProductResult.size(); i++) {
-				for (int j = 0; j < lstProductResult.size(); j++) {
-					if (lstProductResult.get(i).getProductDetails().get(0).getCost() > lstProductResult.get(j)
-							.getProductDetails().get(0).getCost()) {
-						ProductResult temp = new ProductResult();
-						temp = lstProductResult.get(i);
-						lstProductResult.set(i, lstProductResult.get(j));
-						lstProductResult.set(j,temp);
-					}
-				}	
-			}
-		}
-		if (lstProductResult != null) {
-			return new ResponseEntity<>(lstProductResult, HttpStatus.OK);
-		}
-		return new ResponseEntity<>(null, HttpStatus.OK);
-	}
 	
-	
-
 }

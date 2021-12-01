@@ -46,7 +46,7 @@
 																<tr th:each=" listBrand: ${listBrand}">
 																	<td><a
 																		th:href="'/product/thuonghieu/' + ${listBrand.name}"
-																		class="" th:text="${listBrand.name}"></a></td>
+																		class="brandName" th:text="${listBrand.name}"></a></td>
 																</tr>
 
 															</tbody>
@@ -149,7 +149,11 @@
 													xuống thấp</option>
 											</select> <input type="hidden" name="paged" value="1">
 										</form>
-										<h1 th:text="${notFind}"></h1>
+										<h1 th:text="${notFind}" style="
+    color: #736a6a;
+    font-size: 22px;
+    padding-top: 127px;
+"></h1>
 										<ul class="products " id="productssss">
 											<div class="bs-row">
 												<div class="bs-col tn-25-10"
@@ -224,6 +228,12 @@
 				}
 			}
 		}
+		var brandName = document.querySelectorAll('.brandName');
+		for (i = 0; i < brandName.length; i++) {
+			brandName[i].href=brandName[i].href.replace(/%20/g,"-");
+		
+		}
+		
 	</script>
 </body>
 </html>
