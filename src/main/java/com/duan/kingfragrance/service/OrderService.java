@@ -19,4 +19,6 @@ public interface OrderService {
 	public Boolean changeStatusCancel(String orderId);
 	
 	public Boolean changeStatusRefund(String orderId);
+	
+	public Boolean changeStatusSuccess(String orderId);
 }

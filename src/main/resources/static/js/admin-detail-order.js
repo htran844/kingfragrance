@@ -1,16 +1,114 @@
 let search = "null";
 const url = window.location.href.split('/')
 let orderId = url[url.length - 1]
+let statusNow = '';
+// thay đổi trạng thái đơn hàng
+async function changeStatus(event){
+	event.preventDefault();
+	let status = event.target.value
+	const conf = confirm('Xác nhận chuyển trạng thái?')
+	if (!conf){
+		event.target.value =statusNow
+		return
+	} 
+	switch (status) {
+	  case "delivery":
+		if(statusNow != "waiting"){
+			alert("Chỉ đơn hàng đang chờ mới có thể chuyển qua trạng thái giao hàng")
+			event.target.value =statusNow
+			return
+			}
+		// call api chuyển sang giao hàng
+		showLazy()
+		let resultDe = await $.ajax({
+			url: `/admin/delivery/${orderId}`,
+			type: 'put',
+		})
+		hideLazy()
+		if (resultDe.length>0) {
+			alert('chuyển trạng thái Giao hàng thành công')
+			statusNow = 'delivery';
+		} else {
+			alert('Chuyển sang giao hàng thất bại')
+		}
+	    break;
+	  case "cancelled":
+		if(statusNow != "waiting"){
+			alert("Chỉ đơn hàng đang chờ mới có thể chuyển qua trạng thái hủy")
+			event.target.value =statusNow
+			return
+			}
+			// call api sang hủy
+			showLazy()
+			let resultCa = await $.ajax({
+				url: `/admin/cancel/${orderId}`,
+				type: 'put',
+			})
+			hideLazy()
+			if (resultCa.length>0) {
+				alert('Huỷ đơn hàng thành công')
+				statusNow = 'cancelled';
+			} else {
+				alert('Hủy đơn hàng thất bại')
+			}
+	    break;
+	  case "refund":
+	    if(statusNow != "delivery"){
+			alert("Chỉ đơn hàng đang giao mới có thể chuyển qua trạng thái hoàn")
+			event.target.value =statusNow
+			return
+			}
+			// call api sang hoàn
+			showLazy()
+			const resultRe = await $.ajax({
+				url: `/admin/refund/${orderId}`,
+				type: 'put',
+			})
+			hideLazy()
+			if (resultRe.length>0) {
+				alert('Hoàn đơn hàng thành công')
+				statusNow = 'refund';
+			} else {
+				alert('Hoàn đơn hàng thất bại')
+			}
+	    break;
+	  case "success":
+		if(statusNow != "delivery"){
+			alert("Chỉ đơn hàng đang giao mới có thể chuyển qua trạng thái thành công")
+			event.target.value =statusNow
+			return
+			}
+		// call api sang thành công
+			showLazy()
+			const resultSu = await $.ajax({
+				url: `/admin/success/${orderId}`,
+				type: 'put',
+			})
+			hideLazy()
+			if (resultSu.length>0) {
+				alert('Đơn hàng giao thành công')
+				statusNow = 'success';
+			} else {
+				alert('đơn hàng giao thất bại')
+			}
+	    break;
+	  default:
+		alert("Không thể chuyển sang trạng thái đang chờ")
+	    event.target.value =statusNow
+	}
+}
+
 async function getInfo(){
 	const order = await $.ajax({
 		url: `/admin/order/${orderId}`,
 		type: "GET"
 	})
-	
+	statusNow = order.status
 	document.querySelector('#name-nn').value = order.name;
 	document.querySelector('#phone-nn').value = order.phone;
 	document.querySelector('#address-nn').value = order.address;
 	document.querySelector('#note-nn').value = order.note;
+	document.querySelector('#status-order').value = order.status;
 }
 getInfo()
 async function getDetail(){
@@ -30,6 +128,8 @@ async function getDetail(){
 	 
 }
 getDetail()
+
+
 function createDetail(name = '',capacity = '', cost = '', id='', detailId = '' ){
 	let html = `<td>${name}</td>
 					<td>${capacity}ml</td>
@@ -40,9 +140,9 @@ function createDetail(name = '',capacity = '', cost = '', id='', detailId = '' )
 	document.querySelector('.add-product-detail').appendChild(moreProduct)
 }
 function addProductDetail(idDetail = '', id = '', name = '', capacity = '', quantity = '1', cost = ''){
-	let html = `		<div > <label class="mb-1">ID</label>
+	let html = `		<div > 
 	<input type="text" name="detail-id" style="display: none" class="order-detail-id" placeholder="Tên" value="${idDetail}" required />
-	                        	<input type="text" name="id" class="product-id" placeholder="Tên" value="${id}" required />
+	                        	<input type="text" style="display: none" name="id" class="product-id" placeholder="Tên" value="${id}" required />
 	                        </div>	
 		<div > <label class="mb-1">Tên sản phẩm</label>
 	                        	<input type="text" name="namepro" class="product-name" placeholder="Tên" value="${name}" required />
@@ -83,7 +183,7 @@ function tinhtien(){
 		tong += Number(quantitys[i].value) * Number(costs[i].value)
 		
 	}
-	document.getElementById('tong-tien').innerHTML = tong.toLocaleString('en')
+	document.getElementById('tong-tien').innerHTML = tong.toLocaleString('en') + ' VNĐ'
 }
 //setTimeout(function(){ tinhtien(); }, 1000);
 async function getProducts() {
@@ -131,6 +231,10 @@ $('.action-search input').on('keyup', processChange)
 // update
 async function updateOrder(){
 	// cap nhat bang order
+	if(statusNow != 'waiting'){
+		alert('Chỉ đơn hàng đang chờ mới có thể cập nhật')
+		return
+	}
 	let name = document.querySelector('#name-nn').value 
 	let phone = document.querySelector('#phone-nn').value 
 	let address = document.querySelector('#address-nn').value 

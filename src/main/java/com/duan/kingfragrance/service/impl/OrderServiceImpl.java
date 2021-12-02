@@ -110,4 +110,17 @@ public class OrderServiceImpl implements OrderService {
 		}
 	}
 
+	@Override
+	public Boolean changeStatusSuccess(String orderId) {
+		Optional<Order> optional = orderRepo.findById(orderId);
+		if (optional.isPresent()) {
+			Order od = optional.get();
+			od.setStatus("success");
+			orderRepo.save(od);
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 }

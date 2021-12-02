@@ -68,63 +68,6 @@
 				<div>
 	<h2 class="title-header">Thông tin đơn hàng</h2>
 
-	<div class="orderer">
-		<h4>Nguời đặt</h4>
-		<table class="table table-hover">
-			<thead>
-				<tr>
-					<th>ID</th>
-					<th>Cover</th>
-					<th>Tên</th>
-					<th>SĐT</th>
-					<th>Email</th>
-					<th>Role</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>
-						<a href="/admin/customers/id">id user</a>
-					</td>
-					<td class="orderer-cover">
-						<img
-							src=""
-							alt=""
-						/>
-					</td>
-					<td>user name</td>
-					<td>user phone</td>
-					<td>user email</td>
-					<td>user role</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-	
-                    <div class="action-search">
-                            <i class="fas fa-search"></i>
-                            <input type="text" placeholder="Tìm sản phẩm" />
-                     </div>
-                    
-                    <table class="table table-hover">
-			<thead>
-				<tr>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody class="add-product-detail">
-				
-			</tbody>
-		</table>
-		<h4>Chi tiết Sản phẩm</h4>
-                    <div class="more-product-wrap">
-                    
-                         </div>
-        <h4>Tổng tiền</h4>
-        <h5 id="tong-tien">60000</h5>
 	<div class="receiver">
 		<h4>Người nhận</h4>
 		<table class="table table-hover">
@@ -148,6 +91,45 @@
 			</tbody>
 		</table>
 	</div>
+	
+                    <div class="action-search">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Tìm thêm sản phẩm" />
+                     </div>
+                    
+                    <table class="table table-hover">
+			<thead>
+				<tr>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody class="add-product-detail">
+				
+			</tbody>
+		</table>
+		<h4>Chi tiết Sản phẩm</h4>
+                    <div class="more-product-wrap">
+                    
+                         </div>
+        <div class="tong-tien">
+	        <h4>Tổng tiền</h4>
+	        <h5 id="tong-tien">60000</h5>
+        </div>
+        
+	<div class="status-order">
+	<h4>Trạng thái</h4>
+			<select id="status-order" class="form-select" onchange="changeStatus(event)">
+					  <option value="waiting">waiting</option>
+					  <option value="delivery">delivery</option>
+					  <option value="cancelled">cancelled</option>
+					  <option value="refund" >refund</option>
+					  <option value="success">success</option>
+				</select>
+	</div>
+	
 	<div class="order-action ">
 		<button class="delivery-order" onclick="updateOrder()">Cập nhật đơn hàng</button>
 	</div>
