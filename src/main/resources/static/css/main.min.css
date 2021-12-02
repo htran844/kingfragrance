@@ -11,12 +11,22 @@
 	max-height: 230px;
 	margin-bottom: 30px
 }
-
+#tm-main{
+	    display: table;
+    margin: auto;
+        border: 1px solid #d6d2d2;
+    padding: 36px 407px;
+}
+#myTable tr td a:hover{
+	text-decoration: underline !important;
+}
 .item-product {
 	list-style: none;
 	position: relative;
 }
-
+.checkbox-filter-sidebar:hover{
+	cursor: pointer;
+}
 #main .section-brand-special .list-cat a {
 	color: #000
 }
