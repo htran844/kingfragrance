@@ -90,7 +90,6 @@ $('.checkbox-filter-sidebar').click(function (e) {
 		document.cookie = "/product?fillter_money" + '=; expires=Thu, 01 Dec 2021 00:00:00 GMT;path=/;'
 		document.cookie = "/product?fillter_gender" + '=; expires=Thu, 01 Dec 2021 00:00:00 GMT;path=/;'
 	}
-
 	if (this.className.match('gender-checkbox-filter')) {
 		if (this.checked) {
 			for (let index = 0; index < gender.length; index++) {
@@ -148,8 +147,6 @@ $('.checkbox-filter-sidebar').click(function (e) {
 		window.location.assign(url)
 
 	}
-
-
 });
 
 function getCookie(cname) {
@@ -166,5 +163,4 @@ function getCookie(cname) {
 		}
 	}
 	return "";
-
 }
