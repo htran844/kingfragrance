@@ -156,7 +156,7 @@
 "></h1>
 										<ul class="products " id="productssss">
 											<div class="bs-row">
-												<div class="bs-col tn-25-10"
+												<div class="bs-col tn-25-10 pr"
 													th:each="products : ${lstProductResult}">
 													<li class="woman-attr product type-product "><a
 														th:href="${'/product-detailts/' + products.product.slug}"
@@ -175,6 +175,7 @@
 														</div> <span class="price"> <span class="cart-text1"
 															th:text="${products.productDetails[0].cost}"> </span>
 													</span></li>
+													<p class="add-cart" onclick="pushLocalStorage(this)"><i class="fas fa-plus mr-2"></i>Thêm vào giỏ</p>
 												</div>
 											</div>
 										</ul>
@@ -190,6 +191,16 @@
 		</div>
 
 	</div>
+	<div class="action-toast">
+			<div class="toast">
+				<div class="toast__container">
+					<div class="toast__icon">
+						<i class="fas fa-check"></i>
+					</div>
+					<div class="toast__text">Sản phẩm đã được thêm vào Giỏ hàng</div>
+				</div>
+			</div>
+		</div>
 	</main>
 	<div th:insert="footer-page :: footer-page"></div>
 
@@ -202,6 +213,7 @@
 	<script th:src="@{/js/main.js}"></script>
 	<script th:src="@{/js/base.js}"></script>
 	<script th:src="@{/js/product.js}"></script>
+	<script th:src="@{/js/index.js}"></script>
 	<script type="text/javascript">
 		var card_text1 = document.querySelectorAll('.cart-text1');
 

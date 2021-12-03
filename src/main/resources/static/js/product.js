@@ -4,6 +4,7 @@
 
 
 function init() {
+	
 	var _url = location.href
 	var gender = document.getElementsByClassName('gender-checkbox-filter');
 	var price = document.getElementsByClassName('price-checkbox-filter');
@@ -40,13 +41,14 @@ init();
 
 var urlParams = new Array();
 function sortBy() {
-
+	
 	var sortBy = document.getElementById('sort').value;
 	if (location.href.match("order_by")) {
 		var href = location.href.replace(location.href.slice(location.href.indexOf("order_by"), location.href.length), "order_by=" + sortBy);
 		location.assign(
 			href
 		)
+		
 		return;
 	}
 	var orderBy;
@@ -101,6 +103,7 @@ $('.checkbox-filter-sidebar').click(function (e) {
 			url = `${hrefFilter}?${urlPr}`;
 			document.cookie = url;
 			window.location.assign(url)
+			
 		}
 		else {
 			document.cookie = hrefFilter + "?fillter_gender" + '=; expires=Thu, 01 Dec 2021 00:00:00 GMT;path=/product/thuonghieu;'
@@ -135,7 +138,6 @@ $('.checkbox-filter-sidebar').click(function (e) {
 			}
 			window.location.assign(cookieGender + "=" + getCookie(cookieGender))
 		}
-
 	}
 	if (getCookie(cookieGender) && getCookie(cookieMoney)) {
 		urlParams.splice(0, 1);
@@ -145,7 +147,6 @@ $('.checkbox-filter-sidebar').click(function (e) {
 		var urlPr = urlParams.toString().replace(/,/g, "&&");
 		url = `${hrefFilter}?${urlPr}`;
 		window.location.assign(url)
-
 	}
 });
 
@@ -164,3 +165,9 @@ function getCookie(cname) {
 	}
 	return "";
 }
+
+if (location.href.match("fillter")||location.href.match("order_by")) {
+ 	$("html, body").animate({
+ 		scrollTop: 140
+ 	}, 1000);
+ }	

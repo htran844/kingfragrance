@@ -61,8 +61,14 @@ if (ListProduct.length>0) {
 } 
 Product= JSON.stringify(Product);
     		ListProduct.push(Product);
-    	alert("thêm vào giỏ hàng thành công!")
+      var cart = $("#cart");
+		cart.animate({opacity:0 } );
+		cart.animate({opacity:1, });
     localStorage.setItem("ListProduct",JSON.stringify(ListProduct));
+    document.getElementsByClassName("action-toast")[0].style.display="block";
+	setTimeout(function(){ 
+		document.getElementsByClassName("action-toast")[0].style.display="none";
+	 }, 1500);
   }
 }
 

@@ -130,6 +130,17 @@ function removeCart(e) {
             fillProductToCart();
             getAllProduct();
 	}
+	
+}
+function RemoveAllCart() {
+	localStorage.removeItem("ListProduct");
+	var list_pr = document.getElementById("list_pr").innerHTML="";
+	 getAllProduct();
+	 $("html, body").animate({
+		scrollTop: 0
+	}, 1000);
+
+	
 }
 
 
@@ -137,3 +148,4 @@ function removeCart(e) {
 
 
 
+	
