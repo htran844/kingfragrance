@@ -1,5 +1,6 @@
 package com.duan.kingfragrance.controller;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ public class OrderRestController {
 	@GetMapping("/admin/orders/{phone}/{status}")
 	public ResponseEntity<?> getAllOrder(@PathVariable String phone, @PathVariable String status){
 		List<Order> orders = orderService.getAllOrder(phone, status);
+		Collections.reverse(orders);
 		return new ResponseEntity<List<Order>>(orders, HttpStatus.OK);
 	}
 	@PostMapping("/admin/orders")
@@ -77,5 +79,13 @@ public class OrderRestController {
 			return new ResponseEntity<>(null, HttpStatus.OK);
 		}
 	}
-	
+	@PutMapping("/admin/success/{orderId}")
+	public ResponseEntity<?> changeStatusSuccess(@PathVariable String orderId){
+		Boolean result = orderService.changeStatusSuccess(orderId);
+		if (result) {
+			return new ResponseEntity<>(" đơn giao thành công", HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(null, HttpStatus.OK);
+		}
+	}
 }

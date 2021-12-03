@@ -35,6 +35,7 @@ async function getinfo(){
 	})
 	document.querySelector('#order-id').innerHTML = order.id
 	document.querySelector('#total-cost').innerHTML =  parseFloat(order.totalCost).toLocaleString("en")
+	document.querySelector('#address').innerHTML = order.address
 	
 	const result = await $.ajax({
 		url: `/admin/invoices/${orderId}`,

@@ -199,3 +199,15 @@ input {
 .more-product-item label{
 	font-weight: bold;
 }
+.tong-tien{
+	display: flex;
+	justify-content: space-between;
+}
+.tong-tien h5{
+	margin-right: 200px;
+}
+.status-order {
+	border-top: 3px solid rgba(27, 32, 61, 0.9);
+	margin-top: 20px;
+	padding-top: 20px;
+}

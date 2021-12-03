@@ -35,5 +35,8 @@ public class AdminViewController {
 	public String getAdminOrderDetail(Model model) {
 		return "admin-order-detail"; 
 	}
-	
+	@GetMapping("/admin/login")
+	public String getAdminLogin(Model model) {
+		return "login"; 
+	}
 }
