@@ -1,16 +1,22 @@
 var fillCart = "";
 var totalCost = 0;
 var ListProduct = localStorage.getItem("ListProduct") ? JSON.parse(localStorage.getItem("ListProduct")) : [];
-
 async function fillProductToCart() {
  showLazy()
 	for (var i = 0; i < ListProduct.length; i++) {
+		let Dataproduct;
 
-		let Dataproduct = {
-			slug : JSON.parse(ListProduct[i]).slug,
-			productDetailId : JSON.parse(ListProduct[i]).productDetailId,
-		}
-		const products = await
+		try {
+			 Dataproduct = {
+				slug : JSON.parse(ListProduct[i]).slug,
+				productDetailId : JSON.parse(ListProduct[i]).productDetailId,
+			}
+		 } catch (error) {
+			 alert("Lỗi truy vấn! Nhấn ok để về trang chủ và đặt lại hàng!")
+			 localStorage.clear();
+			 window.location="/"
+		 }
+		const products = await 
 		$.ajax({
 			url : `/getCartFromLocalStorage`,
 			headers : {
@@ -22,9 +28,17 @@ async function fillProductToCart() {
 				
 			    }
 		})	
-		var qtt = JSON.parse(ListProduct[i]).quantity;
-				  var cost = products.productDetails[0].cost;
-				  totalCost += Number(cost) * Number(qtt);
+				 try {
+					var qtt = JSON.parse(ListProduct[i]).quantity;
+					var cost = products.productDetails[0].cost;
+					totalCost += Number(cost) * Number(qtt);
+				 } catch (error) {
+			 alert("Lỗi truy vấn! Nhấn ok để về trang chủ và đặt lại hàng!")
+
+					 localStorage.clear();
+					 window.location="/"
+					 
+				 }
 		 fillCart +=`   <hr>
 			 <li class="item-product bs-row">
 			 
@@ -62,6 +76,7 @@ async function fillProductToCart() {
 		 .toLocaleString("en")
 		 .replace(/,/g, ".");
 	}
+
  hideLazy()
 }
 
@@ -129,7 +144,7 @@ function removeCart(e) {
             fillCart = "";
             fillProductToCart();
             getAllProduct();
-	}
+	}	
 	
 }
 function RemoveAllCart() {

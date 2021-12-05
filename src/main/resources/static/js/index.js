@@ -1,3 +1,15 @@
+var productId_detailt="";
+var check;
+async function getProductDetail(slugProduct) {
+	 await $.ajax({
+		url: `/admin/product-detail-slug/${slugProduct}`,
+		type: "GET",
+		success: function (response) {
+			productId_detailt=response[0].id;
+		}
+	})
+}
+
 
 function pushLocalStorage(e) {
 	var url;
@@ -10,18 +22,14 @@ function pushLocalStorage(e) {
 		url = e.parentElement.parentElement.children[0].href.split('/');
 		slugProduct = url[url.length - 1]
 	}
-	getProductDetail(slugProduct);
-	_productDetailId = _productDetailId[0].id;
-	console.log(_productDetailId);
+	 getProductDetail(slugProduct);
 	var Product;
 	Product = {
 		"slug": slugProduct,
 		"quantity": 1,
-		"productDetailId": _productDetailId,
+		"productDetailId": productId_detailt,
 	}
-
 	if (localStorage) {
-
 		let ListProduct = localStorage.getItem("ListProduct") ? JSON.parse(localStorage.getItem("ListProduct")) : [];
 		if (ListProduct.length > 0) {
 			for (var i = 0; i < ListProduct.length; i++) {
@@ -29,39 +37,30 @@ function pushLocalStorage(e) {
 					JSON.parse(ListProduct[i]).productDetailId === Product.productDetailId) {
 					Product.quantity = Number(Product.quantity) + Number(JSON.parse(ListProduct[i]).quantity);
 					ListProduct.splice(i, 1);
-
 				}
 			}
 		}
 		Product = JSON.stringify(Product);
-
 		ListProduct.push(Product);
 		localStorage.setItem("ListProduct", JSON.stringify(ListProduct));
-		var cart = $("#cart");
-		cart.animate({opacity:0 } );
-		cart.animate({opacity:1, });
-		document.getElementsByClassName("action-toast")[0].style.display="block";
-		setTimeout(function(){ 
-			document.getElementsByClassName("action-toast")[0].style.display="none";
-		 }, 1500);
-
+	if (check==1) {
+	return;
+	}
+	var cart = $("#cart");
+	cart.animate({ opacity: 0 });
+	cart.animate({ opacity: 1, });
+	document.getElementsByClassName("action-toast")[0].style.display = "block";
+	setTimeout(function () {
+		document.getElementsByClassName("action-toast")[0].style.display = "none";
+	}, 2000);
 	}
 }
 
 
 
-var _productDetailId = "";
-async function getProductDetail(slugProduct) {
-	productDetailId = await $.ajax({
-		url: `/admin/product-detail-slug/${slugProduct}`,
-		type: 'GET',
-	})
-	_productDetailId = productDetailId;
+function buyNow(e){
+check=1;
+pushLocalStorage(e);
+location.assign("gio-hang");
 }
-
-
-
-
-	
-
 

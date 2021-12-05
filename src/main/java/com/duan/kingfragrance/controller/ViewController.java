@@ -10,11 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.FindPublisherPreparer;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -81,7 +84,7 @@ public class ViewController {
 	}
 
 	@GetMapping("/product")
-	public String getProduct(Model model, @RequestParam(value = "fillter_gender", required = false) String Ftgender,
+	public String getProduct(ModelMap model, @RequestParam(value = "fillter_gender", required = false) String Ftgender,
 			@RequestParam(value = "fillter_season", required = false) String Ftseason,
 			@RequestParam(value = "fillter_money", required = false) String Ftmoney,
 			@RequestParam(value = "order_by", required = false) String orderBy) {
@@ -163,14 +166,17 @@ public class ViewController {
 				}
 			}
 		}
+		
 		model.addAttribute("listBrand", brands);
 		model.addAttribute("lstProductResult", lstProductResult);
 		model.addAttribute("titleBrand", "SHOP");
+//		return fintPaginated(1,model,lstProductResult);
 		return "product";
+
 	}
 
 	@GetMapping("/product/thuonghieu/{brandName}")
-	public String getProductByBrand(@PathVariable(value = "brandName") String brandName, Model model,
+	public String getProductByBrand(@PathVariable(value = "brandName") String brandName, ModelMap model,
 			@RequestParam(value = "fillter_gender", required = false) String Ftgender,
 			@RequestParam(value = "fillter_season", required = false) String Ftseason,
 			@RequestParam(value = "fillter_money", required = false) String Ftmoney,
@@ -263,6 +269,8 @@ public class ViewController {
 		List<Brand> brands = brandService.getAllBrand();
 		model.addAttribute("listBrand", brands);
 		model.addAttribute("lstProductResult", lstProductResultByBrandName);
+//		return fintPaginated(1, model, lstProductResultByBrandName);
+//		
 		return "product";
 	}
 
@@ -276,26 +284,21 @@ public class ViewController {
 		model.addAttribute("productRecommended", productRecommended);
 		return "productDetail";
 	}
-
-//	@GetMapping("/product/page/{pageNo}")
-//	public String fintPaginated(@PathVariable(value = "pageNo") int pageNo, Model model) {
-//		int pageSize = 16;
-//		Page<Product> page = ProductService.findPaginated(pageNo, pageSize);
-//		List<Product> lstproducts = page.getContent();
-////		List<ProductResult> listProductResult = new ArrayList<ProductResult>();
-////		List<ProductDetail> listProductDetail; 
-////		for (Product x : lstproducts) {
-////			listProductDetail= ProductDetailService.getAllProductDetailById(x.getId());
-////			listProductResult.add(new ProductResult(x, listProductDetail));
-////		}
-//		for (Product x : lstproducts) {
-//			System.out.println(x);
-//		}
-//		model.addAttribute("currentPage", pageNo);
-//		model.addAttribute("totalPages", page.getTotalPages());
-//		model.addAttribute("totalItems", page.getTotalElements());
-////		model.addAttribute("listProductResult", listProductResult);
-//		return "product";
-//	}
+	
+	@GetMapping("/product/page/{pageNo}")
+	public String fintPaginated(@PathVariable(value = "pageNo") int pageNo, ModelMap model) {
+		List<ProductResult> list_pr = ProductService.getAllProductResult(ProductService.getAllProduct());
+		int pageSize = 12;
+		int totalPage = list_pr.size()/pageSize+1;
+		List<ProductResult> listProductResult = ProductService.getPaginationByPageNumberAndList(pageNo, list_pr, pageSize);		
+		model.addAttribute("currentPage", pageNo);
+		model.addAttribute("totalItems", pageSize);
+		model.addAttribute("totalPages", totalPage);
+		model.addAttribute("lstProductResult", listProductResult);
+		List<Brand> brands = brandService.getAllBrand();
+		model.addAttribute("listBrand", brands);
+		return "product";
+		
+	}
 
 }

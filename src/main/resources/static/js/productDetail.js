@@ -68,13 +68,10 @@ Product= JSON.stringify(Product);
     document.getElementsByClassName("action-toast")[0].style.display="block";
 	setTimeout(function(){ 
 		document.getElementsByClassName("action-toast")[0].style.display="none";
-	 }, 1500);
+	 }, 2000);
   }
+
 }
-
-
-
-
 
 
 

@@ -20,7 +20,7 @@
 #myTable tr td a:hover{
 	text-decoration: underline !important;
 }
-.section-product-special	.add-cart{
+.section-product-special .add-cart,.section-product-special .buyNow{
     color: #f4ede2fa;
     font-size: 15px;
     border: 1px solid green;
@@ -29,26 +29,26 @@
         border-radius: 6px;
        
 }
-.section-product-special	.add-cart:hover{
+.section-product-special .add-cart:hover,.section-product-special .buyNow:hover{
    cursor: pointer;
        background: #f4ebde;
        
 }
-.section-brand-special .add-cart:hover{
+.section-brand-special .add-cart:hover,.section-brand-special .buyNow:hover{
 	 cursor: pointer;
        background: #f4ebde;
 }
-.section-brand-special .add-cart{
+.section-brand-special .add-cart,.section-brand-special .buyNow{
 	  
     font-size: 15px;
     border: 1px solid green;
-    display: inline-block;
     padding: 5px;
         margin: auto;
-    display: table;
     margin: center;
     color: black;
         border-radius: 6px;
+            text-align: center;
+    margin-top: 6px;
 }
 .item-product {
 	list-style: none;
@@ -127,10 +127,12 @@ padding: 0px 20px;
 }
 .toast__icon{
 	    display: inline-block;
-    padding: 4px 16px;
+   
        background-color: #27b433;
     font-size: 36px;
     margin-bottom:30px;
+        border-radius: 100px;
+    padding: 10px 19px;
 }
 .action-toast{
 	position: fixed;

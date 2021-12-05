@@ -1,5 +1,6 @@
 package com.duan.kingfragrance.service.impl;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -115,11 +116,7 @@ public class ProductServiceImpl implements ProductService {
 		Product product = getOneProduct(Slug);
 		List<ProductDetail> lstProductDetail = productDetailRepository.findAllByProductId(product.getId());
 		ProductResult productResult = new ProductResult(product, lstProductDetail);
-		if (productResult == null) {
-			return null;
-		}
 		return productResult;
-
 	}
 
 	@Override
@@ -140,12 +137,11 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<Product> getAllProduct() {
 		List<Product> list = productRepo.findAll();
-		if (list.size()==0) {
+		if (list.size() == 0) {
 			return null;
 		}
 		return list;
 	}
-	
 
 	public Boolean deleteProductById(String id) {
 		Optional<Product> optional = productRepo.findById(id);
@@ -154,33 +150,58 @@ public class ProductServiceImpl implements ProductService {
 			return true;
 		} else {
 			return false;
-		}	
+		}
 	}
 
 	@Override
-
 	public ProductResult getProductResultBySlugAndDetailId(String slug, String productDetailId) {
 		Product product = getOneProduct(slug);
-		
+
 		ProductDetail productDetail = productDetailRepository.findByProductDetailId(productDetailId);
 		List<ProductDetail> lstproductDetail = new ArrayList<>();
 		lstproductDetail.add(productDetail);
 		ProductResult productResult = new ProductResult(product, lstproductDetail);
-		if (productResult!=null) {
+		if (productResult != null) {
 			return productResult;
 		}
 		return null;
 	}
+
 	public Product getOneProductById(String id) {
 		Optional<Product> optional = productRepo.findById(id);
-		if (optional.isPresent()) {	
+		if (optional.isPresent()) {
 			return optional.get();
 		} else {
 			return null;
-		}	
+		}
 
 	}
 
+	
+	
+	
+	
+	@Override
+	public List<ProductResult> getPaginationByPageNumberAndList(int pageNumber, List<ProductResult> list,
+			int totalItems) {
+		
+		List<ProductResult> lstProductResult = new ArrayList<>();
+		int index = pageNumber * totalItems - totalItems + 1;
+		System.out.println("index"+index);
+		int count = 0;
+		for (int i = index; i <= list.size(); i++) {
+			count++;
+			System.out.println("dem:"+count);
+			lstProductResult.add(list.get(i-1));
+			if (count == totalItems) {
+				break;
+			}
+
+		}
+		
+		return lstProductResult;
+	}
+	
 
 
 }
