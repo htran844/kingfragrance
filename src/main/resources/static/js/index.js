@@ -1,5 +1,5 @@
 var productId_detailt="";
-var check;
+var redirecTocart = false;
 async function getProductDetail(slugProduct) {
 	 await $.ajax({
 		url: `/admin/product-detail-slug/${slugProduct}`,
@@ -8,6 +8,42 @@ async function getProductDetail(slugProduct) {
 			productId_detailt=response[0].id;
 		}
 	})
+	var Product;
+	Product = {
+		"slug": slugProduct,
+		"quantity": 1,
+		"productDetailId": productId_detailt,
+	}
+
+	if (localStorage) {
+
+		let ListProduct = localStorage.getItem("ListProduct") ? JSON.parse(localStorage.getItem("ListProduct")) : [];
+		if (ListProduct.length > 0) {
+			for (var i = 0; i < ListProduct.length; i++) {
+				if (JSON.parse(ListProduct[i]).slug === Product.slug &&
+					JSON.parse(ListProduct[i]).productDetailId === Product.productDetailId) {
+					Product.quantity = Number(Product.quantity) + Number(JSON.parse(ListProduct[i]).quantity);
+					ListProduct.splice(i, 1);
+				}
+			}
+		}
+		Product = JSON.stringify(Product);
+		ListProduct.push(Product);
+		localStorage.setItem("ListProduct", JSON.stringify(ListProduct));
+		if (redirecTocart==true) {
+ location.assign("gio-hang");
+			
+		}
+
+	var cart = $("#cart");
+	cart.animate({ opacity: 0 });
+	cart.animate({ opacity: 1, });
+	document.getElementsByClassName("action-toast")[0].style.display = "block";
+	setTimeout(function () {
+		document.getElementsByClassName("action-toast")[0].style.display = "none";
+	}, 2000);
+	}
+
 }
 
 
@@ -23,44 +59,10 @@ function pushLocalStorage(e) {
 		slugProduct = url[url.length - 1]
 	}
 	 getProductDetail(slugProduct);
-	var Product;
-	Product = {
-		"slug": slugProduct,
-		"quantity": 1,
-		"productDetailId": productId_detailt,
-	}
-	if (localStorage) {
-		let ListProduct = localStorage.getItem("ListProduct") ? JSON.parse(localStorage.getItem("ListProduct")) : [];
-		if (ListProduct.length > 0) {
-			for (var i = 0; i < ListProduct.length; i++) {
-				if (JSON.parse(ListProduct[i]).slug === Product.slug &&
-					JSON.parse(ListProduct[i]).productDetailId === Product.productDetailId) {
-					Product.quantity = Number(Product.quantity) + Number(JSON.parse(ListProduct[i]).quantity);
-					ListProduct.splice(i, 1);
-				}
-			}
-		}
-		Product = JSON.stringify(Product);
-		ListProduct.push(Product);
-		localStorage.setItem("ListProduct", JSON.stringify(ListProduct));
-	if (check==1) {
-	return;
-	}
-	var cart = $("#cart");
-	cart.animate({ opacity: 0 });
-	cart.animate({ opacity: 1, });
-	document.getElementsByClassName("action-toast")[0].style.display = "block";
-	setTimeout(function () {
-		document.getElementsByClassName("action-toast")[0].style.display = "none";
-	}, 2000);
-	}
+	
 }
-
-
-
-function buyNow(e){
-check=1;
-pushLocalStorage(e);
-location.assign("gio-hang");
+async function buyNow(e){
+redirecTocart=true;
+ pushLocalStorage(e);
 }
 
