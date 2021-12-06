@@ -31,8 +31,7 @@ async function getProductDetail(slugProduct) {
 		ListProduct.push(Product);
 		localStorage.setItem("ListProduct", JSON.stringify(ListProduct));
 		if (redirecTocart==true) {
- location.assign("gio-hang");
-			
+ 	window.location="/gio-hang";			
 		}
 
 	var cart = $("#cart");

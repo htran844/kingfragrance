@@ -45,7 +45,7 @@
 															<tbody id="myTable">
 																<tr th:each=" listBrand: ${listBrand}">
 																	<td><a
-																		th:href="'/product/thuonghieu/' + ${listBrand.name}"
+																		th:href="'/product/thuonghieu/' + ${listBrand.name}+'/page/1'"
 																		class="brandName" th:text="${listBrand.name}"></a></td>
 																</tr>
 
@@ -149,8 +149,7 @@
 													xuống thấp</option>
 											</select> <input type="hidden" name="paged" value="1">
 										</form>
-										<h1 th:text="${notFind}"
-											style="color: #736a6a; font-size: 22px;"></h1>
+										
 										<ul class="products " id="productssss">
 											<div class="bs-row">
 												<div class="bs-col tn-25-10 pr"
@@ -180,16 +179,18 @@
 												</div>
 											</div>
 										</ul>
-										<!-- <ul class="pagination">
+										<h1 th:text="${notFind}"
+											style="color: #736a6a; font-size: 22px;"></h1>
+										<ul class="pagination">
 											<li><a th:if="${currentPage>1}"
-												th:href="@{'/product/page/' + ${currentPage-1}}">Previous</a></li>
+												th:href="@{${href} + ${currentPage-1}}">Previous</a></li>
 											
-												<li th:each="i : ${#numbers.sequence(1,totalPages)}"> <a
-												 th:href="@{'/product/page/' + ${i}}" th:text="${i}"></a></li>
+												<li th:if="${totalPages>1}" th:each="i : ${#numbers.sequence(1,totalPages)}"> <a
+												 th:href="@{${href} + ${i}}" th:text="${i}"></a></li>
 											<li><a th:if="${currentPage<totalPages}"
-												th:href="@{'/product/page/' + ${currentPage+1}}">Next</a> 
+												th:href="@{${href} + ${currentPage+1}}">Next</a> 
 												</li>
-										</ul> -->
+										</ul>
 									</div>
 
 								</div>

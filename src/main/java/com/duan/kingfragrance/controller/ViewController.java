@@ -83,8 +83,8 @@ public class ViewController {
 		return "cart";
 	}
 
-	@GetMapping("/product")
-	public String getProduct(ModelMap model, @RequestParam(value = "fillter_gender", required = false) String Ftgender,
+	@GetMapping("/product/page/{pageNo}")
+	public String getProduct(ModelMap model,@PathVariable(value = "pageNo",required=false) int pageNo, @RequestParam(value = "fillter_gender", required = false) String Ftgender,
 			@RequestParam(value = "fillter_season", required = false) String Ftseason,
 			@RequestParam(value = "fillter_money", required = false) String Ftmoney,
 			@RequestParam(value = "order_by", required = false) String orderBy) {
@@ -166,17 +166,25 @@ public class ViewController {
 				}
 			}
 		}
+//		/product/page/
 		
 		model.addAttribute("listBrand", brands);
-		model.addAttribute("lstProductResult", lstProductResult);
 		model.addAttribute("titleBrand", "SHOP");
-//		return fintPaginated(1,model,lstProductResult);
+		int pageSize = 12;
+		int totalPage = lstProductResult.size()/pageSize+1;
+		List<ProductResult> listProductResult = ProductService.getPaginationByPageNumberAndList(pageNo, lstProductResult, pageSize);		
+		model.addAttribute("currentPage", pageNo);
+		model.addAttribute("totalItems", pageSize);
+		model.addAttribute("totalPages", totalPage);
+		model.addAttribute("lstProductResult", listProductResult);
+		String href ="/product/page/";
+		model.addAttribute("href", href);
 		return "product";
 
 	}
 
-	@GetMapping("/product/thuonghieu/{brandName}")
-	public String getProductByBrand(@PathVariable(value = "brandName") String brandName, ModelMap model,
+	@GetMapping("/product/thuonghieu/{brandName}/page/{pageNo}")
+	public String getProductByBrand(@PathVariable (value="pageNo",required=false) int pageNo,@PathVariable(value = "brandName") String brandName, ModelMap model,
 			@RequestParam(value = "fillter_gender", required = false) String Ftgender,
 			@RequestParam(value = "fillter_season", required = false) String Ftseason,
 			@RequestParam(value = "fillter_money", required = false) String Ftmoney,
@@ -268,9 +276,15 @@ public class ViewController {
 		model.addAttribute("titleBrand", brandName);
 		List<Brand> brands = brandService.getAllBrand();
 		model.addAttribute("listBrand", brands);
-		model.addAttribute("lstProductResult", lstProductResultByBrandName);
-//		return fintPaginated(1, model, lstProductResultByBrandName);
-//		
+		int pageSize = 12;
+		int totalPage = lstProductResultByBrandName.size()/pageSize+1;
+		List<ProductResult> listProductResult = ProductService.getPaginationByPageNumberAndList(pageNo, lstProductResultByBrandName, pageSize);		
+		model.addAttribute("currentPage", pageNo);
+		model.addAttribute("totalItems", pageSize);
+		model.addAttribute("totalPages", totalPage);
+		model.addAttribute("lstProductResult", listProductResult);
+		String href ="/product/thuonghieu/"+brandName+"/page/";
+		model.addAttribute("href", href);
 		return "product";
 	}
 
@@ -283,22 +297,6 @@ public class ViewController {
 		model.addAttribute("ProductFragrance", ProductFragrance);
 		model.addAttribute("productRecommended", productRecommended);
 		return "productDetail";
-	}
-	
-	@GetMapping("/product/page/{pageNo}")
-	public String fintPaginated(@PathVariable(value = "pageNo") int pageNo, ModelMap model) {
-		List<ProductResult> list_pr = ProductService.getAllProductResult(ProductService.getAllProduct());
-		int pageSize = 12;
-		int totalPage = list_pr.size()/pageSize+1;
-		List<ProductResult> listProductResult = ProductService.getPaginationByPageNumberAndList(pageNo, list_pr, pageSize);		
-		model.addAttribute("currentPage", pageNo);
-		model.addAttribute("totalItems", pageSize);
-		model.addAttribute("totalPages", totalPage);
-		model.addAttribute("lstProductResult", listProductResult);
-		List<Brand> brands = brandService.getAllBrand();
-		model.addAttribute("listBrand", brands);
-		return "product";
-		
 	}
 
 }
