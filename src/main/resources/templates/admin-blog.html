@@ -7,7 +7,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Admin</title>
+        <title>King Fragrance</title>
 
         <!-- Reset css -->
         <link th:href="@{/css/admin-style/reset.css}" rel="stylesheet" />
@@ -24,7 +24,7 @@
             crossorigin="anonymous" />
 
          <link th:href="@{/css/admin-style/admin.css}" rel="stylesheet" />
-        <link th:href="@{/css/admin-style/admin-orders.css}" rel="stylesheet" />
+        <link th:href="@{/css/admin-style/admin-products.css}" rel="stylesheet" />
     </head>
 
 </head>
@@ -62,59 +62,43 @@
                 </div>
             </div>
 
-
             <div class="admin-content">
-                <h2>Quản lí đơn hàng</h2>
-<div class="admin-orders">
-	<div class="orders-action">
-		<div class="action-search">
-			<i class="fas fa-search"></i>
-			<input type="text" placeholder="Tìm đơn hàng" />
-		</div>
-		<div class="action-filter">
-			<select name="select-filter" onchange="handleFilter(this)" >
-				<option value="null">Add filter</option>
-				<option value="waiting">Đang chờ</option>
-				<option value="delivery">Đang giao</option>
-				<option value="success">Đã giao</option>
-				<option value="cancelled">Đơn hủy</option>
-				<option value="refund">Đơn hoàn</option>
-				
-			</select>
-		</div>
-		<div class="total-orders">
-			<i class="fas fa-box"></i>
-			Đơn chưa giao:&nbsp;
-			<span>0</span>
-		</div>
-	</div>
-	<table class="table table-hover">
-		<thead>
-			<tr>
-				<th>STT</th>
-				<th>ID</th>
-				<th>Người nhận</th>
-				<th>Số điện thoại</th>
-				
-                <th class="action-date" >Ngày đặt
-					
-				</th>
-				<th>Tổng tiền</th>
-				
-				<th>Trạng thái</th>
-				<th>Hành động</th>
-			</tr>
-		</thead>
-	</table>
-	<div class="paginatio">
-			<nav aria-label="...">
-		  <ul class="pagination">  
-		       
-		  </ul>
-		</nav>
-	</div>
-</div>
+                <h2>Quản lí blogs</h2>
+                <div class="admin-products table_blog">
+                    <div class="products-action">
+                        <div class="action-search">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Tìm blog" />
+                        </div>
+                        
+                        <div class="action-add">
+                            <i class="fas fa-plus-square"></i>
+                        Add blog
+                        </div>
+                        <div class="total-products">
+                            <i class="fas fa-box"></i>
+                            Tổng blog:&nbsp;
+                            <span id="total-blogs">0</span>
+                        </div>
+                    </div>
+                    <table class="table table-hover" >
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>TIêu đề</th>
+                                <th>Ảnh</th>
+                                <th>Nội dung</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
 
+                        </tbody>
+                    </table>
+                    <div class="pagination">
+
+                    </div>
+                </div>
 
                 <style>
                     .form-check.form-switch input {
@@ -147,7 +131,7 @@
    
     <script type="text/javascript" th:src="@{/js/admin.js}"></script>
     <script type="text/javascript" th:src="@{/js/base.js}"></script>
-    <script type="text/javascript" th:src="@{/js/admin-orders.js}"></script>
+    <script type="text/javascript" th:src="@{/js/admin-blog.js}"></script>
 
 </body>
 

@@ -25,12 +25,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.duan.kingfragrance.model.Blog;
 import com.duan.kingfragrance.model.Brand;
 import com.duan.kingfragrance.model.Product;
 import com.duan.kingfragrance.model.ProductDetail;
 import com.duan.kingfragrance.model.ProductFragrance;
 import com.duan.kingfragrance.model.ProductRecommended;
 import com.duan.kingfragrance.model.ProductResult;
+import com.duan.kingfragrance.service.BlogService;
 import com.duan.kingfragrance.service.BrandService;
 import com.duan.kingfragrance.service.ProductDetailService;
 import com.duan.kingfragrance.service.ProductFraService;
@@ -51,6 +53,8 @@ public class ViewController {
 	private ProductRecService productRecService;
 	@Autowired
 	private ProductDetailService ProductDetailService;
+	@Autowired
+	private BlogService blogService;
 
 	@GetMapping("/thuong-hieu")
 	public String getThuongHieu(Model model) {
@@ -74,17 +78,22 @@ public class ViewController {
 	}
 
 	@GetMapping("/blog")
-	public String getBlog() {
+	public String getBlog(Model model) {
+		List<Blog> lstBlog = blogService.getAllBlog();
+		model.addAttribute("lstBlog",lstBlog);
 		return "blog";
 	}
+	
 
 	@GetMapping("/gio-hang")
 	public String getGioHang() {
 		return "cart";
 	}
+	
 
 	@GetMapping("/product/page/{pageNo}")
-	public String getProduct(ModelMap model,@PathVariable(value = "pageNo",required=false) int pageNo, @RequestParam(value = "fillter_gender", required = false) String Ftgender,
+	public String getProduct(ModelMap model, @PathVariable(value = "pageNo", required = false) int pageNo,
+			@RequestParam(value = "fillter_gender", required = false) String Ftgender,
 			@RequestParam(value = "fillter_season", required = false) String Ftseason,
 			@RequestParam(value = "fillter_money", required = false) String Ftmoney,
 			@RequestParam(value = "order_by", required = false) String orderBy) {
@@ -132,17 +141,13 @@ public class ViewController {
 			}
 			lstProductResult = lstProductResultUpdate;
 		}
-		if (lstProductResult.size() == 0) {
-			model.addAttribute("notFind", "Không tìm thấy sản phẩm nào!");
-		}
-		else {
+		
 			if (orderBy != null) {
 				if (orderBy.equals("price-desc")) {
 					for (int i = 0; i < lstProductResult.size(); i++) {
 						for (int j = 0; j < lstProductResult.size(); j++) {
-							if (lstProductResult.get(i).getProductDetails().get(0)
-									.getCost() > lstProductResult.get(j).getProductDetails().get(0)
-											.getCost()) {
+							if (lstProductResult.get(i).getProductDetails().get(0).getCost() > lstProductResult.get(j)
+									.getProductDetails().get(0).getCost()) {
 								ProductResult temp = new ProductResult();
 								temp = lstProductResult.get(i);
 								lstProductResult.set(i, lstProductResult.get(j));
@@ -153,9 +158,8 @@ public class ViewController {
 				} else if (orderBy.equals("price")) {
 					for (int i = 0; i < lstProductResult.size(); i++) {
 						for (int j = 0; j < lstProductResult.size(); j++) {
-							if (lstProductResult.get(i).getProductDetails().get(0)
-									.getCost() < lstProductResult.get(j).getProductDetails().get(0)
-											.getCost()) {
+							if (lstProductResult.get(i).getProductDetails().get(0).getCost() < lstProductResult.get(j)
+									.getProductDetails().get(0).getCost()) {
 								ProductResult temp = new ProductResult();
 								temp = lstProductResult.get(i);
 								lstProductResult.set(i, lstProductResult.get(j));
@@ -165,26 +169,31 @@ public class ViewController {
 					}
 				}
 			}
-		}
-//		/product/page/
 		
+//		/product/page/
+
 		model.addAttribute("listBrand", brands);
 		model.addAttribute("titleBrand", "SHOP");
 		int pageSize = 12;
-		int totalPage = lstProductResult.size()/pageSize+1;
-		List<ProductResult> listProductResult = ProductService.getPaginationByPageNumberAndList(pageNo, lstProductResult, pageSize);		
+		int totalPage = lstProductResult.size() / pageSize + 1;
+		List<ProductResult> listProductResult = ProductService.getPaginationByPageNumberAndList(pageNo,
+				lstProductResult, pageSize);
 		model.addAttribute("currentPage", pageNo);
 		model.addAttribute("totalItems", pageSize);
 		model.addAttribute("totalPages", totalPage);
 		model.addAttribute("lstProductResult", listProductResult);
-		String href ="/product/page/";
+		String href = "/product/page/";
 		model.addAttribute("href", href);
+		if (listProductResult.size() == 0) {
+			model.addAttribute("notFind", "Không tìm thấy sản phẩm nào!");
+		} 
 		return "product";
 
 	}
 
 	@GetMapping("/product/thuonghieu/{brandName}/page/{pageNo}")
-	public String getProductByBrand(@PathVariable (value="pageNo",required=false) int pageNo,@PathVariable(value = "brandName") String brandName, ModelMap model,
+	public String getProductByBrand(@PathVariable(value = "pageNo", required = false) int pageNo,
+			@PathVariable(value = "brandName") String brandName, ModelMap model,
 			@RequestParam(value = "fillter_gender", required = false) String Ftgender,
 			@RequestParam(value = "fillter_season", required = false) String Ftseason,
 			@RequestParam(value = "fillter_money", required = false) String Ftmoney,
@@ -239,9 +248,8 @@ public class ViewController {
 			}
 			lstProductResultByBrandName = lstProductResultUpdate;
 		}
-		if (lstProductResultByBrandName.size() == 0) {
-			model.addAttribute("notFind", "Không tìm thấy sản phẩm nào!");
-		} else {
+		
+		
 			if (orderBy != null) {
 				if (orderBy.equals("price-desc")) {
 					for (int i = 0; i < lstProductResultByBrandName.size(); i++) {
@@ -271,20 +279,24 @@ public class ViewController {
 					}
 				}
 			}
-		}
+		
 
 		model.addAttribute("titleBrand", brandName);
 		List<Brand> brands = brandService.getAllBrand();
 		model.addAttribute("listBrand", brands);
 		int pageSize = 12;
-		int totalPage = lstProductResultByBrandName.size()/pageSize+1;
-		List<ProductResult> listProductResult = ProductService.getPaginationByPageNumberAndList(pageNo, lstProductResultByBrandName, pageSize);		
+		int totalPage = lstProductResultByBrandName.size() / pageSize + 1;
+		List<ProductResult> listProductResult = ProductService.getPaginationByPageNumberAndList(pageNo,
+				lstProductResultByBrandName, pageSize);
 		model.addAttribute("currentPage", pageNo);
 		model.addAttribute("totalItems", pageSize);
 		model.addAttribute("totalPages", totalPage);
 		model.addAttribute("lstProductResult", listProductResult);
-		String href ="/product/thuonghieu/"+brandName+"/page/";
+		String href = "/product/thuonghieu/" + brandName + "/page/";
 		model.addAttribute("href", href);
+		if (listProductResult.size() == 0) {
+			model.addAttribute("notFind", "Không tìm thấy sản phẩm nào!");
+		} 
 		return "product";
 	}
 
