@@ -36,7 +36,6 @@ function login(){
 			username: user,
 			password: pass
 		}
-		console.log(users)
         $.ajax({
             url: '/admin/getlogin',
 			headers: {

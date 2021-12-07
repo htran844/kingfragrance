@@ -24,9 +24,9 @@ public class UserController {
 	public ResponseEntity<?> createUser(@RequestBody User user){
 		User u = userService.createUser(user);
 		if (u != null) {
-			return new ResponseEntity<User>(u, HttpStatus.OK);
+			return new ResponseEntity<>("tạo thành công", HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>("đã tồn tại username này", HttpStatus.OK);
+			return new ResponseEntity<>(null, HttpStatus.OK);
 		}
 		
 	}

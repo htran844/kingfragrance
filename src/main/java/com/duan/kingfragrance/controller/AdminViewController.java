@@ -76,6 +76,16 @@ public class AdminViewController {
 		}
 		
 	}
+	@GetMapping("/admin/account")
+	public String getAdminAccount(@CookieValue(value = "token", defaultValue = "Atta") String token) {
+		Boolean check = userService.verifyUser(token);
+		if (check) {
+			return "admin-account"; 
+		} else {
+			return "login";
+		}
+		
+	}
 	@GetMapping("/admin/login")
 	public String getAdminLogin(Model model) {
 		return "login"; 

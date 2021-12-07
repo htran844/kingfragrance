@@ -1,0 +1,9 @@
+.account-handler label{
+	margin: 10px 0;
+}
+.account-handler button{
+	margin: 10px 0;
+}
+.account-handler>div{
+	padding: 20px 40px;
+}

@@ -23,8 +23,11 @@
 
         
         <link th:href="@{/css/admin-style/admin.css}" rel="stylesheet" />
+        
        
       	<link th:href="@{/css/admin-style/admin-dashboard.css}" rel="stylesheet" />
+
+<link th:href="@{/css/admin-style/admin-account.css}" rel="stylesheet" />
 
 </head>
 
@@ -41,7 +44,7 @@
             <span>Orders</span>
         </a>
         <a href="/admin/news" name-nav="news"><i class="fas fa-newspaper"></i>
-            <span>News</span>
+            <span>Blog</span>
         </a>
         <a href="/admin/account" name-nav="account"><i class="fas fa-user"></i>
             <span>Account</span>
@@ -61,49 +64,24 @@
                 </div>
             </div>
 
-
-            <div class="admin-content">
-                <h2>Dashboard</h2>
-                <div class="admin-statistical">
-                    <div class="box" name-nav="products">
-                        <p>
-                            <span class="text">
-                                <!-- <%= data.productsCount %> -->
-                            </span>
-                            <br /><span>Products</span>
-                        </p>
-                        <i class="fas fa-list"></i>
-                    </div>
-                    <div class="box" name-nav="customers">
-                        <p>
-                            <span class="text">
-                                <!-- <%= data.usersCount %> -->
-                            </span>
-                            <br /><span>Customers</span>
-                        </p>
-                        <i class="fas fa-user-friends"></i>
-                    </div>
-                    <div class="box" name-nav="orders">
-                        <p>
-                            <span class="text">
-                                <!-- <%= data.ordersCount %> -->
-                            </span>
-                            <br /><span>Orders</span>
-                        </p>
-                        <i class="fas fa-shopping-bag"></i>
-                    </div>
-                    <div class="box" name-nav="news">
-                        <p>
-                            <span class="text">
-                                <!-- <%= data.newsCount %> -->
-                            </span>
-                            <br /><span>Blog</span>
-                        </p>
-                        <i class="fas fa-newspaper"></i>
-                    </div>
-                </div>
-
-                
+<!-- content -->
+            <div class="account-handler">
+	            <div>
+				  <div class="form-group">
+				    <label for="exampleInputEmail1">Tài khoản</label>
+				    <input type="email" class="form-control" id="name" required="required" placeholder="Enter email">
+				   
+				  </div>
+				  <div class="form-group">
+				    <label for="exampleInputPassword1">Mật khẩu</label>
+				    <input type="password" class="form-control" id="pass" required="required" placeholder="Password">
+				  </div>
+				  <div class="form-group">
+				    <label for="exampleInputPassword1">Nhập lại mật khẩu</label>
+				    <input type="password" class="form-control" id="repass" required="required" placeholder="Password">
+				  </div>
+				  <button class="btn btn-primary" onclick="createAccount()">Tạo tài khoản</button>
+				</div>
             </div>
         </div>
     </div>
@@ -127,7 +105,7 @@
 
 <script type="text/javascript" th:src="@{/js/admin.js}"></script>
 <script type="text/javascript" th:src="@{/js/base.js}"></script>
-    
+<script type="text/javascript" th:src="@{/js/admin-account.js}"></script>
 </body>
 
 </html>
