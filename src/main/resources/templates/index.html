@@ -137,7 +137,9 @@
 												<p><span class="card-text" th:if="${x.productDetails.size()>0 }"   th:text="${x.productDetails.get(0).cost}" ></span>
 												<span>đ</span>
 												</p>
-											</div>
+												<p class="add-cart" onclick="pushLocalStorage(this)"><i class="fas fa-plus mr-2"></i>Thêm vào giỏ</p>
+												<p class="buyNow" onclick="buyNow(this)">Mua ngay</p>
+											</div> 
 										</div>
 									</div>
 								
@@ -160,6 +162,8 @@
 													<p><span class="card-text" th:if="${x.productDetails.size()>0 }"   th:text="${x.productDetails.get(0).cost}" ></span>
 													<span>đ</span>
 													</p>
+													<p class="add-cart" onclick="pushLocalStorage(this)"><i class="fas fa-plus mr-2"></i>Thêm vào giỏ</p>
+													<p class="buyNow" onclick="buyNow(this)">Mua ngay</p>
 												</div>
 											</div>
 										</div>
@@ -184,6 +188,8 @@
 													<p><span class="card-text" th:if="${x.productDetails.size()>0 }"   th:text="${x.productDetails.get(0).cost}" ></span>
 													<span>đ</span>
 													</p>
+													<p class="add-cart" onclick="pushLocalStorage(this)"><i class="fas fa-plus mr-2"></i>Thêm vào giỏ</p>
+													<p class="buyNow" onclick="buyNow(this)">Mua ngay</p>
 												</div>
 											</div>
 										</div>
@@ -237,11 +243,19 @@
 				</div>
 
 			</div>
-
-
 		</div>
 
 	</div>
+	<div class="action-toast">
+			<div class="toast">
+				<div class="toast__container">
+					<div class="toast__icon">
+						<i class="fas fa-check"></i>
+					</div>
+					<div class="toast__text">Sản phẩm đã được thêm vào Giỏ hàng</div>
+				</div>
+			</div>
+		</div>
 	</main>
 <div th:insert="footer :: footer"></div>
 	
@@ -250,7 +264,7 @@
 
 <script  th:src="@{/js/tool.min.js}"></script>
 <script th:src="@{/js/main.js}" ></script>
-
+<script th:src="@{/js/index.js}" ></script>
 	<script>
 		$(document).ready(function() {
 			$(".nav-tabs a").click(function() {

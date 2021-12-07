@@ -35,4 +35,7 @@ public interface ProductService {
 	public Boolean deleteProductById(String id);
 
 	public Product getOneProductById(String id);
+
+	public List<ProductResult> getPaginationByPageNumberAndList(int pageNumber, List<ProductResult> list,
+			int totalItems);
 }

@@ -20,6 +20,36 @@
 #myTable tr td a:hover{
 	text-decoration: underline !important;
 }
+.section-product-special .add-cart,.section-product-special .buyNow{
+    color: #f4ede2fa;
+    font-size: 15px;
+    border: 1px solid green;
+    display: inline-block;
+    padding: 5px;
+        border-radius: 6px;
+       
+}
+.section-product-special .add-cart:hover,.section-product-special .buyNow:hover{
+   cursor: pointer;
+       background: #f4ebde;
+       
+}
+.section-brand-special .add-cart:hover,.section-brand-special .buyNow:hover{
+	 cursor: pointer;
+       background: #f4ebde;
+}
+.section-brand-special .add-cart,.section-brand-special .buyNow{
+	  
+    font-size: 15px;
+    border: 1px solid green;
+    padding: 5px;
+        margin: auto;
+    margin: center;
+    color: black;
+        border-radius: 6px;
+            text-align: center;
+    margin-top: 6px;
+}
 .item-product {
 	list-style: none;
 	position: relative;
@@ -59,6 +89,80 @@
 	color: #000
 }
 
+.RemoveAllCart{
+	background: black;
+    float: right;
+}
+.RemoveAllCart:hover{
+	background: #6b6b6b;
+	cursor: pointer;
+    
+}
+.section-blog{
+    padding-top: 100px;
+    padding-bottom: 200px;
+}
+.banner-blog{
+    position: relative;
+}
+.banner-blog h2{
+    position:absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%);
+    color: rgb(235, 235, 235);
+    font-size: 40px;
+}
+.section-blog .title-blog{
+    text-align: justify;
+font-size: 25px;
+color: #615f5f;
+padding: 20px 20px;
+}
+.section-blog .content-blog{
+    color: #9d9d9d;
+    font-style: italic;
+padding: 0px 20px;
+
+}
+.toast__icon{
+	    display: inline-block;
+   
+       background-color: #27b433;
+    font-size: 36px;
+    margin-bottom:30px;
+        border-radius: 100px;
+    padding: 10px 19px;
+}
+.action-toast{
+	position: fixed;
+	z-index: 999;
+	display:none;
+	top: 50%;
+	left: 50%;
+	background: rgb(0 0 0 / 72%);
+	color: white;
+	    transform: translate(-50%, -50%);
+    width: 478px;
+    text-align: center;
+    padding: 33px;
+}
+.section-blog .item-blog{
+    padding-bottom: 20px;
+    background: whitesmoke;
+    transition: all 0.5s ease; 
+    margin: 30px 0px;
+}
+.section-blog .item-blog:hover{
+    background: whitesmoke;
+    box-shadow: 0px 15px 45px -9px rgb(117 111 111);
+}
+
+.section-blog .text-center{
+    font-weight: bold;
+    color: gray;
+    padding-bottom: 50px;
+}
 
 .section-product-detailt i {
     color: #e7ae87;
@@ -508,7 +612,9 @@ body {
 	-ms-flex-pack: center;
 	justify-content: center
 }
-
+.action-toast{
+	z-index: 999;
+}
 #main .section-cart {
 	padding-top: 170px
 }
@@ -702,7 +808,7 @@ body {
 }
 
 .section-product-special .card {
-	height: 455px;
+	height: 503px;
 }
 
 #huong>h4 {

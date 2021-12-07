@@ -45,7 +45,7 @@
 															<tbody id="myTable">
 																<tr th:each=" listBrand: ${listBrand}">
 																	<td><a
-																		th:href="'/product/thuonghieu/' + ${listBrand.name}"
+																		th:href="'/product/thuonghieu/' + ${listBrand.name}+'/page/1'"
 																		class="brandName" th:text="${listBrand.name}"></a></td>
 																</tr>
 
@@ -139,7 +139,7 @@
 
 										<form class="woocommerce-ordering" method="get">
 											<select name="orderby" class="orderby  uk-select"
-												aria-label="Đơn hàng của cửa hàng" onchange="sortBy()"
+												aria-label="Đơn hàng của cửa hàng" onchange="sortBy(this)"
 												id="sort">
 
 												<option value="date" selected="selected">Sắp xếp
@@ -149,14 +149,10 @@
 													xuống thấp</option>
 											</select> <input type="hidden" name="paged" value="1">
 										</form>
-										<h1 th:text="${notFind}" style="
-    color: #736a6a;
-    font-size: 22px;
-    padding-top: 127px;
-"></h1>
+										
 										<ul class="products " id="productssss">
 											<div class="bs-row">
-												<div class="bs-col tn-25-10"
+												<div class="bs-col tn-25-10 pr"
 													th:each="products : ${lstProductResult}">
 													<li class="woman-attr product type-product "><a
 														th:href="${'/product-detailts/' + products.product.slug}"
@@ -175,10 +171,26 @@
 														</div> <span class="price"> <span class="cart-text1"
 															th:text="${products.productDetails[0].cost}"> </span>
 													</span></li>
+													<p class="add-cart" onclick="pushLocalStorage(this)">
+														<i class="fas fa-plus mr-2"></i>Thêm vào giỏ
+													</p>
+													<p class="buyNow" onclick="buyNow(this)">Mua ngay</p>
+
 												</div>
 											</div>
 										</ul>
-
+										<h1 th:text="${notFind}"
+											style="color: #736a6a; font-size: 22px;"></h1>
+										<ul class="pagination">
+											<li><a th:if="${currentPage>1&&totalItems>12}"
+												th:href="@{${href} + ${currentPage-1}}">Previous</a></li>
+											
+												<li th:if="${totalPages>1}" th:each="i : ${#numbers.sequence(1,totalPages)}"> <a
+												 th:href="@{${href} + ${i}}" th:text="${i}"></a></li>
+											<li><a th:if="${currentPage<totalPages}"
+												th:href="@{${href} + ${currentPage+1}}">Next</a> 
+												</li>
+										</ul>
 									</div>
 
 								</div>
@@ -189,6 +201,36 @@
 			</div>
 		</div>
 
+	</div>
+	<div class="action-toast">
+		<div class="toast">
+			<div class="toast__container">
+				<div class="toast__icon">
+					<i class="fas fa-check"></i>
+				</div>
+				<div class="toast__text">Sản phẩm đã được thêm vào Giỏ hàng</div>
+			</div>
+		</div>
+	</div>
+	<div class="section-contact">
+		<div class="bs-container">
+			<div class="module-contact">
+				<div class="module">
+					<h1 class="module-header">King Fragrance</h1>
+					<div class="module-content">
+						<p>
+							<i class="fas fa-map-marker-alt"></i>Số 78C, ngõ 87 Láng Hạ, Hà
+							Nội | 525/44 Tô Hiến Thành, P14, Q10, TP. Hồ Chí Minh
+						</p>
+						<p>
+							<i class="fas fa-mobile-alt"></i>090 721 9889 <i
+								class="far fa-envelope"></i>xxiv.fragrance@gmail.com
+						</p>
+						<p>Giờ mở cửa: Các ngày trong tuần từ 9:00 – 21:00</p>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	</main>
 	<div th:insert="footer-page :: footer-page"></div>
@@ -202,6 +244,7 @@
 	<script th:src="@{/js/main.js}"></script>
 	<script th:src="@{/js/base.js}"></script>
 	<script th:src="@{/js/product.js}"></script>
+	<script th:src="@{/js/index.js}"></script>
 	<script type="text/javascript">
 		var card_text1 = document.querySelectorAll('.cart-text1');
 
@@ -230,10 +273,9 @@
 		}
 		var brandName = document.querySelectorAll('.brandName');
 		for (i = 0; i < brandName.length; i++) {
-			brandName[i].href=brandName[i].href.replace(/%20/g,"-");
-		
+			brandName[i].href = brandName[i].href.replace(/%20/g, "-");
+
 		}
-		
 	</script>
 </body>
 </html>

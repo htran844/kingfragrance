@@ -109,12 +109,15 @@ async function getIdOrder() {
 		getAllProduct();
 		renderDatHangThanhCong();
 	setTimeout(() => {	
-		 alert("Đặt hàng thành công!")
+	
 }, 100);
+$("html, body").animate({
+	scrollTop: 0
+}, 1000);
 }
 
 function renderDatHangThanhCong() {
-	
+		 alert("Đặt hàng thành công!")
 		document.getElementById('tm-main').innerHTML=
 			`
 			
