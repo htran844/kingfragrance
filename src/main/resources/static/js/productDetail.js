@@ -9,14 +9,15 @@
  type: 'GET',
  })
  for (let i = 0; i < productDetail.length; i++) {
- let optionHtml = ` <option value="">${productDetail[i].capacity}
- ml</option>`;
+ let optionHtml = ` ${productDetail[i].capacity}
+ ml`;
  let optionValue = productDetail[i].capacity;
  let optionalCon = document.createElement("option");
  optionalCon.value = optionValue;
- optionalCon.innerHTML = optionHtml;
+  optionalCon.innerHTML = optionHtml;
  document.querySelector("#capacity").appendChild(optionalCon);
  }
+
  let selectCapa = document.querySelector("#capacity");
  document.querySelector("#cost_pr").innerHTML = parseFloat(
  productDetail[0].cost) .toLocaleString("en")

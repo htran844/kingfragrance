@@ -1,10 +1,34 @@
 //1
 
 
+var redirect_Page;
 
 
 function init() {
+	let ListFilter= localStorage.getItem("ListFilter") ? JSON.parse(localStorage.getItem("ListFilter")) : [];
+	if (ListFilter.length>0&&localStorage.getItem("confirm_Page")) {
+		var urlParams = new Array();
+	for (let index = 0; index < ListFilter.length; index++) {
+		if (ListFilter[index].match("gender")) {
+			urlParams.push(JSON.parse(ListFilter[index]).gender);
+		}	
+		else{
+			urlParams.push(JSON.parse(ListFilter[index]).money);
+		}
+		
+	}
 
+	///load trang 
+	var urlPr = urlParams.toString().replace(/,/g, "&&");
+	
+		var hrefFilter =location.pathname;
+		url = `${hrefFilter}?${urlPr}`;
+		window.location.assign(url)
+
+	}
+	
+
+///////////////////////////////////
 	var _url = location.href
 	var gender = document.getElementsByClassName('gender-checkbox-filter');
 	var price = document.getElementsByClassName('price-checkbox-filter');
@@ -15,7 +39,7 @@ function init() {
 		 		scrollTop: 140
 		 	}, 1000);
 		 }	
-	if (!_url.match("fillter_gender")&&!_url.match("fillter_money")&&!_url.match("order_by")) {
+	if (!_url.match("fillter_gender")&&!_url.match("fillter_money")&&!_url.match("order_by")&& !localStorage.getItem("confirm_Page")) {
 		localStorage.removeItem("ListFilter");
 	}
 	if (_url.match("price-desc")) {
@@ -43,6 +67,8 @@ function init() {
 	else if (_url.match('fillter_money=5000000-100000000')) {
 		price[2].checked = true;
 	}
+		localStorage.removeItem("confirm_Page");
+
 }
 init();
 
@@ -206,3 +232,7 @@ function pushFilterToLocal(e, check,ListFilterParam) {
 
 
 
+
+function redirectPage(){
+	localStorage.setItem("confirm_Page","oke")
+}

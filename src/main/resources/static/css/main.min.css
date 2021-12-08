@@ -11,6 +11,13 @@
 	max-height: 230px;
 	margin-bottom: 30px
 }
+
+.card-colorCategory{
+	height: 57px;
+	    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 #tm-main{
 	    display: table;
     margin: auto;
@@ -27,6 +34,9 @@
     display: inline-block;
     padding: 5px;
         border-radius: 6px;
+        
+        margin-bottom: 
+        0px;
        
 }
 .section-product-special .add-cart:hover,.section-product-special .buyNow:hover{
@@ -43,12 +53,12 @@
     font-size: 15px;
     border: 1px solid green;
     padding: 5px;
-        margin: auto;
     margin: center;
     color: black;
         border-radius: 6px;
             text-align: center;
     margin-top: 6px;
+    margin-bottom: 0px;
 }
 .item-product {
 	list-style: none;
@@ -69,7 +79,7 @@
 	text-align: center;
 	color: #000;
 	line-height: 27px;
-	margin: 25px 0
+	margin-top: 25px;
 }
 
 .page-numbers span:hover {
@@ -175,7 +185,6 @@ padding: 0px 20px;
 #main .section-brand-special .type-product .brand {
 	display: block;
 	color: #d1bf7f;
-	padding: 10px
 }
 
 #main .section-brand-special .orderby {
@@ -1193,7 +1202,7 @@ body {
 .section-product-special .card .card-title {
 	color: #9d6818;
     border-bottom: 1px solid;
-    padding-bottom: 67px;
+    padding-bottom: 43px;
     font-size: 22px;
     margin: 0 auto 15px;
     height: 45px;
@@ -1209,7 +1218,13 @@ body {
     border-radius: 100px;
     text-decoration: none;
 }
-
+.product-name.woocommerce-loop-product__title{
+	display: block;
+    height: 50px;
+        display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .section-product-special .card .card-body {
 	height: 180px;
 }
@@ -2148,6 +2163,18 @@ body {
 	top: 5px;
 	left: 0
 }
+.type-product img{
+	    padding: 30px 30px 17px 30px;
+}
+.pr{
+	position: unset;
+   
+    border: none;
+}
+
+.pr .buyNow{
+	width: 100%;
+}
 
 @media only screen and (max-width:767px) {
 	.section-bannerPage {
@@ -2160,4 +2187,9 @@ body {
 	.section-bannerPage .module-bannerPage .module-header .title {
 		font-size: 50px
 	}
+}
+@media only screen and (min-width: 1200px){
+.bs-container {
+    width: 1500px !important;
+}
 }

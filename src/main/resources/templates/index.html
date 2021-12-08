@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org/"
-	>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,10 +10,11 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 
-  <link rel="stylesheet" type="text/css"  th:href="@{/css/tool.min.css}" />
-<link rel="stylesheet" type="text/css" th:href="@{/css/main.min.css}"  />
+<link rel="stylesheet" type="text/css" th:href="@{/css/tool.min.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/main.min.css}" />
 
 </head>
+
 <body class="index">
 
 	<div th:insert="header :: header"></div>
@@ -102,10 +103,10 @@
 							<div>
 								<a href=""><img src="images/brand5.png" alt=""></a>
 							</div>
-						<div>
+							<div>
 								<a href=""><img src="images/brand2.png" alt=""></a>
 							</div>
-							
+
 						</div>
 					</div>
 				</div>
@@ -120,55 +121,79 @@
 					<div class="module-content">
 						<br>
 						<div class="tab-content">
-							<div  class="container mt-4">
+							<div class="container mt-4">
 								<br>
 								<h1 class="module-header"
 									style="font-size: 20px; padding: 20px 0px;">Nước Hoa Nam</h1>
 
 								<div class="bs-row product-class">
 
-									<div class="bs-col tn-33-15" th:each="x : ${listProductResult}"  th:if="${listProductResult.size()>0 && x.product.hot && x.product.gender eq 'nam'}" >
-										<div class="card" >
-											<a th:href="@{'/product-detailts/' + ${x.product.slug}}"> <img class="card-img-top"
-												th:src="${x.product.image}"></a>
+									<div class="bs-col tn-33-15" th:each="x : ${listProductResult}"
+										th:if="${listProductResult.size()>0 && x.product.hot && x.product.gender eq 'nam'}">
+										<div class="card">
+											<a th:href="@{'/product-detailts/' + ${x.product.slug}}">
+												<img class="card-img-top" th:src="${x.product.image}">
+											</a>
 											<div class="card-body">
 												<h4 class="card-title" th:text="${x.product.brand}"></h4>
-												<p class="card-colorCategory" th:text="${x.product.slug}"></p>
-												<p><span class="card-text" th:if="${x.productDetails.size()>0 }"   th:text="${x.productDetails.get(0).cost}" ></span>
-												<span>đ</span>
+												<p class="card-colorCategory" th:text="${x.product.name}"></p>
+												<p class="d-inline-block">
+													<span class="card-text cost_pr"
+														th:if="${x.productDetails.size()>0 }"
+														th:text="${x.productDetails.get(0).cost}"></span>
+
 												</p>
-												<p class="add-cart" onclick="pushLocalStorage(this)"><i class="fas fa-plus mr-2"></i>Thêm vào giỏ</p>
+												<p class="capacity-show d-inline-block">
+													<select name="" class="ml-4 capacity" onchange="getMoneyByCapacity(this)">
+														<option th:each="i :${x.productDetails}" th:value="${i.capacity}" th:text="${i.capacity}+' ml'"></option>
+													</select> 
+												</p>
+												<p class="add-cart" onclick="pushLocalStorage(this)">
+													<i class="fas fa-plus mr-2"></i>Thêm vào giỏ
+												</p>
 												<p class="buyNow" onclick="buyNow(this)">Mua ngay</p>
-											</div> 
+											</div>
 										</div>
 									</div>
-								
+
 								</div>
 							</div>
-							<div  class="container mt-4">
+							<div class="container mt-4">
 								<br>
 								<h1 class="module-header"
 									style="font-size: 20px; padding: 20px 0px;">Nước Hoa Nữ</h1>
 
-									<div class="bs-row product-class">
+								<div class="bs-row product-class">
 
-										<div class="bs-col tn-33-15" th:each="x : ${listProductResult}" th:if="${listProductResult.size()>0 && x.product.hot && x.product.gender eq 'nữ'}" >
-											<div class="card" >
-												<a th:href="@{'/product-detailts/' + ${x.product.slug}}"> <img class="card-img-top"
-													th:src="${x.product.image}"></a>
-												<div class="card-body">
-													<h4 class="card-title" th:text="${x.product.brand}"></h4>
-													<p class="card-colorCategory" th:text="${x.product.slug}"></p>
-													<p><span class="card-text" th:if="${x.productDetails.size()>0 }"   th:text="${x.productDetails.get(0).cost}" ></span>
-													<span>đ</span>
-													</p>
-													<p class="add-cart" onclick="pushLocalStorage(this)"><i class="fas fa-plus mr-2"></i>Thêm vào giỏ</p>
-													<p class="buyNow" onclick="buyNow(this)">Mua ngay</p>
-												</div>
+									<div class="bs-col tn-33-15" th:each="x : ${listProductResult}"
+										th:if="${listProductResult.size()>0 && x.product.hot && x.product.gender eq 'nữ'}">
+										<div class="card">
+											<a th:href="@{'/product-detailts/' + ${x.product.slug}}">
+												<img class="card-img-top" th:src="${x.product.image}">
+											</a>
+											<div class="card-body">
+												<h4 class="card-title" th:text="${x.product.brand}"></h4>
+												<p class="card-colorCategory" th:text="${x.product.slug}"></p>
+												<p class="d-inline-block">
+													<span class="card-text cost_pr"
+														th:if="${x.productDetails.size()>0 }"
+														th:text="${x.productDetails.get(0).cost}"></span>
+												</p>
+												<p class="capacity-show d-inline-block">
+													<select name="" class="ml-4 capacity" onchange="getMoneyByCapacity(this)">
+														<option th:each="i :${x.productDetails}" th:value="${i.capacity}" th:text="${i.capacity}+' ml'"></option>
+													</select> 
+												</p>
+												<p class="add-cart" onclick="pushLocalStorage(this)">
+													<i class="fas fa-plus mr-2"></i>Thêm vào giỏ
+												</p>
+												<p class="buyNow" onclick="buyNow(this)">Mua ngay</p>
+
 											</div>
 										</div>
-									
 									</div>
+
+								</div>
 							</div>
 							<div class="container mt-4">
 								<br>
@@ -176,25 +201,37 @@
 									style="font-size: 20px; padding: 20px 0px;">Nước Hoa
 									Unisex</h1>
 
-									<div class="bs-row product-class">
+								<div class="bs-row product-class">
 
-										<div class="bs-col tn-33-15" th:each="x : ${listProductResult}" th:if="${listProductResult.size()>0 && x.product.hot && x.product.gender eq 'unisex'}" >
-											<div class="card" >
-												<a th:href="@{'/product-detailts/' + ${x.product.slug}}"> <img class="card-img-top"
-													th:src="${x.product.image}"></a>
-												<div class="card-body">
-													<h4 class="card-title" th:text="${x.product.brand}"></h4>
-													<p class="card-colorCategory" th:text="${x.product.slug}"></p>
-													<p><span class="card-text" th:if="${x.productDetails.size()>0 }"   th:text="${x.productDetails.get(0).cost}" ></span>
-													<span>đ</span>
-													</p>
-													<p class="add-cart" onclick="pushLocalStorage(this)"><i class="fas fa-plus mr-2"></i>Thêm vào giỏ</p>
-													<p class="buyNow" onclick="buyNow(this)">Mua ngay</p>
-												</div>
+									<div class="bs-col tn-33-15" th:each="x : ${listProductResult}"
+										th:if="${listProductResult.size()>0 && x.product.hot && x.product.gender eq 'unisex'}">
+										<div class="card">
+											<a th:href="@{'/product-detailts/' + ${x.product.slug}}">
+												<img class="card-img-top" th:src="${x.product.image}">
+											</a>
+											<div class="card-body">
+												<h4 class="card-title" th:text="${x.product.brand}"></h4>
+												<p class="card-colorCategory" th:text="${x.product.slug}"></p>
+												<p class="d-inline-block">
+													<span class="card-text cost_pr"
+														th:if="${x.productDetails.size()>0 }"
+														th:text="${x.productDetails.get(0).cost}"></span>
+												</p>
+												<p class="capacity-show d-inline-block">
+													<select name="" class="ml-4 capacity" onchange="getMoneyByCapacity(this)">
+														<option th:each="i :${x.productDetails}" th:value="${i.capacity}" th:text="${i.capacity}+' ml'"></option>
+													</select> 
+												</p>	
+												<p class="add-cart" onclick="pushLocalStorage(this)">
+													<i class="fas fa-plus mr-2"></i>Thêm vào giỏ
+												</p>
+												<p class="buyNow" onclick="buyNow(this)">Mua ngay</p>
+
 											</div>
 										</div>
-									
 									</div>
+
+								</div>
 							</div>
 						</div>
 					</div>
@@ -247,24 +284,24 @@
 
 	</div>
 	<div class="action-toast">
-			<div class="toast">
-				<div class="toast__container">
-					<div class="toast__icon">
-						<i class="fas fa-check"></i>
-					</div>
-					<div class="toast__text">Sản phẩm đã được thêm vào Giỏ hàng</div>
+		<div class="toast">
+			<div class="toast__container">
+				<div class="toast__icon">
+					<i class="fas fa-check"></i>
 				</div>
+				<div class="toast__text">Sản phẩm đã được thêm vào Giỏ hàng</div>
 			</div>
 		</div>
+	</div>
 	</main>
-<div th:insert="footer :: footer"></div>
-	
+	<div th:insert="footer :: footer"></div>
 
 
 
-<script  th:src="@{/js/tool.min.js}"></script>
-<script th:src="@{/js/main.js}" ></script>
-<script th:src="@{/js/index.js}" ></script>
+
+	<script th:src="@{/js/tool.min.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
+	<script th:src="@{/js/index.js}"></script>
 	<script>
 		$(document).ready(function() {
 			$(".nav-tabs a").click(function() {
@@ -307,15 +344,15 @@
 			speed : 1000,
 			autoplaySpeed : 5000,
 		});
-		var card_text= document.querySelectorAll('.card-text'); 
-		console.log(card_text.length);
+		var card_text = document.querySelectorAll('.card-text');
 
 		for (var i = 0; i < card_text.length; i++) {
-			card_text[i].innerHTML=parseFloat(card_text[i].innerHTML).toLocaleString("en")
-			.replace(/,/g, ".") ;
+			card_text[i].innerHTML = parseFloat(card_text[i].innerHTML)
+					.toLocaleString("en").replace(/,/g, ".")+" đ";
 		}
 		
-		</script>
+	</script>
 
 </body>
+
 </html>

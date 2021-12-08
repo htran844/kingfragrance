@@ -149,33 +149,42 @@
 													xuống thấp</option>
 											</select> <input type="hidden" name="paged" value="1">
 										</form>
-										
+
 										<ul class="products " id="productssss">
 											<div class="bs-row">
 												<div class="bs-col tn-25-10 pr"
 													th:each="products : ${lstProductResult}">
-													<li class="woman-attr product type-product "><a
-														th:href="${'/product-detailts/' + products.product.slug}"
-														class="woocommerce-LoopProduct-link woocommerce-loop-product__link"><img
-															width="100%" th:src="${products.product.image}"
-															class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
-															alt="Armaf Club de Nuit Woman" loading="lazy"
-															sizes="(max-width: 300px) 100vw, 300px"> </a>
-														<div class="name-product">
-															<a href=""
-																class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
-																<span class="brand" th:text="${products.product.brand}"></span>
-															</a><a href=""
-																class="product-name woocommerce-loop-product__title"
-																th:text="${products.product.name}"></a>
-														</div> <span class="price"> <span class="cart-text1"
-															th:text="${products.productDetails[0].cost}"> </span>
-													</span></li>
-													<p class="add-cart" onclick="pushLocalStorage(this)">
-														<i class="fas fa-plus mr-2"></i>Thêm vào giỏ
-													</p>
-													<p class="buyNow" onclick="buyNow(this)">Mua ngay</p>
+													<div class="card pr">
+														<li class="woman-attr product type-product "><a
+															th:href="${'/product-detailts/' + products.product.slug}"
+															class="woocommerce-LoopProduct-link woocommerce-loop-product__link"><img
+																width="100%" th:src="${products.product.image}"
+																class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
+																alt="Armaf Club de Nuit Woman" loading="lazy"
+																sizes="(max-width: 300px) 100vw, 300px"> </a>
+															<div class="name-product">
+																<a href=""
+																	class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
+																	<span class="brand" th:text="${products.product.brand}"></span>
+																</a><a href=""
+																	class="product-name woocommerce-loop-product__title"
+																	th:text="${products.product.name}"></a>
+															</div> <span class="price"> <span class="cart-text1 cost_pr"
+																th:text="${products.productDetails[0].cost}"> </span>
+														</span>
+															<p class="capacity-show d-inline-block">
+													<select name="" class="ml-4 capacity" onchange="getMoneyByCapacity(this)">
+														<option th:each="i :${products.productDetails}" th:value="${i.capacity}" th:text="${i.capacity}+' ml'"></option>
+													</select> 
+												</p></li>
 
+
+														<p class="add-cart" onclick="pushLocalStorage(this)">
+															<i class="fas fa-plus mr-2"></i>Thêm vào giỏ
+														</p>
+													
+														<p class="buyNow" onclick="buyNow(this)">Mua ngay</p>
+													</div>
 												</div>
 											</div>
 										</ul>
@@ -184,12 +193,12 @@
 										<ul class="pagination">
 											<li><a th:if="${currentPage>1&&totalItems>12}"
 												th:href="@{${href} + ${currentPage-1}}">Previous</a></li>
-											
-												<li th:if="${totalPages>1}" th:each="i : ${#numbers.sequence(1,totalPages)}"> <a
-												 th:href="@{${href} + ${i}}" th:text="${i}"></a></li>
+
+											<li th:if="${totalPages>1}"
+												th:each="i : ${#numbers.sequence(1,totalPages)}"><a
+												th:href="@{${href} + ${i}}" th:text="${i}" onclick="redirectPage()"></a></li>
 											<li><a th:if="${currentPage<totalPages}"
-												th:href="@{${href} + ${currentPage+1}}">Next</a> 
-												</li>
+												th:href="@{${href} + ${currentPage+1}}">Next</a></li>
 										</ul>
 									</div>
 
