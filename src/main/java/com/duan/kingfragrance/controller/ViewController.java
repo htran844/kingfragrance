@@ -310,5 +310,9 @@ public class ViewController {
 		model.addAttribute("productRecommended", productRecommended);
 		return "productDetail";
 	}
+	@GetMapping("/about")
+	public String getAbout() {
+		return "about";
+	}
 
 }

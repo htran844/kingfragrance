@@ -10,7 +10,7 @@
             <div class="bs-container" style="width: 1200px !important;">
                 <div class="nav-content clearfix">
                     <div class="logo" data-aos="fade-down">
-                        <a th:href="@{/}"><img src="images/logo.png" alt=""></a>
+                        <a th:href="@{/}"><img th:src="@{/images/logo.png}" alt=""></a>
                     </div>
                     
                     <div class="nav">
@@ -22,7 +22,7 @@
                                 <a th:href="@{/}" class="menu-list__link active">Trang chủ</a>
                             </li>
                             <li class="menu-list__item">
-                                <a href="about.html" class="menu-list__link">Giới thiệu</a>
+                                <a th:href="@{/about}" class="menu-list__link">Giới thiệu</a>
                             </li>
                             <li class="menu-list__item">
                                 <a th:href="@{/thuong-hieu}"  class="menu-list__link">Thương hiệu</a>

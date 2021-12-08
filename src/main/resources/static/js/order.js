@@ -12,11 +12,18 @@ async function getIdOrder() {
 		alert("Không được để trống email!")
 		return;
 	}
+	if (!email.match("\\w+@\\w+\.\\w{3,5}")) {
+		alert("Email không hợp lệ!")
+		return;
+	}
 	if (phone==="") {
 		alert("Không được để trống số điện thoại!")
 		return;
 	}
-	
+	if (!phone.match("0\\d{9}")) {
+		alert("Số điện thoại không hợp lệ!")
+		return;
+	}
 	if (address==="") {
 		alert("Không được để trống address!")
 		return;

@@ -44,6 +44,63 @@
        background: #f4ebde;
        
 }
+
+.section-about{
+    padding-top: 100px;
+}
+.section-about .module-header{
+    text-align: center;
+    font-weight:bold;
+    color:black;
+    font-family: 'ubuntu_bold';
+    padding:80px;
+}
+.section-about .module-member img{
+    border-radius: 154px;
+    position: absolute;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
+    width: 231px;
+    height: 231px;  
+    object-fit: cover;
+}
+.section-about .module-member .member-image{
+    border: 10px solid #eeb763;
+    border-radius: 173px;
+    width: 270px;
+    height: 270px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px;
+}
+.section-about .content-member{
+    line-height: 50px;
+}
+.section-about .name{
+    text-transform: uppercase;
+    font-family: pt_sans_bold;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 6px;
+    color: #ce9033;
+    font-weight:bold;
+}
+.section-about .role{
+    font-family: pt_sans_bold;
+    font-size: 18px;
+    text-align: center;
+    color: #836565;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.section-about .location{
+    font-size: 18px;
+    text-align: center;
+    color: #de4444;
+}
 .section-brand-special .add-cart:hover,.section-brand-special .buyNow:hover{
 	 cursor: pointer;
        background: #f4ebde;
