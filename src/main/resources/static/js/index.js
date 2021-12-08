@@ -44,10 +44,12 @@ async function getProductDetail(slugProduct,e,trangProduct) {
 		Product = JSON.stringify(Product);
 		ListProduct.push(Product);
 		localStorage.setItem("ListProduct", JSON.stringify(ListProduct));
+		var length_cart = ListProduct.length;
+		document.getElementById('number_cart').innerHTML=length_cart;
 		if (redirecTocart == true) {
 			window.location = "/gio-hang";
 		}
-
+//		var ListProduct = localStorage.getItem("ListProduct") ? JSON.parse(localStorage.getItem("ListProduct")) : [];
 		var cart = $("#cart");
 		cart.animate({ opacity: 0 });
 		cart.animate({ opacity: 1, });
@@ -55,6 +57,7 @@ async function getProductDetail(slugProduct,e,trangProduct) {
 		setTimeout(function () {
 			document.getElementsByClassName("action-toast")[0].style.display = "none";
 		}, 2000);
+		
 	}
 
 }
@@ -74,10 +77,12 @@ function pushLocalStorage(e) {
 		slugProduct = _url[_url.length - 1]
 	}
 	getProductDetail(slugProduct,e,trangProduct);
+	
 }
 async function buyNow(e) {
 	redirecTocart = true;
 	pushLocalStorage(e);
+
 }
 // let productDetail;
 // var item_product = document.getElementsByClassName("card");
@@ -96,7 +101,7 @@ async function buyNow(e) {
 // 			capacity[index].innerHTML=optionChild
 // 			// document.getElementsByClassName("cost_pr")[index].innerHTML = parseFloat(
 // 			// 	productDetail[0].cost).toLocaleString("en")
-// 			// 	.replace(/,/g, ".") + " đ";
+// 			// 	.replace(/,/g, ".") + " ₫";
 
 // 			// let selectCapa = document.getElementsByClassName(".capacity");
 
@@ -105,7 +110,7 @@ async function buyNow(e) {
 // 			// 		if (selectCapa.value == productDetail[i].capacity) {
 // 			// 			document.getElementsByClassName(".cost_pr")[index].innerHTML = parseFloat(productDetail[i].cost)
 // 			// 				.toLocaleString("en")
-// 			// 				.replace(/,/g, ".") + " đ";
+// 			// 				.replace(/,/g, ".") + " ₫";
 // 			// 		}
 // 			// 	}
 // 			// });
@@ -117,13 +122,13 @@ async function buyNow(e) {
 // let selectCapa = document.querySelector("#capacity");
 //  document.querySelector("#cost_pr").innerHTML = parseFloat(
 //  productDetail[0].cost) .toLocaleString("en")
-//  .replace(/,/g, ".") + " đ";
+//  .replace(/,/g, ".") + " ₫";
 // selectCapa.addEventListener("change", function () {
 // 	for (let i = 0; i < productDetail.length; i++) {
 // 		if (selectCapa.value == productDetail[i].capacity) {
 // 			document.querySelector("#cost_pr").innerHTML = parseFloat(productDetail[i].cost)
 // 				.toLocaleString("en")
-// 				.replace(/,/g, ".") + " đ";
+// 				.replace(/,/g, ".") + " ₫";
 // 		}
 // 	}
 // });
@@ -151,7 +156,7 @@ async function getMoneyByCapacity(e) {
 	for (let i = 0; i < productDetail.length; i++) {
 		if (e.value == productDetail[i].capacity) {
 			moneyUpdate.innerHTML=parseFloat(productDetail[i].cost).toLocaleString("en")
-			.replace(/,/g, ".") + " đ";;
+			.replace(/,/g, ".") + " ₫";;
 		}
 	}
 }

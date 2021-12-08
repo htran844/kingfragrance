@@ -29,17 +29,7 @@
                             </li>
                             <li class="menu-list__item">
                                 <a class="menu-list__link" th:href="@{/product/page/1}">Sản phẩm</a>
-                                <ul class="dropdown-list">
-                                    <li class="dropdown-list__item">
-                                        <a href="/product/page/1?fillter_gender=nam" class="dropdown-list__link">nước hoa nam</a>
-                                    </li>
-                                    <li class="dropdown-list__item">
-                                        <a href="/product/page/1?fillter_gender=nu" class="dropdown-list__link">nước hoa nữ</a>
-                                    </li>
-                                    <li class="dropdown-list__item">
-                                        <a href="/product/page/1?fillter_gender=unisex" class="dropdown-list__link">nước hoa unisex</a>
-                                    </li>
-                                </ul>
+                                
                             </li>
                             <li class="menu-list__item">
                                 <a th:href="@{/blog}" class="menu-list__link ">Blog</a>
@@ -48,7 +38,8 @@
                             <li class="menu-list__item iconafter" style="    margin-left: 194px;">
                                 <a th:href="@{/tai-khoan}" class="menu-list__link link-navright"> <i class="far fa-user"></i></a>
                             </li>
-                            <li class="menu-list__item iconafter">
+                            <li class="menu-list__item iconafter" id="logo_cart">
+                            <span id="number_cart"></span>
                                 <a th:href="@{/gio-hang}" class="menu-list__link link-navright" id="cart"> <i class="fas fa-cart-arrow-down"></i></a>
                             </li>
                             

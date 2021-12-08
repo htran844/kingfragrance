@@ -22,11 +22,11 @@
         </h2>
     </div>
     <div class="section-blog">
-        <h1 class="text-center">ALL BLOG</h1>
+        <h1 class="text-center module-header">ALL BLOG</h1>
         <div class="bs-container">
             <div class="module-blog">
                 <div class="bs-row">
-                    <div class="bs-col tn-33-15 " th:each="x : ${lstBlog}">
+                    <div class="bs-col tn-33-15 " th:each="x : ${lstBlog}"data-aos="fade-up">
                         <div class="item-blog">
                         <img th:src="${x.image}" alt="" width="100%">
                         <h1 class="title-blog" th:text="${x.title}"></h1>

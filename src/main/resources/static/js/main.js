@@ -1,6 +1,6 @@
 $(document).ready(function () {
     AOS.init({
-        //        once: true,
+                once: true,
         offset: 0,
         easing: 'ease-in-out-cubic',
         duration: "500",
@@ -40,7 +40,9 @@ $(document).ready(function () {
 
 });
 // 
-
+var ListProduct = localStorage.getItem("ListProduct") ? JSON.parse(localStorage.getItem("ListProduct")) : [];
+var length_cart = ListProduct.length;
+document.getElementById('number_cart').innerHTML=length_cart;
 
 
 

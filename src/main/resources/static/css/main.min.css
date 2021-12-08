@@ -3,7 +3,7 @@
 }
 
 #main .section-brand-special .module-header {
-	color: #474444 !important
+	color: #474444 
 }
 
 #main .section-brand-special .list-cat {
@@ -11,12 +11,17 @@
 	max-height: 230px;
 	margin-bottom: 30px
 }
+.product-name woocommerce-loop-product__title{
+color: #7f7777;
+}
+
 
 .card-colorCategory{
 	height: 57px;
 	    display: flex;
     justify-content: center;
     align-items: center;
+        color: #7f7777;
 }
 #tm-main{
 	    display: table;
@@ -28,20 +33,22 @@
 	text-decoration: underline !important;
 }
 .section-product-special .add-cart,.section-product-special .buyNow{
-    color: #f4ede2fa;
-    font-size: 15px;
-    border: 1px solid green;
+   font-size: 15px;
+    border: 1px solid #ffedd2;
     display: inline-block;
     padding: 5px;
-        border-radius: 6px;
-        
-        margin-bottom: 
-        0px;
+    border-radius: 6px;
+    margin-bottom: 0px;
+    box-shadow: 0 0 4px grey;
+    transition:all .5s linear;
+
+          
        
 }
 .section-product-special .add-cart:hover,.section-product-special .buyNow:hover{
-   cursor: pointer;
-       background: #f4ebde;
+  cursor: pointer;
+    background: #ffc265;
+    color: white;
        
 }
 
@@ -103,19 +110,25 @@
 }
 .section-brand-special .add-cart:hover,.section-brand-special .buyNow:hover{
 	 cursor: pointer;
-       background: #f4ebde;
+    background: #ffc265;
+    color: white;
+
+       
 }
 .section-brand-special .add-cart,.section-brand-special .buyNow{
-	  
+	    width: 85% !important;
+    margin: auto;
     font-size: 15px;
-    border: 1px solid green;
+     border: 1px solid #ffedd2;
     padding: 5px;
+     box-shadow: 0 0 4px grey;
     margin: center;
     color: black;
         border-radius: 6px;
             text-align: center;
     margin-top: 6px;
     margin-bottom: 0px;
+    transition:all .5s linear;
 }
 .item-product {
 	list-style: none;
@@ -240,8 +253,8 @@ padding: 0px 20px;
 }
 
 #main .section-brand-special .type-product .brand {
-	display: block;
-	color: #d1bf7f;
+	    color: #000000ad;
+  
 }
 
 #main .section-brand-special .orderby {
@@ -635,22 +648,55 @@ body {
   margin: 5px;
   color: black;
 }
+#pills-tab .nav-item{
+	    border: 1px solid #e0dada;
+}
+#pills-tab .nav-item .nav-link.active{
+	    background: #e7a746;
+    color: white !important;
+}
+
+.pagination a:hover{
+     background: #ffd493;
+
+}
 
 #main .section-account {
 	padding-top: 170px
 }
 
+.social__link.facebook{
+	    border: 1px solid black;
+    padding: 6px 13px;
+    border-radius: 100px;
+}
+.social__link.facebook:hover{
+	  background: #ffc265;
+}
+#logo_cart{
+	position: relative;
+}
+#logo_cart #number_cart{
+	
+	position: absolute;
+    color: #fecb7e;
+    right: 9px;
+    top: -2px;
+    font-size: 13px;
+}
+
 #main .section-account .module-header {
-	color: #474444 !important
+	color: #474444 ;
+	
 }
-
-#main .section-account .nav-link {
-	color: #000
+.module-header.text-center{
+	text-shadow: -12px 8px 27px grey;
+	color:#ac7829 !important;
+	
 }
-
 #main .section-account .nav-link.active {
 	color: #fff;
-	background-color: #ffb000
+	background-color: #a49f9f
 }
 
 #main .section-account #pills-profile {
@@ -789,6 +835,19 @@ body {
 	    padding: 52px;
 	    background: #34161608;
 	        margin-top: 97px;
+	        position: fixed;
+    width: 30%;
+}
+#main .section-cart .module-right-money.active {
+	      
+	       padding: 52px;
+	    background: #34161608;
+	        margin-top: 150px;
+	        position: absolute;
+	        bottom:0%;
+    width: 558px;
+	       
+    
 }
 #main .section-cart .module-right .title {
 	    text-align: center;
@@ -811,6 +870,9 @@ body {
 
 #main .section-brand a {
 	color: #000
+}
+.return-to-shop,.wc-backward{
+	color:black !important;
 }
 
 #main .section-brand #all-brands {
@@ -871,8 +933,40 @@ body {
 #capacity {
 	outline: none;
 	border: 1px solid #dad4d4;
+	
 }
 
+.capacity{
+border:none;	
+}
+.capacity:focus-visible{
+outline:none;	
+}
+.capacity:hover{
+cursor: pointer;
+}
+
+.orderby{
+padding: 10px;
+    border-color: #c9d0c3;
+}
+.orderby:focus-visible{
+
+}
+.orderby:hover{
+
+}
+#widget-text-2 h3{
+	    color: #ac7829;
+}
+
+.cost_pr{
+	    color: #8b672f;
+    font-weight: bold;
+}
+#productssss{
+	
+}
 .section-product-special .card {
 	height: 503px;
 }
@@ -1133,12 +1227,12 @@ body {
 }
 
 .module .module-header {
-	color: #474444 !important;
+	color: #474444 ;
 	font-size: 44px;
 	text-transform: uppercase;
 	font-weight: bolder
 }
-
+#main .section-brand-special .module-header
 .section-brand-special {
 	padding-top: 100px;
 	padding-bottom: 70px
@@ -1238,7 +1332,7 @@ body {
 }
 
 .section-product-special .card {
-	border: 1px solid #cfc6c6;
+	border: 1px solid #ffc2654a;
 	text-align: center;
 	border-radius: 20px;
 	margin: 20px 0
@@ -1257,14 +1351,23 @@ body {
 }
 
 .section-product-special .card .card-title {
-	color: #9d6818;
+	    color: #000000ad;
     border-bottom: 1px solid;
     padding-bottom: 43px;
     font-size: 22px;
     margin: 0 auto 15px;
     height: 45px;
+    font-weight: 800;
 }
-
+.brand{
+	 color: #000000ad;
+   
+    padding-bottom: 43px;
+    font-size: 22px;
+    margin: 0 auto 15px;
+    height: 45px;
+    font-weight: 800;
+}
 .page-numbers li{
 	 font-size:25px;
     display: flex;
@@ -2225,10 +2328,22 @@ body {
 }
 .pr{
 	position: unset;
-   
+      
+    border: 0.5px solid transparent;
     border: none;
+    transition: all 0.5s linear;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-bottom:20px;
 }
 
+.pr:hover{
+	    box-shadow: 0 0 20px grey;
+    background-color: white;
+      
+    border: 0.5px solid grey;
+        border-radius: 21px;
+}
 .pr .buyNow{
 	width: 100%;
 }

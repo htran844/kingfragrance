@@ -152,6 +152,8 @@ let ListFilter= localStorage.getItem("ListFilter") ? JSON.parse(localStorage.get
 		}
 		
 	}
+	
+
 	var urlParams = new Array();
 	for (let index = 0; index < ListFilter.length; index++) {
 		if (ListFilter[index].match("gender")) {
@@ -192,7 +194,7 @@ function pushFilterToLocal(e, check,ListFilterParam) {
 			};
 		}
 		Filter = JSON.stringify(Filter);
-
+		
 		var countFilterGender=0;
 		var countFilterMoney=0;
 		var countFilterOder=0;

@@ -66,6 +66,9 @@ Product= JSON.stringify(Product);
 		cart.animate({opacity:0 } );
 		cart.animate({opacity:1, });
     localStorage.setItem("ListProduct",JSON.stringify(ListProduct));
+     ListProduct = localStorage.getItem("ListProduct") ? JSON.parse(localStorage.getItem("ListProduct")) : [];
+	var length_cart = ListProduct.length;
+	document.getElementById('number_cart').innerHTML=length_cart;
     document.getElementsByClassName("action-toast")[0].style.display="block";
 	setTimeout(function(){ 
 		document.getElementsByClassName("action-toast")[0].style.display="none";

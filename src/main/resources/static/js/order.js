@@ -124,7 +124,6 @@ $("html, body").animate({
 }
 
 function renderDatHangThanhCong() {
-		 alert("Đặt hàng thành công!")
 		document.getElementById('tm-main').innerHTML=
 			`
 			
@@ -138,7 +137,7 @@ function renderDatHangThanhCong() {
 					<meta class="" property="datePublished" content="2020-04-16T12:03:30+07:00">
 
 
-					<h1 class="">Đặt hàng thành công!</h1>
+					<h1 class="" style="    color: #e09d24;">Đặt hàng thành công!</h1>
 					<div class="" property="text">
 
 

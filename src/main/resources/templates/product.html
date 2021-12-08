@@ -151,8 +151,8 @@
 										</form>
 
 										<ul class="products " id="productssss">
-											<div class="bs-row">
-												<div class="bs-col tn-25-10 pr"
+											<div class="bs-row" style="    margin-top: -47px;">
+												<div class="bs-col tn-25-10"
 													th:each="products : ${lstProductResult}">
 													<div class="card pr">
 														<li class="woman-attr product type-product "><a
@@ -191,14 +191,14 @@
 										<h1 th:text="${notFind}"
 											style="color: #736a6a; font-size: 22px;"></h1>
 										<ul class="pagination">
-											<li><a th:if="${currentPage>1&&totalItems>12}"
-												th:href="@{${href} + ${currentPage-1}}">Previous</a></li>
+											<li><a th:if="${currentPage>1&&totalItems>0&&totalItems<=12}"
+												th:href="@{${href} + ${currentPage-1}}" onclick="redirectPage()">Previous</a></li>
 
 											<li th:if="${totalPages>1}"
 												th:each="i : ${#numbers.sequence(1,totalPages)}"><a
 												th:href="@{${href} + ${i}}" th:text="${i}" onclick="redirectPage()"></a></li>
 											<li><a th:if="${currentPage<totalPages}"
-												th:href="@{${href} + ${currentPage+1}}">Next</a></li>
+												th:href="@{${href} + ${currentPage+1}}" onclick="redirectPage()">Next</a></li>
 										</ul>
 									</div>
 
@@ -260,7 +260,7 @@
 		for (var i = 0; i < card_text1.length; i++) {
 			card_text1[i].innerHTML = parseFloat(card_text1[i].innerHTML)
 					.toLocaleString("en").replace(/,/g, ".")
-					+ ' đ';
+					+ ' ₫';
 		}
 		function myFunction() {
 			var input, filter, table, tr, td, i, txtValue;
@@ -288,3 +288,9 @@
 	</script>
 </body>
 </html>
+
+
+
+
+
+

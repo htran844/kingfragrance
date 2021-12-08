@@ -134,6 +134,9 @@ function getAllProduct() {
         $('#tm-main').hide();
         $('.module-cart').show();
     }
+    ListProduct = localStorage.getItem("ListProduct") ? JSON.parse(localStorage.getItem("ListProduct")) : [];
+	var length_cart = ListProduct.length;
+	document.getElementById('number_cart').innerHTML=length_cart;
 }
 function removeCart(e) {
 	var index = e.children[0].innerHTML;
@@ -144,7 +147,11 @@ function removeCart(e) {
             fillCart = "";
             fillProductToCart();
             getAllProduct();
+           
 	}	
+	 
+
+
 	
 }
 function RemoveAllCart() {
@@ -159,8 +166,15 @@ function RemoveAllCart() {
 }
 
 
-
-
-
-
+$(document).scroll(function () {
+	var lengthOfListPr =$("#list_pr").height();
 	
+	if ($(this).scrollTop() >= lengthOfListPr-265) {
+	$(".module-right-money").addClass("active")
+
+	} else {
+		$(".module-right-money").removeClass("active");
+
+	}
+});
+
