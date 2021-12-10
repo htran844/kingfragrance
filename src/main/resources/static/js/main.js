@@ -15,6 +15,7 @@ $(document).ready(function () {
         }
     });
     $(document).scroll(function () {
+    	
         if ($(this).scrollTop() > $("#main").offset().top) {
             $(".back-top").addClass("active");
 
