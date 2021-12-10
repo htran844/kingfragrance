@@ -1270,15 +1270,39 @@ padding: 10px;
 	top: 45%
 }
 
-.section-brand-special .brand-class .slick-next::before,
-	.section-brand-special .brand-class .slick-prev::before {
+.section-brand-special .brand-class .slick-next::before
+	 {
 	font-size: 49px;
 	color: #000;
-	top: -11px;
-	left: -7px;
+	top: -50%;
+	left: -200%;
 	position: absolute
 }
-
+.section-brand-special .brand-class .slick-next
+	 {
+	font-size: 49px;
+	color: #000;
+	
+	left: -200%;
+	position: absolute
+}
+.section-brand-special .brand-class .slick-prev {
+	font-size: 49px;
+	color: #000;
+	
+	right: -200%;
+	position: absolute
+}
+.module-product-special{
+	padding-top:80px;
+}
+.section-brand-special .brand-class .slick-prev::before {
+	font-size: 49px;
+	color: #000;
+	top: -50%;
+	right: -200%;
+	position: absolute
+}
 .section-brand-special .brand-class button:hover {
 	background-color: transparent
 }
@@ -1452,31 +1476,7 @@ padding: 10px;
 	}
 }
 
-@media only screen and (max-width:767px) {
-	.section-banner .banner-slide .slide-item {
-		height: 433px
-	}
-	.section-banner .module-banner {
-		margin-top: 130px
-	}
-	.section-banner .module-banner .line {
-		height: 37px
-	}
-	.section-banner .module-banner .module-content .desc {
-		font-size: 24px;
-		line-height: 36px
-	}
-}
 
-@media only screen and (max-width:479px) {
-	.section-banner .banner-slide .slide-item {
-		height: 351px
-	}
-	.section-banner .module-banner .module-content .desc {
-		font-size: 21px;
-		line-height: 30px
-	}
-}
 
 #footer {
 	background-color: #000;
@@ -2364,4 +2364,46 @@ body {
 .bs-container {
     width: 1500px !important;
 }
+@media only screen  and (max-width:1499px){
+.bs-container {
+    width: 1200px !important;
 }
+@media only screen and (max-width:767px) {
+	.section-banner .banner-slide .slide-item {
+		height: 433px
+	}
+	.section-banner .module-banner {
+		margin-top: 130px
+	}
+	.section-banner .module-banner .line {
+		height: 37px
+	}
+	.section-banner .module-banner .module-content .desc {
+		font-size: 24px;
+		line-height: 36px
+	}
+}
+
+@media only screen and (max-width:479px) {
+	.section-banner .banner-slide .slide-item {
+		height: 351px
+	}
+	.section-banner .module-banner .module-content .desc {
+		font-size: 21px;
+		line-height: 30px
+	}
+}
+
+@media only screen and (max-width:1566px) {
+	.section-banner .banner-slide .slide-item {
+		height: 351px
+	}
+	.section-banner .module-banner .module-content .desc {
+		font-size: 21px;
+		line-height: 30px
+	}
+}
+
+}
+
+

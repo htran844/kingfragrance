@@ -20,7 +20,7 @@ async function getIdOrder() {
 		alert("Không được để trống số điện thoại!")
 		return;
 	}
-	if (!phone.match("0\\d{9}")) {
+	if (!phone.match("0[0,9]{9}")) {
 		alert("Số điện thoại không hợp lệ!")
 		return;
 	}

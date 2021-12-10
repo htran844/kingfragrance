@@ -165,7 +165,7 @@
 
 								<div class="bs-row product-class">
 
-									<div class="bs-col tn-33-15" th:each="x : ${listProductResult}"
+									<div class="bs-col tn-33-15 " th:each="x : ${listProductResult}"
 										th:if="${listProductResult.size()>0 && x.product.hot && x.product.gender eq 'nữ'}">
 										<div class="card">
 											<a th:href="@{'/product-detailts/' + ${x.product.slug}}">
@@ -309,13 +309,42 @@
 			});
 
 			$('.brand-class').slick({
-				slidesToShow : 5,
+				slidesToShow : 7,
 				slidesToScroll : 5,
 				autoplay : false,
 				autoplaySpeed : 2000,
 				dots : true,
 				swipeToSlide : true,
-
+				
+				responsive: [
+					 {
+					      breakpoint: 1230,
+					      settings: {
+					        arrows: false,
+					        centerMode: true,
+					        centerPadding: '40px',
+					        slidesToShow: 4
+					      }
+					    },
+				    {
+				      breakpoint: 768,
+				      settings: {
+				        arrows: false,
+				        centerMode: true,
+				        centerPadding: '0px',
+				        slidesToShow: 3
+				      }
+				    },
+				    {
+				      breakpoint: 480,
+				      settings: {
+				        arrows: false,
+				        centerMode: true,
+				        centerPadding: '40px',
+				        slidesToShow: 1
+				      }
+				    }
+				  ]
 			});
 			$('.product-class').slick({
 				slidesToShow : 4,
