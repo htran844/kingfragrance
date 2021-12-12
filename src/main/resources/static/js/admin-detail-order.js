@@ -149,7 +149,7 @@ function addProductDetail(idDetail = '', id = '', name = '', capacity = '', quan
 	                        </div>
 	                        <div >
 						<label class="mb-1">Dung tích (ml)</label>
-	                        	<input type="number" name="capacity" class="product-capacity" placeholder="Dung tích" value="${capacity}"  />	                        
+	                        	<input type="number" name="capacity" class="product-capacity" min="1" placeholder="Dung tích" value="${capacity}"  />	                        
 	                        </div>
 	                        <div >
 						<label class="mb-1">Số lượng</label>

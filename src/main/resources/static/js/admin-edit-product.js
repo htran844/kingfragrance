@@ -1,15 +1,15 @@
 function createMoreProductItem(capacity = '', cost = '', quantity = '', disable = '') {
 	const moreProductItem = `<div class="col-3">
 <label class="mb-1">Chọn dung tích</label>
- <input type="number" name="capacity" class="product-capacity" placeholder="Dung tích" value="${capacity}" required ${disable} />
+ <input type="number" name="capacity" class="product-capacity" min="10" placeholder="Dung tích" value="${capacity}" required ${disable} />
 </div>
 <div class="col-3">
 <label class="mb-1">Nhập giá</label>
-<input type="number" name="cost" class="product-cost" placeholder="Giá" value="${cost}" required />
+<input type="number" name="cost" class="product-cost" min="1000" placeholder="Giá" value="${cost}" required />
 </div>
 <div class="col-3">
 <label class="mb-1">Số lượng</label>
-<input type="number" name="quantity" class="product-quantity" placeholder="Số lượng" value="${quantity}"
+<input type="number" name="quantity" class="product-quantity" min="1" placeholder="Số lượng" value="${quantity}"
 	required />
 </div>
 <div class="col-3 more-product-delete-btn mt-3">

@@ -1,14 +1,14 @@
 const moreProductItem = `<div class="col-3">
 <label class="mb-1">Chọn dung tích</label>
-<input type="number" name="capacity" class="product-capacity" placeholder="Dung tích" required />
+<input type="number" name="capacity" class="product-capacity" min="10" placeholder="Dung tích" required />
 </div>
 <div class="col-3">
 <label class="mb-1">Nhập giá</label>
-<input type="number" name="cost" class="product-cost" placeholder="Giá" required />
+<input type="number" name="cost" class="product-cost" min="1000" placeholder="Giá" required />
 </div>
 <div class="col-3">
 <label class="mb-1">Số lượng</label>
-<input type="number" name="quantity" class="product-quantity" placeholder="Số lượng"
+<input type="number" name="quantity" class="product-quantity" min="1" placeholder="Số lượng"
 	required />
 </div>
 <div class="col-3 more-product-delete-btn mt-3">

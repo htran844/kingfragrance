@@ -13,6 +13,16 @@ async function getOrders(page = 1) {
 		url: `/admin/orders/${search}/${status}`,
 		method: 'GET',
 	})
+	let don =0;
+	orders.forEach((order)=>{
+		if(order.status == 'waiting'){
+			don ++;
+		//	document.querySelector('.total-orders span').innerHTML = don;
+			document.getElementById('tongsodon').innerHTML = don
+		}
+		
+	})
+	
 	let total = orders.length
 	showPagination(total)
 	let onePage = 5
@@ -42,12 +52,10 @@ function showPagination(leng){
 }
 
 function renderListOfOrders(orders, page) {
-	document.querySelector('.total-orders span').innerHTML = 0
+	//document.querySelector('.total-orders span').innerHTML = 0
 	let html = ''
 	orders.forEach((order, i) => {
-		if(order.status == 'waiting'){
-			document.querySelector('.total-orders span').innerHTML++
-		}
+		
 		// set default value
 		let stt = order.status;
 		switch (stt) {
