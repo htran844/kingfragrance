@@ -112,7 +112,6 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public ProductResult getOneProductResultBySlug(String Slug) {
-		// TODO Auto-generated method stub
 		Product product = getOneProduct(Slug);
 		List<ProductDetail> lstProductDetail = productDetailRepository.findAllByProductId(product.getId());
 		ProductResult productResult = new ProductResult(product, lstProductDetail);
@@ -187,11 +186,9 @@ public class ProductServiceImpl implements ProductService {
 		
 		List<ProductResult> lstProductResult = new ArrayList<>();
 		int index = pageNumber * totalItems - totalItems + 1;
-		System.out.println("index"+index);
 		int count = 0;
 		for (int i = index; i <= list.size(); i++) {
 			count++;
-			System.out.println("dem:"+count);
 			lstProductResult.add(list.get(i-1));
 			if (count == totalItems) {
 				break;

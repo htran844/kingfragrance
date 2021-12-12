@@ -21,7 +21,7 @@ $("#blog-images").on("change", function () {
 	const previewImages = $(".blog-images img");
 	const idBlog = url[url.length - 1];
 	if (previewImages.length == 0) {
-	  alert("Vui lòng chọn ảnh sản phẩm");
+	  alert("Vui lòng chọn ảnh blog");
 	  return;
 	}
 	// add lazing add product

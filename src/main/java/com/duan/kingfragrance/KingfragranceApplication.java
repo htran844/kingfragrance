@@ -13,11 +13,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class KingfragranceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(KingfragranceApplication.class, args);
-		
-		
+		SpringApplication.run(KingfragranceApplication.class, args);	
 	}
-
-	
-	
 }

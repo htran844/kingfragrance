@@ -15,15 +15,26 @@ $("#blog-images").on("change", function () {
 // add product
 
 
+
 // form.addEventListener("submit", async (e) => {
   async function add_blog(){
   const title = document.querySelector("#blog-title");
   const content = document.querySelector("#blog-content");
   const previewImages = $(".blog-images img");
-  if (previewImages.length == 0) {
-    alert("Vui lòng chọn ảnh sản phẩm");
+  if (title.value.length==0) {
+    alert("Vui lòng nhập tiêu đề!");
     return;
   }
+  if (content.value.length==0) {
+    alert("Vui lòng nhập nội dung!");
+    return;
+  }
+  if (previewImages.length == 0) {
+    alert("Vui lòng chọn ảnh blog!");
+    return;
+  }
+ 
+ 
   // add lazing add product
   const lazy = document.querySelector(".lazy-loading");
   lazy.classList.toggle("hide");
