@@ -76,7 +76,7 @@ getBlogs()
 
 
 async function deleteBlogCode(BlogId) {
-	const conf = confirm('Bạn chắc chắn muốn xóa sản phẩm')
+	const conf = confirm('Bạn chắc chắn muốn xóa blog?')
 	if (!conf) return
 	
 	const deleteProduct =  await	$.ajax({
@@ -87,5 +87,5 @@ async function deleteBlogCode(BlogId) {
 	}
   })
 	getBlogs()
-	alert('xóa sản phẩm thành công')
+	alert('xóa blog thành công')
 }

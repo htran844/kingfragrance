@@ -30,7 +30,7 @@ $("#blog-images").on("change", function () {
     return;
   }
   if (previewImages.length == 0) {
-    alert("Vui lòng chọn ảnh sản phẩm!");
+    alert("Vui lòng chọn ảnh blog!");
     return;
   }
  
